@@ -11,6 +11,7 @@ from chia.types.condition_with_args import ConditionWithArgs
 from chia.util.clvm import int_from_bytes
 from chia.util.errors import ConsensusError, Err
 from chia.util.ints import uint64
+from chia.consensus.cost_calculator import SpendBundleConditions
 
 # TODO: review each `assert` and consider replacing with explicit checks
 #       since asserts can be stripped with python `-OO` flag
@@ -63,6 +64,20 @@ def conditions_by_opcode(
             d[cvp.opcode] = list()
         d[cvp.opcode].append(cvp)
     return d
+
+
+def pkm_pairs(conditions: SpendBundleConditions, additional_data: bytes) -> Tuple[List[G1Element], List[bytes]]:
+    ret: Tuple[List[G1Element], List[bytes]] = ([], [])
+
+    for pk, msg in conditions.agg_sig_unsafe:
+        ret[0].append(G1Element.from_bytes(pk))
+        ret[1].append(msg)
+
+    for spend in conditions.spends:
+        for pk, msg in spend.agg_sig_me:
+            ret[0].append(G1Element.from_bytes(pk))
+            ret[1].append(msg + spend.coin_id + additional_data)
+    return ret
 
 
 def pkm_pairs_for_conditions_dict(

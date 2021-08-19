@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Optional, Set
 
 from blspy import AugSchemeMPL, G2Element
 
-from chia.consensus.cost_calculator import calculate_cost_of_program, NPCResult
+from chia.consensus.cost_calculator import NPCResult
 from chia.full_node.bundle_tools import simple_solution_generator
 from chia.full_node.mempool_check_conditions import get_name_puzzle_conditions
 from chia.protocols.wallet_protocol import PuzzleSolutionResponse
@@ -257,10 +257,7 @@ class CCWallet:
                 cost_per_byte=self.wallet_state_manager.constants.COST_PER_BYTE,
                 safe_mode=True,
             )
-            cost_result: uint64 = calculate_cost_of_program(
-                program.program, result, self.wallet_state_manager.constants.COST_PER_BYTE
-            )
-            self.cost_of_single_tx = cost_result
+            self.cost_of_single_tx = result.cost
             self.log.info(f"Cost of a single tx for standard wallet: {self.cost_of_single_tx}")
 
         max_cost = self.wallet_state_manager.constants.MAX_BLOCK_COST_CLVM / 2  # avoid full block TXs
