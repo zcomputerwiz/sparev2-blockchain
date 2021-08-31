@@ -91,6 +91,9 @@ class Timelord:
         self.sanitizer_mode = self.config["sanitizer_mode"]
         self.pending_bluebox_info: List[Tuple[float, timelord_protocol.RequestCompactProofOfTime]] = []
         self.last_active_time = time.time()
+        # Keeps track of the heights we're working on
+        # {height: processCount} - number of processes working on the particular height at a given time
+        self.working_heights: Dict[uint32, int] = {}
 
     async def _start(self):
         self.lock: asyncio.Lock = asyncio.Lock()
@@ -989,6 +992,10 @@ class Timelord:
                         response = timelord_protocol.RespondCompactProofOfTime(
                             vdf_info, vdf_proof, header_hash, height, field_vdf
                         )
+
+                        # Keep track that we finished one from this height
+                        self.working_heights[height] -= 1
+
                         if self.server is not None:
                             message = make_msg(ProtocolMessageTypes.respond_compact_proof_of_time, response)
                             await self.server.send_to_all([message], NodeType.FULL_NODE)
@@ -1028,6 +1035,10 @@ class Timelord:
                                 )
                             )
                         )
+                        if info[1].height in self.working_heights:
+                            self.working_heights[info[1].height] += 1
+                        else:
+                            self.working_heights[info[1].height] = 1
                         self.pending_bluebox_info.remove(info)
                         self.free_clients = self.free_clients[1:]
                 except Exception as e:
