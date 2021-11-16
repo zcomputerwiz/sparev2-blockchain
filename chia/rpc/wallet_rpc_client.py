@@ -7,6 +7,7 @@ from chia.types.blockchain_format.coin import Coin
 from chia.types.blockchain_format.sized_bytes import bytes32
 from chia.util.ints import uint32, uint64
 from chia.wallet.transaction_record import TransactionRecord
+from chia.wallet.transaction_sorting import SortKey
 
 
 class WalletRpcClient(RpcClient):
@@ -106,13 +107,18 @@ class WalletRpcClient(RpcClient):
         wallet_id: str,
         start: int = None,
         end: int = None,
+        sort_key: SortKey = None,
+        reverse: bool = False,
     ) -> List[TransactionRecord]:
-        request = {"wallet_id": wallet_id}
+        request: Dict[str, Any] = {"wallet_id": wallet_id}
 
         if start is not None:
             request["start"] = start
         if end is not None:
             request["end"] = end
+        if sort_key is not None:
+            request["sort_key"] = sort_key.name
+        request["reverse"] = reverse
 
         res = await self.fetch(
             "get_transactions",

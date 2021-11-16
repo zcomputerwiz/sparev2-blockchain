@@ -77,7 +77,6 @@ class WalletRpcApi:
             "/get_next_address": self.get_next_address,
             "/send_transaction": self.send_transaction,
             "/send_transaction_multi": self.send_transaction_multi,
-            "/get_transaction_count": self.get_transaction_count,
             "/get_farmed_amount": self.get_farmed_amount,
             "/create_signed_transaction": self.create_signed_transaction,
             "/delete_unconfirmed_transactions": self.delete_unconfirmed_transactions,
@@ -599,16 +598,15 @@ class WalletRpcApi:
         assert self.service.wallet_state_manager is not None
 
         wallet_id = int(request["wallet_id"])
-        if "start" in request:
-            start = request["start"]
-        else:
-            start = 0
-        if "end" in request:
-            end = request["end"]
-        else:
-            end = 1000
 
-        transactions = await self.service.wallet_state_manager.tx_store.get_transactions_between(wallet_id, start, end)
+        start = request.get("start", 0)
+        end = request.get("end", 1000)
+        sort_key = request.get("sort_key", None)
+        reverse = request.get("reverse", False)
+
+        transactions = await self.service.wallet_state_manager.tx_store.get_transactions_between(
+            wallet_id, start, end, sort_key=sort_key, reverse=reverse
+        )
         return {
             "transactions": [tr.to_json_dict_convenience(self.service.config) for tr in transactions],
             "wallet_id": wallet_id,
@@ -727,11 +725,6 @@ class WalletRpcApi:
                 # Update the cache
                 await self.service.wallet_state_manager.tx_store.rebuild_tx_cache()
                 return {}
-
-    async def get_transaction_count(self, request):
-        wallet_id = int(request["wallet_id"])
-        count = await self.service.wallet_state_manager.tx_store.get_transaction_count_for_wallet(wallet_id)
-        return {"wallet_id": wallet_id, "count": count}
 
     ##########################################################################################
     # Coloured Coins and Trading
