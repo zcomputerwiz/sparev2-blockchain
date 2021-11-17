@@ -208,9 +208,7 @@ class CCWallet:
 
         amount: uint64 = uint64(0)
         for record in record_list:
-            lineage = await self.get_lineage_proof_for_coin(record.coin)
-            if lineage is not None:
-                amount = uint64(amount + record.coin.amount)
+            amount = uint64(amount + record.coin.amount)
 
         self.log.info(f"Confirmed balance for cc wallet {self.id()} is {amount}")
         return uint64(amount)
