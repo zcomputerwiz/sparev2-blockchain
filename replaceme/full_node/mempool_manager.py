@@ -8,32 +8,32 @@ from typing import Dict, List, Optional, Set, Tuple
 from blspy import G1Element, GTElement
 from chiabip158 import PyBIP158
 
-from chia.util import cached_bls
-from chia.consensus.block_record import BlockRecord
-from chia.consensus.constants import ConsensusConstants
-from chia.consensus.cost_calculator import NPCResult, calculate_cost_of_program
-from chia.full_node.bundle_tools import simple_solution_generator
-from chia.full_node.coin_store import CoinStore
-from chia.full_node.mempool import Mempool
-from chia.full_node.mempool_check_conditions import mempool_check_conditions_dict, get_name_puzzle_conditions
-from chia.full_node.pending_tx_cache import PendingTxCache
-from chia.types.blockchain_format.coin import Coin
-from chia.types.blockchain_format.program import SerializedProgram
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.coin_record import CoinRecord
-from chia.types.condition_opcodes import ConditionOpcode
-from chia.types.condition_with_args import ConditionWithArgs
-from chia.types.mempool_inclusion_status import MempoolInclusionStatus
-from chia.types.mempool_item import MempoolItem
-from chia.types.spend_bundle import SpendBundle
-from chia.util.cached_bls import LOCAL_CACHE
-from chia.util.clvm import int_from_bytes
-from chia.util.condition_tools import pkm_pairs
-from chia.util.errors import Err, ValidationError
-from chia.util.generator_tools import additions_for_npc
-from chia.util.ints import uint32, uint64
-from chia.util.lru_cache import LRUCache
-from chia.util.streamable import recurse_jsonify
+from replaceme.util import cached_bls
+from replaceme.consensus.block_record import BlockRecord
+from replaceme.consensus.constants import ConsensusConstants
+from replaceme.consensus.cost_calculator import NPCResult, calculate_cost_of_program
+from replaceme.full_node.bundle_tools import simple_solution_generator
+from replaceme.full_node.coin_store import CoinStore
+from replaceme.full_node.mempool import Mempool
+from replaceme.full_node.mempool_check_conditions import mempool_check_conditions_dict, get_name_puzzle_conditions
+from replaceme.full_node.pending_tx_cache import PendingTxCache
+from replaceme.types.blockchain_format.coin import Coin
+from replaceme.types.blockchain_format.program import SerializedProgram
+from replaceme.types.blockchain_format.sized_bytes import bytes32
+from replaceme.types.coin_record import CoinRecord
+from replaceme.types.condition_opcodes import ConditionOpcode
+from replaceme.types.condition_with_args import ConditionWithArgs
+from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
+from replaceme.types.mempool_item import MempoolItem
+from replaceme.types.spend_bundle import SpendBundle
+from replaceme.util.cached_bls import LOCAL_CACHE
+from replaceme.util.clvm import int_from_bytes
+from replaceme.util.condition_tools import pkm_pairs
+from replaceme.util.errors import Err, ValidationError
+from replaceme.util.generator_tools import additions_for_npc
+from replaceme.util.ints import uint32, uint64
+from replaceme.util.lru_cache import LRUCache
+from replaceme.util.streamable import recurse_jsonify
 
 log = logging.getLogger(__name__)
 

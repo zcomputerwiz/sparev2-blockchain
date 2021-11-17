@@ -5,20 +5,20 @@ from typing import Callable, List, Tuple
 
 from blspy import AugSchemeMPL, G2Element, G1Element
 
-from chia.consensus.pot_iterations import calculate_iterations_quality, calculate_sp_interval_iters
-from chia.harvester.harvester import Harvester
-from chia.plotting.util import PlotInfo, parse_plot_info
-from chia.protocols import harvester_protocol
-from chia.protocols.farmer_protocol import FarmingInfo
-from chia.protocols.harvester_protocol import Plot
-from chia.protocols.protocol_message_types import ProtocolMessageTypes
-from chia.server.outbound_message import make_msg
-from chia.server.ws_connection import WSChiaConnection
-from chia.types.blockchain_format.proof_of_space import ProofOfSpace
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.util.api_decorators import api_request, peer_required
-from chia.util.ints import uint8, uint32, uint64
-from chia.wallet.derive_keys import master_sk_to_local_sk
+from replaceme.consensus.pot_iterations import calculate_iterations_quality, calculate_sp_interval_iters
+from replaceme.harvester.harvester import Harvester
+from replaceme.plotting.util import PlotInfo, parse_plot_info
+from replaceme.protocols import harvester_protocol
+from replaceme.protocols.farmer_protocol import FarmingInfo
+from replaceme.protocols.harvester_protocol import Plot
+from replaceme.protocols.protocol_message_types import ProtocolMessageTypes
+from replaceme.server.outbound_message import make_msg
+from replaceme.server.ws_connection import WSReplacemeConnection
+from replaceme.types.blockchain_format.proof_of_space import ProofOfSpace
+from replaceme.types.blockchain_format.sized_bytes import bytes32
+from replaceme.util.api_decorators import api_request, peer_required
+from replaceme.util.ints import uint8, uint32, uint64
+from replaceme.wallet.derive_keys import master_sk_to_local_sk
 
 
 class HarvesterAPI:
@@ -46,7 +46,7 @@ class HarvesterAPI:
     @peer_required
     @api_request
     async def new_signage_point_harvester(
-        self, new_challenge: harvester_protocol.NewSignagePointHarvester, peer: WSChiaConnection
+        self, new_challenge: harvester_protocol.NewSignagePointHarvester, peer: WSReplacemeConnection
     ):
         """
         The harvester receives a new signage point from the farmer, this happens at the start of each slot.

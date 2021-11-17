@@ -10,65 +10,65 @@ from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
 import aiosqlite
 from blspy import AugSchemeMPL
 
-import chia.server.ws_connection as ws  # lgtm [py/import-and-import-from]
-from chia.consensus.block_creation import unfinished_block_to_full_block
-from chia.consensus.block_record import BlockRecord
-from chia.consensus.blockchain import Blockchain, ReceiveBlockResult
-from chia.consensus.blockchain_interface import BlockchainInterface
-from chia.consensus.constants import ConsensusConstants
-from chia.consensus.cost_calculator import NPCResult
-from chia.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
-from chia.consensus.make_sub_epoch_summary import next_sub_epoch_summary
-from chia.consensus.multiprocess_validation import PreValidationResult
-from chia.consensus.pot_iterations import calculate_sp_iters
-from chia.full_node.block_store import BlockStore
-from chia.full_node.lock_queue import LockQueue, LockClient
-from chia.full_node.bundle_tools import detect_potential_template_generator
-from chia.full_node.coin_store import CoinStore
-from chia.full_node.full_node_store import FullNodeStore, FullNodeStorePeakResult
-from chia.full_node.hint_store import HintStore
-from chia.full_node.mempool_manager import MempoolManager
-from chia.full_node.signage_point import SignagePoint
-from chia.full_node.sync_store import SyncStore
-from chia.full_node.weight_proof import WeightProofHandler
-from chia.protocols import farmer_protocol, full_node_protocol, timelord_protocol, wallet_protocol
-from chia.protocols.full_node_protocol import (
+import replaceme.server.ws_connection as ws  # lgtm [py/import-and-import-from]
+from replaceme.consensus.block_creation import unfinished_block_to_full_block
+from replaceme.consensus.block_record import BlockRecord
+from replaceme.consensus.blockchain import Blockchain, ReceiveBlockResult
+from replaceme.consensus.blockchain_interface import BlockchainInterface
+from replaceme.consensus.constants import ConsensusConstants
+from replaceme.consensus.cost_calculator import NPCResult
+from replaceme.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
+from replaceme.consensus.make_sub_epoch_summary import next_sub_epoch_summary
+from replaceme.consensus.multiprocess_validation import PreValidationResult
+from replaceme.consensus.pot_iterations import calculate_sp_iters
+from replaceme.full_node.block_store import BlockStore
+from replaceme.full_node.lock_queue import LockQueue, LockClient
+from replaceme.full_node.bundle_tools import detect_potential_template_generator
+from replaceme.full_node.coin_store import CoinStore
+from replaceme.full_node.full_node_store import FullNodeStore, FullNodeStorePeakResult
+from replaceme.full_node.hint_store import HintStore
+from replaceme.full_node.mempool_manager import MempoolManager
+from replaceme.full_node.signage_point import SignagePoint
+from replaceme.full_node.sync_store import SyncStore
+from replaceme.full_node.weight_proof import WeightProofHandler
+from replaceme.protocols import farmer_protocol, full_node_protocol, timelord_protocol, wallet_protocol
+from replaceme.protocols.full_node_protocol import (
     RequestBlocks,
     RespondBlock,
     RespondBlocks,
     RespondSignagePoint,
 )
-from chia.protocols.protocol_message_types import ProtocolMessageTypes
-from chia.protocols.wallet_protocol import CoinState, CoinStateUpdate
-from chia.server.node_discovery import FullNodePeers
-from chia.server.outbound_message import Message, NodeType, make_msg
-from chia.server.server import ChiaServer
-from chia.types.blockchain_format.classgroup import ClassgroupElement
-from chia.types.blockchain_format.pool_target import PoolTarget
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from chia.types.blockchain_format.vdf import CompressibleVDFField, VDFInfo, VDFProof
-from chia.types.coin_record import CoinRecord
-from chia.types.end_of_slot_bundle import EndOfSubSlotBundle
-from chia.types.full_block import FullBlock
-from chia.types.generator_types import BlockGenerator
-from chia.types.header_block import HeaderBlock
-from chia.types.mempool_inclusion_status import MempoolInclusionStatus
-from chia.types.spend_bundle import SpendBundle
-from chia.types.transaction_queue_entry import TransactionQueueEntry
-from chia.types.unfinished_block import UnfinishedBlock
-from chia.util import cached_bls
-from chia.util.bech32m import encode_puzzle_hash
-from chia.util.check_fork_next_block import check_fork_next_block
-from chia.util.condition_tools import pkm_pairs
-from chia.util.db_wrapper import DBWrapper
-from chia.util.errors import ConsensusError, Err, ValidationError
-from chia.util.ints import uint8, uint32, uint64, uint128
-from chia.util.path import mkdir, path_from_root
-from chia.util.safe_cancel_task import cancel_task_safe
-from chia.util.profiler import profile_task
+from replaceme.protocols.protocol_message_types import ProtocolMessageTypes
+from replaceme.protocols.wallet_protocol import CoinState, CoinStateUpdate
+from replaceme.server.node_discovery import FullNodePeers
+from replaceme.server.outbound_message import Message, NodeType, make_msg
+from replaceme.server.server import ReplacemeServer
+from replaceme.types.blockchain_format.classgroup import ClassgroupElement
+from replaceme.types.blockchain_format.pool_target import PoolTarget
+from replaceme.types.blockchain_format.sized_bytes import bytes32
+from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from replaceme.types.blockchain_format.vdf import CompressibleVDFField, VDFInfo, VDFProof
+from replaceme.types.coin_record import CoinRecord
+from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
+from replaceme.types.full_block import FullBlock
+from replaceme.types.generator_types import BlockGenerator
+from replaceme.types.header_block import HeaderBlock
+from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
+from replaceme.types.spend_bundle import SpendBundle
+from replaceme.types.transaction_queue_entry import TransactionQueueEntry
+from replaceme.types.unfinished_block import UnfinishedBlock
+from replaceme.util import cached_bls
+from replaceme.util.bech32m import encode_puzzle_hash
+from replaceme.util.check_fork_next_block import check_fork_next_block
+from replaceme.util.condition_tools import pkm_pairs
+from replaceme.util.db_wrapper import DBWrapper
+from replaceme.util.errors import ConsensusError, Err, ValidationError
+from replaceme.util.ints import uint8, uint32, uint64, uint128
+from replaceme.util.path import mkdir, path_from_root
+from replaceme.util.safe_cancel_task import cancel_task_safe
+from replaceme.util.profiler import profile_task
 from datetime import datetime
-from chia.util.db_synchronous import db_synchronous_on
+from replaceme.util.db_synchronous import db_synchronous_on
 
 
 class FullNode:
@@ -271,7 +271,7 @@ class FullNode:
         if peak is not None:
             await self.weight_proof_handler.create_sub_epoch_segments()
 
-    def set_server(self, server: ChiaServer):
+    def set_server(self, server: ReplacemeServer):
         self.server = server
         dns_servers = []
         try:
@@ -284,7 +284,7 @@ class FullNode:
             dns_servers = self.config["dns_servers"]
         elif self.config["port"] == 8444:
             # If `dns_servers` misses from the `config`, hardcode it if we're running mainnet.
-            dns_servers.append("dns-introducer.chia.net")
+            dns_servers.append("dns-introducer.replaceme.net")
         try:
             self.full_node_peers = FullNodePeers(
                 self.server,
@@ -309,7 +309,7 @@ class FullNode:
         if self.state_changed_callback is not None:
             self.state_changed_callback(change)
 
-    async def short_sync_batch(self, peer: ws.WSChiaConnection, start_height: uint32, target_height: uint32) -> bool:
+    async def short_sync_batch(self, peer: ws.WSReplacemeConnection, start_height: uint32, target_height: uint32) -> bool:
         """
         Tries to sync to a chain which is not too far in the future, by downloading batches of blocks. If the first
         block that we download is not connected to our chain, we return False and do an expensive long sync instead.
@@ -394,7 +394,7 @@ class FullNode:
         return True
 
     async def short_sync_backtrack(
-        self, peer: ws.WSChiaConnection, peak_height: uint32, target_height: uint32, target_unf_hash: bytes32
+        self, peer: ws.WSReplacemeConnection, peak_height: uint32, target_height: uint32, target_unf_hash: bytes32
     ):
         """
         Performs a backtrack sync, where blocks are downloaded one at a time from newest to oldest. If we do not
@@ -450,7 +450,7 @@ class FullNode:
             await asyncio.sleep(sleep_before)
         self._state_changed("peer_changed_peak")
 
-    async def new_peak(self, request: full_node_protocol.NewPeak, peer: ws.WSChiaConnection):
+    async def new_peak(self, request: full_node_protocol.NewPeak, peer: ws.WSReplacemeConnection):
         """
         We have received a notification of a new peak from a peer. This happens either when we have just connected,
         or when the peer has updated their peak.
@@ -527,7 +527,7 @@ class FullNode:
             self._sync_task = asyncio.create_task(self._sync())
 
     async def send_peak_to_timelords(
-        self, peak_block: Optional[FullBlock] = None, peer: Optional[ws.WSChiaConnection] = None
+        self, peak_block: Optional[FullBlock] = None, peer: Optional[ws.WSReplacemeConnection] = None
     ):
         """
         Sends current peak to timelords
@@ -600,7 +600,7 @@ class FullNode:
         else:
             return True
 
-    async def on_connect(self, connection: ws.WSChiaConnection):
+    async def on_connect(self, connection: ws.WSReplacemeConnection):
         """
         Whenever we connect to another node / wallet, send them our current heads. Also send heads to farmers
         and challenges to timelords.
@@ -651,7 +651,7 @@ class FullNode:
             elif connection.connection_type is NodeType.TIMELORD:
                 await self.send_peak_to_timelords()
 
-    def on_disconnect(self, connection: ws.WSChiaConnection):
+    def on_disconnect(self, connection: ws.WSReplacemeConnection):
         self.log.info(f"peer disconnected {connection.get_peer_logging()}")
         self._state_changed("close_connection")
         self._state_changed("sync_mode")
@@ -659,7 +659,7 @@ class FullNode:
             self.sync_store.peer_disconnected(connection.peer_node_id)
         self.remove_subscriptions(connection)
 
-    def remove_subscriptions(self, peer: ws.WSChiaConnection):
+    def remove_subscriptions(self, peer: ws.WSReplacemeConnection):
         # Remove all ph | coin id subscription for this peer
         node_id = peer.peer_node_id
         if node_id in self.peer_puzzle_hash:
@@ -861,7 +861,7 @@ class FullNode:
         )
         batch_size = self.constants.MAX_BLOCK_COUNT_PER_REQUESTS
 
-        async def fetch_block_batches(batch_queue, peers_with_peak: List[ws.WSChiaConnection]):
+        async def fetch_block_batches(batch_queue, peers_with_peak: List[ws.WSReplacemeConnection]):
             try:
                 for start_height in range(fork_point_height, target_peak_sb_height, batch_size):
                     end_height = min(target_peak_sb_height, start_height + batch_size)
@@ -918,7 +918,7 @@ class FullNode:
                 self.blockchain.clean_block_record(end_height - self.constants.BLOCKS_CACHE_SIZE)
 
         loop = asyncio.get_event_loop()
-        batch_queue: asyncio.Queue[Tuple[ws.WSChiaConnection, List[FullBlock]]] = asyncio.Queue(
+        batch_queue: asyncio.Queue[Tuple[ws.WSReplacemeConnection, List[FullBlock]]] = asyncio.Queue(
             loop=loop, maxsize=buffer_size
         )
         fetch_task = asyncio.Task(fetch_block_batches(batch_queue, peers_with_peak))
@@ -987,7 +987,7 @@ class FullNode:
         for peer, changes in changes_for_peer.items():
             if peer not in self.server.all_connections:
                 continue
-            ws_peer: ws.WSChiaConnection = self.server.all_connections[peer]
+            ws_peer: ws.WSReplacemeConnection = self.server.all_connections[peer]
             state = CoinStateUpdate(height, fork_height, peak_hash, list(changes))
             msg = make_msg(ProtocolMessageTypes.coin_state_update, state)
             await ws_peer.send_message(msg)
@@ -995,7 +995,7 @@ class FullNode:
     async def receive_block_batch(
         self,
         all_blocks: List[FullBlock],
-        peer: ws.WSChiaConnection,
+        peer: ws.WSReplacemeConnection,
         fork_point: Optional[uint32],
         wp_summaries: Optional[List[SubEpochSummary]] = None,
     ) -> Tuple[bool, bool, Optional[uint32], Tuple[List[CoinRecord], Dict[bytes, Dict[bytes, CoinRecord]]]]:
@@ -1114,7 +1114,7 @@ class FullNode:
     async def signage_point_post_processing(
         self,
         request: full_node_protocol.RespondSignagePoint,
-        peer: ws.WSChiaConnection,
+        peer: ws.WSReplacemeConnection,
         ip_sub_slot: Optional[EndOfSubSlotBundle],
     ):
         self.log.info(
@@ -1172,7 +1172,7 @@ class FullNode:
         block: FullBlock,
         record: BlockRecord,
         fork_height: uint32,
-        peer: Optional[ws.WSChiaConnection],
+        peer: Optional[ws.WSReplacemeConnection],
         coin_changes: List[CoinRecord],
     ):
         """
@@ -1264,7 +1264,7 @@ class FullNode:
         block: FullBlock,
         record: BlockRecord,
         fork_height: uint32,
-        peer: Optional[ws.WSChiaConnection],
+        peer: Optional[ws.WSReplacemeConnection],
         coin_changes: Tuple[List[CoinRecord], Dict[bytes, Dict[bytes32, CoinRecord]]],
         mempool_peak_result: List[Tuple[SpendBundle, NPCResult, bytes32]],
         fns_peak_result: FullNodeStorePeakResult,
@@ -1342,7 +1342,7 @@ class FullNode:
     async def respond_block(
         self,
         respond_block: full_node_protocol.RespondBlock,
-        peer: Optional[ws.WSChiaConnection] = None,
+        peer: Optional[ws.WSReplacemeConnection] = None,
     ) -> Optional[Message]:
         """
         Receive a full block from a peer full node (or ourselves).
@@ -1530,7 +1530,7 @@ class FullNode:
     async def respond_unfinished_block(
         self,
         respond_unfinished_block: full_node_protocol.RespondUnfinishedBlock,
-        peer: Optional[ws.WSChiaConnection],
+        peer: Optional[ws.WSReplacemeConnection],
         farmed_block: bool = False,
         block_bytes: Optional[bytes] = None,
     ):
@@ -1717,7 +1717,7 @@ class FullNode:
         self._state_changed("unfinished_block")
 
     async def new_infusion_point_vdf(
-        self, request: timelord_protocol.NewInfusionPointVDF, timelord_peer: Optional[ws.WSChiaConnection] = None
+        self, request: timelord_protocol.NewInfusionPointVDF, timelord_peer: Optional[ws.WSReplacemeConnection] = None
     ) -> Optional[Message]:
         # Lookup unfinished blocks
         unfinished_block: Optional[UnfinishedBlock] = self.full_node_store.get_unfinished_block(
@@ -1820,7 +1820,7 @@ class FullNode:
         return None
 
     async def respond_end_of_sub_slot(
-        self, request: full_node_protocol.RespondEndOfSubSlot, peer: ws.WSChiaConnection
+        self, request: full_node_protocol.RespondEndOfSubSlot, peer: ws.WSReplacemeConnection
     ) -> Tuple[Optional[Message], bool]:
 
         fetched_ss = self.full_node_store.get_sub_slot(request.end_of_slot_bundle.challenge_chain.get_hash())
@@ -1911,7 +1911,7 @@ class FullNode:
         self,
         transaction: SpendBundle,
         spend_name: bytes32,
-        peer: Optional[ws.WSChiaConnection] = None,
+        peer: Optional[ws.WSReplacemeConnection] = None,
         test: bool = False,
         tx_bytes: Optional[bytes] = None,
     ) -> Tuple[MempoolInclusionStatus, Optional[Err]]:
@@ -2127,7 +2127,7 @@ class FullNode:
         if self.server is not None:
             await self.server.send_to_all([msg], NodeType.FULL_NODE)
 
-    async def new_compact_vdf(self, request: full_node_protocol.NewCompactVDF, peer: ws.WSChiaConnection):
+    async def new_compact_vdf(self, request: full_node_protocol.NewCompactVDF, peer: ws.WSReplacemeConnection):
         is_fully_compactified = await self.block_store.is_fully_compactified(request.header_hash)
         if is_fully_compactified is None or is_fully_compactified:
             return False
@@ -2145,7 +2145,7 @@ class FullNode:
             if response is not None and isinstance(response, full_node_protocol.RespondCompactVDF):
                 await self.respond_compact_vdf(response, peer)
 
-    async def request_compact_vdf(self, request: full_node_protocol.RequestCompactVDF, peer: ws.WSChiaConnection):
+    async def request_compact_vdf(self, request: full_node_protocol.RequestCompactVDF, peer: ws.WSReplacemeConnection):
         header_block = await self.blockchain.get_header_block_by_height(
             request.height, request.header_hash, tx_filter=False
         )
@@ -2189,7 +2189,7 @@ class FullNode:
         msg = make_msg(ProtocolMessageTypes.respond_compact_vdf, compact_vdf)
         await peer.send_message(msg)
 
-    async def respond_compact_vdf(self, request: full_node_protocol.RespondCompactVDF, peer: ws.WSChiaConnection):
+    async def respond_compact_vdf(self, request: full_node_protocol.RespondCompactVDF, peer: ws.WSReplacemeConnection):
         field_vdf = CompressibleVDFField(int(request.field_vdf))
         if not await self._can_accept_compact_proof(
             request.vdf_info, request.vdf_proof, request.height, request.header_hash, field_vdf
@@ -2315,7 +2315,7 @@ class FullNode:
 
 
 async def node_next_block_check(
-    peer: ws.WSChiaConnection, potential_peek: uint32, blockchain: BlockchainInterface
+    peer: ws.WSReplacemeConnection, potential_peek: uint32, blockchain: BlockchainInterface
 ) -> bool:
 
     block_response: Optional[Any] = await peer.request_block(full_node_protocol.RequestBlock(potential_peek, True))

@@ -12,56 +12,56 @@ from blspy import AugSchemeMPL, G1Element, PrivateKey
 from chiabip158 import PyBIP158
 from cryptography.fernet import Fernet
 
-from chia import __version__
-from chia.consensus.block_record import BlockRecord
-from chia.consensus.coinbase import pool_parent_id, farmer_parent_id
-from chia.consensus.constants import ConsensusConstants
-from chia.consensus.find_fork_point import find_fork_point_in_chain
-from chia.full_node.weight_proof import WeightProofHandler
-from chia.pools.pool_puzzles import SINGLETON_LAUNCHER_HASH, solution_to_pool_state
-from chia.pools.pool_wallet import PoolWallet
-from chia.protocols.wallet_protocol import PuzzleSolutionResponse, RespondPuzzleSolution
-from chia.types.blockchain_format.coin import Coin
-from chia.types.blockchain_format.program import Program
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.coin_spend import CoinSpend
-from chia.types.full_block import FullBlock
-from chia.types.header_block import HeaderBlock
-from chia.types.mempool_inclusion_status import MempoolInclusionStatus
-from chia.util.byte_types import hexstr_to_bytes
-from chia.util.db_wrapper import DBWrapper
-from chia.util.errors import Err
-from chia.util.hash import std_hash
-from chia.util.ints import uint32, uint64, uint128
-from chia.util.db_synchronous import db_synchronous_on
-from chia.wallet.block_record import HeaderBlockRecord
-from chia.wallet.cc_wallet.cc_wallet import CCWallet
-from chia.wallet.derivation_record import DerivationRecord
-from chia.wallet.derive_keys import master_sk_to_backup_sk, master_sk_to_wallet_sk
-from chia.wallet.key_val_store import KeyValStore
-from chia.wallet.rl_wallet.rl_wallet import RLWallet
-from chia.wallet.settings.user_settings import UserSettings
-from chia.wallet.trade_manager import TradeManager
-from chia.wallet.transaction_record import TransactionRecord
-from chia.wallet.util.backup_utils import open_backup_file
-from chia.wallet.util.transaction_type import TransactionType
-from chia.wallet.util.wallet_types import WalletType
-from chia.wallet.wallet import Wallet
-from chia.wallet.wallet_action import WalletAction
-from chia.wallet.wallet_action_store import WalletActionStore
-from chia.wallet.wallet_block_store import WalletBlockStore
-from chia.wallet.wallet_blockchain import WalletBlockchain
-from chia.wallet.wallet_coin_record import WalletCoinRecord
-from chia.wallet.wallet_coin_store import WalletCoinStore
-from chia.wallet.wallet_info import WalletInfo, WalletInfoBackup
-from chia.wallet.wallet_interested_store import WalletInterestedStore
-from chia.wallet.wallet_pool_store import WalletPoolStore
-from chia.wallet.wallet_puzzle_store import WalletPuzzleStore
-from chia.wallet.wallet_sync_store import WalletSyncStore
-from chia.wallet.wallet_transaction_store import WalletTransactionStore
-from chia.wallet.wallet_user_store import WalletUserStore
-from chia.server.server import ChiaServer
-from chia.wallet.did_wallet.did_wallet import DIDWallet
+from replaceme import __version__
+from replaceme.consensus.block_record import BlockRecord
+from replaceme.consensus.coinbase import pool_parent_id, farmer_parent_id
+from replaceme.consensus.constants import ConsensusConstants
+from replaceme.consensus.find_fork_point import find_fork_point_in_chain
+from replaceme.full_node.weight_proof import WeightProofHandler
+from replaceme.pools.pool_puzzles import SINGLETON_LAUNCHER_HASH, solution_to_pool_state
+from replaceme.pools.pool_wallet import PoolWallet
+from replaceme.protocols.wallet_protocol import PuzzleSolutionResponse, RespondPuzzleSolution
+from replaceme.types.blockchain_format.coin import Coin
+from replaceme.types.blockchain_format.program import Program
+from replaceme.types.blockchain_format.sized_bytes import bytes32
+from replaceme.types.coin_spend import CoinSpend
+from replaceme.types.full_block import FullBlock
+from replaceme.types.header_block import HeaderBlock
+from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
+from replaceme.util.byte_types import hexstr_to_bytes
+from replaceme.util.db_wrapper import DBWrapper
+from replaceme.util.errors import Err
+from replaceme.util.hash import std_hash
+from replaceme.util.ints import uint32, uint64, uint128
+from replaceme.util.db_synchronous import db_synchronous_on
+from replaceme.wallet.block_record import HeaderBlockRecord
+from replaceme.wallet.cc_wallet.cc_wallet import CCWallet
+from replaceme.wallet.derivation_record import DerivationRecord
+from replaceme.wallet.derive_keys import master_sk_to_backup_sk, master_sk_to_wallet_sk
+from replaceme.wallet.key_val_store import KeyValStore
+from replaceme.wallet.rl_wallet.rl_wallet import RLWallet
+from replaceme.wallet.settings.user_settings import UserSettings
+from replaceme.wallet.trade_manager import TradeManager
+from replaceme.wallet.transaction_record import TransactionRecord
+from replaceme.wallet.util.backup_utils import open_backup_file
+from replaceme.wallet.util.transaction_type import TransactionType
+from replaceme.wallet.util.wallet_types import WalletType
+from replaceme.wallet.wallet import Wallet
+from replaceme.wallet.wallet_action import WalletAction
+from replaceme.wallet.wallet_action_store import WalletActionStore
+from replaceme.wallet.wallet_block_store import WalletBlockStore
+from replaceme.wallet.wallet_blockchain import WalletBlockchain
+from replaceme.wallet.wallet_coin_record import WalletCoinRecord
+from replaceme.wallet.wallet_coin_store import WalletCoinStore
+from replaceme.wallet.wallet_info import WalletInfo, WalletInfoBackup
+from replaceme.wallet.wallet_interested_store import WalletInterestedStore
+from replaceme.wallet.wallet_pool_store import WalletPoolStore
+from replaceme.wallet.wallet_puzzle_store import WalletPuzzleStore
+from replaceme.wallet.wallet_sync_store import WalletSyncStore
+from replaceme.wallet.wallet_transaction_store import WalletTransactionStore
+from replaceme.wallet.wallet_user_store import WalletUserStore
+from replaceme.server.server import ReplacemeServer
+from replaceme.wallet.did_wallet.did_wallet import DIDWallet
 
 
 def get_balance_from_coin_records(coin_records: Set[WalletCoinRecord]) -> uint128:
@@ -115,7 +115,7 @@ class WalletStateManager:
     interested_store: WalletInterestedStore
     pool_store: WalletPoolStore
     weight_proof_handler: Any
-    server: ChiaServer
+    server: ReplacemeServer
     root_path: Path
 
     @staticmethod
@@ -124,7 +124,7 @@ class WalletStateManager:
         config: Dict,
         db_path: Path,
         constants: ConsensusConstants,
-        server: ChiaServer,
+        server: ReplacemeServer,
         root_path: Path,
         name: str = None,
     ):

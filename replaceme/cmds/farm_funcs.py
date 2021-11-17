@@ -2,17 +2,17 @@ from typing import Any, Dict, List, Optional
 
 import aiohttp
 
-from chia.cmds.units import units
-from chia.consensus.block_record import BlockRecord
-from chia.rpc.farmer_rpc_client import FarmerRpcClient
-from chia.rpc.full_node_rpc_client import FullNodeRpcClient
-from chia.rpc.wallet_rpc_client import WalletRpcClient
-from chia.util.config import load_config
-from chia.util.default_root import DEFAULT_ROOT_PATH
-from chia.util.ints import uint16
-from chia.util.misc import format_bytes
-from chia.util.misc import format_minutes
-from chia.util.network import is_localhost
+from replaceme.cmds.units import units
+from replaceme.consensus.block_record import BlockRecord
+from replaceme.rpc.farmer_rpc_client import FarmerRpcClient
+from replaceme.rpc.full_node_rpc_client import FullNodeRpcClient
+from replaceme.rpc.wallet_rpc_client import WalletRpcClient
+from replaceme.util.config import load_config
+from replaceme.util.default_root import DEFAULT_ROOT_PATH
+from replaceme.util.ints import uint16
+from replaceme.util.misc import format_bytes
+from replaceme.util.misc import format_minutes
+from replaceme.util.network import is_localhost
 
 SECONDS_PER_BLOCK = (24 * 3600) / 4608
 
@@ -212,9 +212,9 @@ async def summary(
         print("Farming")
 
     if amounts is not None:
-        print(f"Total chia farmed: {amounts['farmed_amount'] / units['chia']}")
-        print(f"User transaction fees: {amounts['fee_amount'] / units['chia']}")
-        print(f"Block rewards: {(amounts['farmer_reward_amount'] + amounts['pool_reward_amount']) / units['chia']}")
+        print(f"Total replaceme farmed: {amounts['farmed_amount'] / units['replaceme']}")
+        print(f"User transaction fees: {amounts['fee_amount'] / units['replaceme']}")
+        print(f"Block rewards: {(amounts['farmer_reward_amount'] + amounts['pool_reward_amount']) / units['replaceme']}")
         print(f"Last height farmed: {amounts['last_height_farmed']}")
 
     class PlotStats:
@@ -273,8 +273,8 @@ async def summary(
 
     if amounts is None:
         if wallet_not_running:
-            print("For details on farmed rewards and fees you should run 'chia start wallet' and 'chia wallet show'")
+            print("For details on farmed rewards and fees you should run 'replaceme start wallet' and 'replaceme wallet show'")
         elif wallet_not_ready:
-            print("For details on farmed rewards and fees you should run 'chia wallet show'")
+            print("For details on farmed rewards and fees you should run 'replaceme wallet show'")
     else:
-        print("Note: log into your key using 'chia wallet show' to see rewards for each key")
+        print("Note: log into your key using 'replaceme wallet show' to see rewards for each key")

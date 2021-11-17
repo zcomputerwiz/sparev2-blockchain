@@ -6,27 +6,27 @@ from concurrent.futures.process import ProcessPoolExecutor
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple
 
-from chia.consensus.block_header_validation import validate_finished_header_block, validate_unfinished_header_block
-from chia.consensus.block_record import BlockRecord
-from chia.consensus.blockchain_interface import BlockchainInterface
-from chia.consensus.constants import ConsensusConstants
-from chia.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
-from chia.consensus.find_fork_point import find_fork_point_in_chain
-from chia.consensus.full_block_to_block_record import block_to_block_record
-from chia.consensus.multiprocess_validation import PreValidationResult, pre_validate_blocks_multiprocessing
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from chia.types.coin_spend import CoinSpend
-from chia.types.header_block import HeaderBlock
-from chia.types.unfinished_header_block import UnfinishedHeaderBlock
-from chia.util.errors import Err, ValidationError
-from chia.util.ints import uint32, uint64
-from chia.util.streamable import recurse_jsonify
-from chia.wallet.block_record import HeaderBlockRecord
-from chia.wallet.wallet_block_store import WalletBlockStore
-from chia.wallet.wallet_coin_store import WalletCoinStore
-from chia.wallet.wallet_pool_store import WalletPoolStore
-from chia.wallet.wallet_transaction_store import WalletTransactionStore
+from replaceme.consensus.block_header_validation import validate_finished_header_block, validate_unfinished_header_block
+from replaceme.consensus.block_record import BlockRecord
+from replaceme.consensus.blockchain_interface import BlockchainInterface
+from replaceme.consensus.constants import ConsensusConstants
+from replaceme.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
+from replaceme.consensus.find_fork_point import find_fork_point_in_chain
+from replaceme.consensus.full_block_to_block_record import block_to_block_record
+from replaceme.consensus.multiprocess_validation import PreValidationResult, pre_validate_blocks_multiprocessing
+from replaceme.types.blockchain_format.sized_bytes import bytes32
+from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from replaceme.types.coin_spend import CoinSpend
+from replaceme.types.header_block import HeaderBlock
+from replaceme.types.unfinished_header_block import UnfinishedHeaderBlock
+from replaceme.util.errors import Err, ValidationError
+from replaceme.util.ints import uint32, uint64
+from replaceme.util.streamable import recurse_jsonify
+from replaceme.wallet.block_record import HeaderBlockRecord
+from replaceme.wallet.wallet_block_store import WalletBlockStore
+from replaceme.wallet.wallet_coin_store import WalletCoinStore
+from replaceme.wallet.wallet_pool_store import WalletPoolStore
+from replaceme.wallet.wallet_transaction_store import WalletTransactionStore
 
 log = logging.getLogger(__name__)
 

@@ -1,7 +1,7 @@
 from typing import Dict
 
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.mempool_item import MempoolItem
+from replaceme.types.blockchain_format.sized_bytes import bytes32
+from replaceme.types.mempool_item import MempoolItem
 
 
 class PendingTxCache:

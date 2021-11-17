@@ -8,41 +8,41 @@ from typing import Dict, List, Optional, Set, Tuple, Union
 
 from clvm.casts import int_from_bytes
 
-from chia.consensus.block_body_validation import validate_block_body
-from chia.consensus.block_header_validation import validate_finished_header_block, validate_unfinished_header_block
-from chia.consensus.block_record import BlockRecord
-from chia.consensus.blockchain_interface import BlockchainInterface
-from chia.consensus.constants import ConsensusConstants
-from chia.consensus.cost_calculator import NPCResult
-from chia.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
-from chia.consensus.find_fork_point import find_fork_point_in_chain
-from chia.consensus.full_block_to_block_record import block_to_block_record
-from chia.consensus.multiprocess_validation import (
+from replaceme.consensus.block_body_validation import validate_block_body
+from replaceme.consensus.block_header_validation import validate_finished_header_block, validate_unfinished_header_block
+from replaceme.consensus.block_record import BlockRecord
+from replaceme.consensus.blockchain_interface import BlockchainInterface
+from replaceme.consensus.constants import ConsensusConstants
+from replaceme.consensus.cost_calculator import NPCResult
+from replaceme.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
+from replaceme.consensus.find_fork_point import find_fork_point_in_chain
+from replaceme.consensus.full_block_to_block_record import block_to_block_record
+from replaceme.consensus.multiprocess_validation import (
     PreValidationResult,
     pre_validate_blocks_multiprocessing,
     _run_generator,
 )
-from chia.full_node.block_store import BlockStore
-from chia.full_node.coin_store import CoinStore
-from chia.full_node.hint_store import HintStore
-from chia.full_node.mempool_check_conditions import get_name_puzzle_conditions
-from chia.types.blockchain_format.coin import Coin
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from chia.types.blockchain_format.vdf import VDFInfo
-from chia.types.coin_record import CoinRecord
-from chia.types.condition_opcodes import ConditionOpcode
-from chia.types.end_of_slot_bundle import EndOfSubSlotBundle
-from chia.types.full_block import FullBlock
-from chia.types.generator_types import BlockGenerator, GeneratorArg
-from chia.types.header_block import HeaderBlock
-from chia.types.unfinished_block import UnfinishedBlock
-from chia.types.unfinished_header_block import UnfinishedHeaderBlock
-from chia.types.weight_proof import SubEpochChallengeSegment
-from chia.util.errors import Err, ConsensusError
-from chia.util.generator_tools import get_block_header, tx_removals_and_additions
-from chia.util.ints import uint16, uint32, uint64, uint128
-from chia.util.streamable import recurse_jsonify
+from replaceme.full_node.block_store import BlockStore
+from replaceme.full_node.coin_store import CoinStore
+from replaceme.full_node.hint_store import HintStore
+from replaceme.full_node.mempool_check_conditions import get_name_puzzle_conditions
+from replaceme.types.blockchain_format.coin import Coin
+from replaceme.types.blockchain_format.sized_bytes import bytes32
+from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from replaceme.types.blockchain_format.vdf import VDFInfo
+from replaceme.types.coin_record import CoinRecord
+from replaceme.types.condition_opcodes import ConditionOpcode
+from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
+from replaceme.types.full_block import FullBlock
+from replaceme.types.generator_types import BlockGenerator, GeneratorArg
+from replaceme.types.header_block import HeaderBlock
+from replaceme.types.unfinished_block import UnfinishedBlock
+from replaceme.types.unfinished_header_block import UnfinishedHeaderBlock
+from replaceme.types.weight_proof import SubEpochChallengeSegment
+from replaceme.util.errors import Err, ConsensusError
+from replaceme.util.generator_tools import get_block_header, tx_removals_and_additions
+from replaceme.util.ints import uint16, uint32, uint64, uint128
+from replaceme.util.streamable import recurse_jsonify
 
 log = logging.getLogger(__name__)
 

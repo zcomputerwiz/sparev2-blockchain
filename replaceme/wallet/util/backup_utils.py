@@ -6,12 +6,12 @@ import aiohttp
 from blspy import AugSchemeMPL, PrivateKey, PublicKeyMPL, SignatureMPL
 from cryptography.fernet import Fernet
 
-from chia.server.server import ssl_context_for_root
-from chia.ssl.create_ssl import get_mozilla_ca_crt
-from chia.util.byte_types import hexstr_to_bytes
-from chia.util.hash import std_hash
-from chia.wallet.derive_keys import master_sk_to_backup_sk
-from chia.wallet.util.wallet_types import WalletType
+from replaceme.server.server import ssl_context_for_root
+from replaceme.ssl.create_ssl import get_mozilla_ca_crt
+from replaceme.util.byte_types import hexstr_to_bytes
+from replaceme.util.hash import std_hash
+from replaceme.wallet.derive_keys import master_sk_to_backup_sk
+from replaceme.wallet.util.wallet_types import WalletType
 
 
 def open_backup_file(file_path, private_key):

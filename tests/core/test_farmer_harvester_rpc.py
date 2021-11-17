@@ -6,22 +6,22 @@ import pytest
 from blspy import AugSchemeMPL
 from chiapos import DiskPlotter
 
-from chia.consensus.coinbase import create_puzzlehash_for_pk
-from chia.plotting.util import stream_plot_info_ph, stream_plot_info_pk
-from chia.protocols import farmer_protocol
-from chia.rpc.farmer_rpc_api import FarmerRpcApi
-from chia.rpc.farmer_rpc_client import FarmerRpcClient
-from chia.rpc.harvester_rpc_api import HarvesterRpcApi
-from chia.rpc.harvester_rpc_client import HarvesterRpcClient
-from chia.rpc.rpc_server import start_rpc_server
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.util.bech32m import decode_puzzle_hash, encode_puzzle_hash
+from replaceme.consensus.coinbase import create_puzzlehash_for_pk
+from replaceme.plotting.util import stream_plot_info_ph, stream_plot_info_pk
+from replaceme.protocols import farmer_protocol
+from replaceme.rpc.farmer_rpc_api import FarmerRpcApi
+from replaceme.rpc.farmer_rpc_client import FarmerRpcClient
+from replaceme.rpc.harvester_rpc_api import HarvesterRpcApi
+from replaceme.rpc.harvester_rpc_client import HarvesterRpcClient
+from replaceme.rpc.rpc_server import start_rpc_server
+from replaceme.types.blockchain_format.sized_bytes import bytes32
+from replaceme.util.bech32m import decode_puzzle_hash, encode_puzzle_hash
 from tests.block_tools import get_plot_dir
-from chia.util.byte_types import hexstr_to_bytes
-from chia.util.config import load_config, save_config
-from chia.util.hash import std_hash
-from chia.util.ints import uint8, uint16, uint32, uint64
-from chia.wallet.derive_keys import master_sk_to_wallet_sk, master_sk_to_pooling_authentication_sk
+from replaceme.util.byte_types import hexstr_to_bytes
+from replaceme.util.config import load_config, save_config
+from replaceme.util.hash import std_hash
+from replaceme.util.ints import uint8, uint16, uint32, uint64
+from replaceme.wallet.derive_keys import master_sk_to_wallet_sk, master_sk_to_pooling_authentication_sk
 from tests.setup_nodes import bt, self_hostname, setup_farmer_harvester, test_constants
 from tests.time_out_assert import time_out_assert, time_out_assert_custom_interval
 

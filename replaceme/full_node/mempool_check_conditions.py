@@ -3,19 +3,19 @@ import time
 from typing import Dict, List, Optional
 from clvm_rs import STRICT_MODE
 
-from chia.consensus.cost_calculator import NPCResult
-from chia.full_node.generator import create_generator_args, setup_generator_args
-from chia.types.blockchain_format.program import NIL
-from chia.types.coin_record import CoinRecord
-from chia.types.condition_with_args import ConditionWithArgs
-from chia.types.generator_types import BlockGenerator
-from chia.types.name_puzzle_condition import NPC
-from chia.util.clvm import int_from_bytes
-from chia.util.condition_tools import ConditionOpcode
-from chia.util.errors import Err
-from chia.util.ints import uint32, uint64, uint16
-from chia.wallet.puzzles.generator_loader import GENERATOR_FOR_SINGLE_COIN_MOD
-from chia.wallet.puzzles.rom_bootstrap_generator import get_generator
+from replaceme.consensus.cost_calculator import NPCResult
+from replaceme.full_node.generator import create_generator_args, setup_generator_args
+from replaceme.types.blockchain_format.program import NIL
+from replaceme.types.coin_record import CoinRecord
+from replaceme.types.condition_with_args import ConditionWithArgs
+from replaceme.types.generator_types import BlockGenerator
+from replaceme.types.name_puzzle_condition import NPC
+from replaceme.util.clvm import int_from_bytes
+from replaceme.util.condition_tools import ConditionOpcode
+from replaceme.util.errors import Err
+from replaceme.util.ints import uint32, uint64, uint16
+from replaceme.wallet.puzzles.generator_loader import GENERATOR_FOR_SINGLE_COIN_MOD
+from replaceme.wallet.puzzles.rom_bootstrap_generator import get_generator
 
 GENERATOR_MOD = get_generator()
 

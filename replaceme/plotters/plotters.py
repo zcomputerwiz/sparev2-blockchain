@@ -2,10 +2,10 @@ import argparse
 import binascii
 import os
 from enum import Enum
-from chia.plotters.bladebit import get_bladebit_install_info, plot_bladebit
-from chia.plotters.chiapos import get_chiapos_install_info, plot_chia
-from chia.plotters.madmax import get_madmax_install_info, plot_madmax
-from chia.plotters.install_plotter import install_plotter
+from replaceme.plotters.bladebit import get_bladebit_install_info, plot_bladebit
+from replaceme.plotters.chiapos import get_chiapos_install_info, plot_replaceme
+from replaceme.plotters.madmax import get_madmax_install_info, plot_madmax
+from replaceme.plotters.install_plotter import install_plotter
 from pathlib import Path
 from typing import Any, Dict, Optional
 
@@ -39,7 +39,7 @@ class Options(Enum):
     CONNECT_TO_DAEMON = 26
 
 
-chia_plotter = [
+replaceme_plotter = [
     Options.TMP_DIR,
     Options.TMP_DIR2,
     Options.FINAL_DIR,
@@ -315,8 +315,8 @@ def build_parser(subparsers, root_path, option_list, name, plotter_desc):
 
 
 def call_plotters(root_path: Path, args):
-    # Add `plotters` section in CHIA_ROOT.
-    chia_root_path = root_path
+    # Add `plotters` section in REPLACEME_ROOT.
+    replaceme_root_path = root_path
     root_path = get_plotters_root_path(root_path)
     if not root_path.is_dir():
         if os.path.exists(root_path):
@@ -326,14 +326,14 @@ def call_plotters(root_path: Path, args):
                 print(f"Exception deleting old root path: {type(e)} {e}.")
 
     if not os.path.exists(root_path):
-        print(f"Creating plotters folder within CHIA_ROOT: {root_path}")
+        print(f"Creating plotters folder within REPLACEME_ROOT: {root_path}")
         try:
             os.mkdir(root_path)
         except Exception as e:
             print(f"Cannot create plotters root path {root_path} {type(e)} {e}.")
     plotters = argparse.ArgumentParser(description="Available options.")
     subparsers = plotters.add_subparsers(help="Available options", dest="plotter")
-    build_parser(subparsers, root_path, chia_plotter, "chiapos", "Chiapos Plotter")
+    build_parser(subparsers, root_path, replaceme_plotter, "chiapos", "Chiapos Plotter")
     build_parser(subparsers, root_path, madmax_plotter, "madmax", "Madmax Plotter")
     build_parser(subparsers, root_path, bladebit_plotter, "bladebit", "Bladebit Plotter")
     install_parser = subparsers.add_parser("install", description="Install custom plotters.")
@@ -343,11 +343,11 @@ def call_plotters(root_path: Path, args):
     args = plotters.parse_args(args)
 
     if args.plotter == "chiapos":
-        plot_chia(args, chia_root_path)
+        plot_replaceme(args, replaceme_root_path)
     if args.plotter == "madmax":
-        plot_madmax(args, chia_root_path, root_path)
+        plot_madmax(args, replaceme_root_path, root_path)
     if args.plotter == "bladebit":
-        plot_bladebit(args, chia_root_path, root_path)
+        plot_bladebit(args, replaceme_root_path, root_path)
     if args.plotter == "install":
         install_plotter(args.install_plotter, root_path)
 

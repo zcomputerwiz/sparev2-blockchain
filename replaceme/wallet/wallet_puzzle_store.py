@@ -5,11 +5,11 @@ from typing import List, Optional, Set, Tuple
 import aiosqlite
 from blspy import G1Element
 
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.util.db_wrapper import DBWrapper
-from chia.util.ints import uint32
-from chia.wallet.derivation_record import DerivationRecord
-from chia.wallet.util.wallet_types import WalletType
+from replaceme.types.blockchain_format.sized_bytes import bytes32
+from replaceme.util.db_wrapper import DBWrapper
+from replaceme.util.ints import uint32
+from replaceme.wallet.derivation_record import DerivationRecord
+from replaceme.wallet.util.wallet_types import WalletType
 
 log = logging.getLogger(__name__)
 

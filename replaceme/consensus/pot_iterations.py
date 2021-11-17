@@ -1,8 +1,8 @@
-from chia.consensus.constants import ConsensusConstants
-from chia.consensus.pos_quality import _expected_plot_size
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.util.hash import std_hash
-from chia.util.ints import uint8, uint64, uint128
+from replaceme.consensus.constants import ConsensusConstants
+from replaceme.consensus.pos_quality import _expected_plot_size
+from replaceme.types.blockchain_format.sized_bytes import bytes32
+from replaceme.util.hash import std_hash
+from replaceme.util.ints import uint8, uint64, uint128
 
 
 def is_overflow_block(constants: ConsensusConstants, signage_point_index: uint8) -> bool:

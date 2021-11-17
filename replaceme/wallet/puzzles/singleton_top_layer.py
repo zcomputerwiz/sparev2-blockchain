@@ -1,14 +1,14 @@
 from typing import List, Tuple, Optional
 
-from chia.types.blockchain_format.coin import Coin
-from chia.types.blockchain_format.program import Program
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.condition_opcodes import ConditionOpcode
-from chia.types.coin_spend import CoinSpend
-from chia.wallet.puzzles.load_clvm import load_clvm
-from chia.wallet.lineage_proof import LineageProof
-from chia.util.ints import uint64
-from chia.util.hash import std_hash
+from replaceme.types.blockchain_format.coin import Coin
+from replaceme.types.blockchain_format.program import Program
+from replaceme.types.blockchain_format.sized_bytes import bytes32
+from replaceme.types.condition_opcodes import ConditionOpcode
+from replaceme.types.coin_spend import CoinSpend
+from replaceme.wallet.puzzles.load_clvm import load_clvm
+from replaceme.wallet.lineage_proof import LineageProof
+from replaceme.util.ints import uint64
+from replaceme.util.hash import std_hash
 
 SINGLETON_MOD = load_clvm("singleton_top_layer.clvm")
 SINGLETON_MOD_HASH = SINGLETON_MOD.get_tree_hash()

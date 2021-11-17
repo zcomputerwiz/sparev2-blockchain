@@ -3,15 +3,15 @@ import pathlib
 from multiprocessing import freeze_support
 from typing import Dict
 
-from chia.consensus.constants import ConsensusConstants
-from chia.consensus.default_constants import DEFAULT_CONSTANTS
-from chia.full_node.full_node import FullNode
-from chia.full_node.full_node_api import FullNodeAPI
-from chia.rpc.full_node_rpc_api import FullNodeRpcApi
-from chia.server.outbound_message import NodeType
-from chia.server.start_service import run_service
-from chia.util.config import load_config_cli
-from chia.util.default_root import DEFAULT_ROOT_PATH
+from replaceme.consensus.constants import ConsensusConstants
+from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
+from replaceme.full_node.full_node import FullNode
+from replaceme.full_node.full_node_api import FullNodeAPI
+from replaceme.rpc.full_node_rpc_api import FullNodeRpcApi
+from replaceme.server.outbound_message import NodeType
+from replaceme.server.start_service import run_service
+from replaceme.util.config import load_config_cli
+from replaceme.util.default_root import DEFAULT_ROOT_PATH
 
 # See: https://bugs.python.org/issue29288
 "".encode("idna")

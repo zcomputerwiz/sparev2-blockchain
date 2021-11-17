@@ -3,11 +3,11 @@ from typing import Optional
 
 from blspy import G2Element
 
-from chia.types.blockchain_format.proof_of_space import ProofOfSpace
-from chia.types.blockchain_format.sized_bytes import bytes32
-from chia.types.blockchain_format.vdf import VDFInfo, VDFProof
-from chia.util.ints import uint8, uint64
-from chia.util.streamable import Streamable, streamable
+from replaceme.types.blockchain_format.proof_of_space import ProofOfSpace
+from replaceme.types.blockchain_format.sized_bytes import bytes32
+from replaceme.types.blockchain_format.vdf import VDFInfo, VDFProof
+from replaceme.util.ints import uint8, uint64
+from replaceme.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)
