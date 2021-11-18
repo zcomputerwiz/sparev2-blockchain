@@ -76,7 +76,7 @@ We have some great improvements in this release: We launched our migration of ke
 - In macOS builds, changed the export value of NOTARIZE to fix some build failures.
 - Fix log output for duplicated plots.
 - Removed a flaky mtime check for plots that resolved an issue where file_path.stat() shows multiple copies of plots and slows performance of the farmer. Thanks @timporter for the assist on this one.
-- Thanks @jcteng for fixing a bug on the Chia DID wallet that showed 'mojo:'' instead of 'mojo'.
+- Thanks @jcteng for fixing a bug on the Chia DID wallet that showed 'graviton:'' instead of 'graviton'.
 
 ## 1.2.9 Chia blockchain 2021-10-01
 
@@ -439,7 +439,7 @@ Batch process weight proof epochs in groups of 900 to fit below May 2020 sqlite 
 - @aisk added error checking in bech32m
 - Chialisp programs now remained serialized in Node for better performance.
 - Mempool is now set to be 50 times the single block size.
-- Mitigate 1-3 mojo dust attacks.
+- Mitigate 1-3 graviton dust attacks.
 - CLI now switches to EiB for netspace display as appropriate.
 
 ### Fixed
@@ -883,7 +883,7 @@ validation was changed to allow blocks like these to be made. This will enable c
 - Sub blocks renamed to blocks, and blocks renamed to transaction blocks, everywhere. This effects the RPC, now
 all fields that referred to sub blocks are changed to blocks.
 - Base difficulty and weight have increased, so difficulty of "5" in the rc1 testnet will be equivalent to "21990232555520" in the previous testnet.
-- 'chia wallet send' now takes in TXCH or XCH as units instead of mojos.
+- 'chia wallet send' now takes in TXCH or XCH as units instead of gravitons.
 - Transactions have been further sped up.
 - The blockchain database has more careful validation.
 - The GUI is now using bech32m.

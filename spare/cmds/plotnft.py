@@ -108,7 +108,7 @@ def create_cmd(
 )
 @click.option(
     "--fee",
-    help="Fee Per Transaction, in Mojos. Fee is used TWICE: once to leave pool, once to join.",
+    help="Fee Per Transaction, in Gravitons. Fee is used TWICE: once to leave pool, once to join.",
     type=int,
     callback=validate_fee,
     default=0,
@@ -145,7 +145,7 @@ def join_cmd(wallet_rpc_port: Optional[int], fingerprint: int, id: int, fee: int
 )
 @click.option(
     "--fee",
-    help="Transaction Fee, in Mojos. Fee is charged twice if already in a pool.",
+    help="Transaction Fee, in Gravitons. Fee is charged twice if already in a pool.",
     type=int,
     callback=validate_fee,
     default=0,
