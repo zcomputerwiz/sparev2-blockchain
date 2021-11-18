@@ -135,8 +135,7 @@ harvester:
   start_rpc_server: True
   rpc_port: 9560
   num_threads: 30
-  plot_loading_frequency_seconds: 120
-    plots_refresh_parameter:
+  plots_refresh_parameter:
     interval_seconds: 120 # The interval in seconds to refresh the plot file manager
     retry_invalid_seconds: 1200 # How long to wait before re-trying plots which failed to load
     batch_size: 300 # How many plot files the harvester processes before it waits batch_sleep_milliseconds
