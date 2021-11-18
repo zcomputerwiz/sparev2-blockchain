@@ -9,7 +9,7 @@ on:
   pull_request:
     branches:
       - '**'
-  workflow-dispatch:
+  workflow_dispatch:
 
 jobs:
   test_scripts:
