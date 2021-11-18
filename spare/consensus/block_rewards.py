@@ -1,7 +1,7 @@
 from spare.util.ints import uint32, uint64
 
-# 1 Spare coin = 1,000,000,000,000 = 1 trillion mojo.
-_mojo_per_spare = 1000000000000
+# 1 spare coin = 1,000,000,000,000 = 1 trillion graviton.
+_graviton_per_spare = 1000000000000
 _blocks_per_year = 1681920  # 32 * 6 * 24 * 365
 
 
@@ -15,17 +15,19 @@ def calculate_pool_reward(height: uint32) -> uint64:
     """
 
     if height == 0:
-        return uint64(int((7 / 8) * 21000000 * _mojo_per_spare))
+        return uint64(int((7 / 8) * 5000000 * _graviton_per_spare))
+    elif height < 0.25 * _blocks_per_year:
+        return uint64(int((7 / 8) * 4 * _graviton_per_spare))
     elif height < 3 * _blocks_per_year:
-        return uint64(int((7 / 8) * 2 * _mojo_per_spare))
+        return uint64(int((7 / 8) * 2 * _graviton_per_spare))
     elif height < 6 * _blocks_per_year:
-        return uint64(int((7 / 8) * 1 * _mojo_per_spare))
+        return uint64(int((7 / 8) * 1 * _graviton_per_spare))
     elif height < 9 * _blocks_per_year:
-        return uint64(int((7 / 8) * 0.5 * _mojo_per_spare))
+        return uint64(int((7 / 8) * 0.5 * _graviton_per_spare))
     elif height < 12 * _blocks_per_year:
-        return uint64(int((7 / 8) * 0.25 * _mojo_per_spare))
+        return uint64(int((7 / 8) * 0.25 * _graviton_per_spare))
     else:
-        return uint64(int((7 / 8) * 0.125 * _mojo_per_spare))
+        return uint64(int((7 / 8) * 0.125 * _graviton_per_spare))
 
 
 def calculate_base_farmer_reward(height: uint32) -> uint64:
@@ -38,14 +40,16 @@ def calculate_base_farmer_reward(height: uint32) -> uint64:
     rates increase continuously.
     """
     if height == 0:
-        return uint64(int((1 / 8) * 21000000 * _mojo_per_spare))
+        return uint64(int((1 / 8) * 5000000 * _graviton_per_spare))
+    elif height < 0.25 * _blocks_per_year:
+        return uint64(int((1 / 8) * 4 * _graviton_per_spare))
     elif height < 3 * _blocks_per_year:
-        return uint64(int((1 / 8) * 2 * _mojo_per_spare))
+        return uint64(int((1 / 8) * 2 * _graviton_per_spare))
     elif height < 6 * _blocks_per_year:
-        return uint64(int((1 / 8) * 1 * _mojo_per_spare))
+        return uint64(int((1 / 8) * 1 * _graviton_per_spare))
     elif height < 9 * _blocks_per_year:
-        return uint64(int((1 / 8) * 0.5 * _mojo_per_spare))
+        return uint64(int((1 / 8) * 0.5 * _graviton_per_spare))
     elif height < 12 * _blocks_per_year:
-        return uint64(int((1 / 8) * 0.25 * _mojo_per_spare))
+        return uint64(int((1 / 8) * 0.25 * _graviton_per_spare))
     else:
-        return uint64(int((1 / 8) * 0.125 * _mojo_per_spare))
+        return uint64(int((1 / 8) * 0.125 * _graviton_per_spare))

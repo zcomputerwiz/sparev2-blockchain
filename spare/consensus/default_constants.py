@@ -30,7 +30,7 @@ testnet_kwargs = {
     # Default used for tests is std_hash(b'')
     "GENESIS_CHALLENGE": bytes.fromhex("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"),
     # Forks of spare should change this value to provide replay attack protection. This is set to mainnet genesis chall
-    "AGG_SIG_ME_ADDITIONAL_DATA": bytes.fromhex("ccd5bb71183532bff220ba46c268991a3ff07eb358e8255a65c30a2dce0e5fbb"),
+    "AGG_SIG_ME_ADDITIONAL_DATA": bytes.fromhex("0e7dbcaa707b4a75ef62edad42116c2d09e5d66fdcb3a09c2d0262bc50b8fee1"),
     "GENESIS_PRE_FARM_POOL_PUZZLE_HASH": bytes.fromhex(
         "d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc"
     ),
@@ -38,8 +38,8 @@ testnet_kwargs = {
         "3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af"
     ),
     "MAX_VDF_WITNESS_SIZE": 64,
-    # Size of mempool = 50x the size of block # temporary change until #9125 gets in
-    "MEMPOOL_BLOCK_BUFFER": 10,
+    # Size of mempool = 50x the size of block
+    "MEMPOOL_BLOCK_BUFFER": 50,
     # Max coin amount, fits into 64 bits
     "MAX_COIN_AMOUNT": uint64((1 << 64) - 1),
     # Max block cost in clvm cost units
@@ -50,6 +50,7 @@ testnet_kwargs = {
     "BLOCKS_CACHE_SIZE": 4608 + (128 * 4),
     "WEIGHT_PROOF_RECENT_BLOCKS": 1000,
     "MAX_BLOCK_COUNT_PER_REQUESTS": 32,  # Allow up to 32 blocks per request
+    "INITIAL_FREEZE_END_TIMESTAMP": 1620061200,  # Mon May 03 2021 17:00:00 GMT+0000
     "NETWORK_TYPE": 0,
     "MAX_GENERATOR_SIZE": 1000000,
     "MAX_GENERATOR_REF_LIST_SIZE": 512,  # Number of references allowed in the block generator ref list
