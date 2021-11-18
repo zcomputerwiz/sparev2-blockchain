@@ -93,8 +93,8 @@ def configure(
         if testnet == "true" or testnet == "t":
             print("Setting Testnet")
             testnet_port = "58444"
-            testnet_introducer = "beta1_introducer.replaceme.net"
-            testnet_dns_introducer = "dns-introducer-testnet7.replaceme.net"
+            testnet_introducer = "beta1_introducer.sparecoin.org"
+            testnet_dns_introducer = "dns-introducer-testnet7.sparecoin.org"
             testnet = "testnet7"
             config["full_node"]["port"] = int(testnet_port)
             config["full_node"]["introducer_peer"]["port"] = int(testnet_port)
@@ -120,8 +120,8 @@ def configure(
         elif testnet == "false" or testnet == "f":
             print("Setting Mainnet")
             mainnet_port = "8444"
-            mainnet_introducer = "introducer.replaceme.net"
-            mainnet_dns_introducer = "dns-introducer.replaceme.net"
+            mainnet_introducer = "introducer.sparecoin.org"
+            mainnet_dns_introducer = "dns-introducer.sparecoin.org"
             net = "mainnet"
             config["full_node"]["port"] = int(mainnet_port)
             config["full_node"]["introducer_peer"]["port"] = int(mainnet_port)

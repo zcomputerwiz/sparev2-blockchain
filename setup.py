@@ -48,9 +48,9 @@ dev_dependencies = [
 kwargs = dict(
     name="replaceme-blockchain",
     author="Mariano Sorgente",
-    author_email="mariano@replaceme.net",
+    author_email="mariano@sparecoin.org",
     description="Replaceme blockchain full node, farmer, timelord, and wallet.",
-    url="https://replaceme.net/",
+    url="https://sparecoin.org/",
     license="Apache License",
     python_requires=">=3.7, <4",
     keywords="replaceme blockchain node",
