@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Any, List, Tuple
 
 import pkg_resources
-from replaceme.util.ssl_check import DEFAULT_PERMISSIONS_CERT_FILE, DEFAULT_PERMISSIONS_KEY_FILE
+from spare.util.ssl_check import DEFAULT_PERMISSIONS_CERT_FILE, DEFAULT_PERMISSIONS_KEY_FILE
 from cryptography import x509
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
@@ -13,9 +13,9 @@ from cryptography.hazmat.primitives.serialization import load_pem_private_key
 from cryptography.x509.oid import NameOID
 
 
-def get_replaceme_ca_crt_key() -> Tuple[Any, Any]:
-    crt = pkg_resources.resource_string(__name__, "replaceme_ca.crt")
-    key = pkg_resources.resource_string(__name__, "replaceme_ca.key")
+def get_spare_ca_crt_key() -> Tuple[Any, Any]:
+    crt = pkg_resources.resource_string(__name__, "spare_ca.crt")
+    key = pkg_resources.resource_string(__name__, "spare_ca.key")
     return crt, key
 
 
@@ -53,8 +53,8 @@ def generate_ca_signed_cert(ca_crt: bytes, ca_key: bytes, cert_out: Path, key_ou
     cert_key = rsa.generate_private_key(public_exponent=65537, key_size=2048, backend=default_backend())
     new_subject = x509.Name(
         [
-            x509.NameAttribute(NameOID.COMMON_NAME, "Replaceme"),
-            x509.NameAttribute(NameOID.ORGANIZATION_NAME, "Replaceme"),
+            x509.NameAttribute(NameOID.COMMON_NAME, "SPARE"),
+            x509.NameAttribute(NameOID.ORGANIZATION_NAME, "SPARE"),
             x509.NameAttribute(NameOID.ORGANIZATIONAL_UNIT_NAME, "Organic Farming Division"),
         ]
     )
@@ -68,7 +68,7 @@ def generate_ca_signed_cert(ca_crt: bytes, ca_key: bytes, cert_out: Path, key_ou
         .not_valid_before(datetime.datetime.today() - one_day)
         .not_valid_after(datetime.datetime(2100, 8, 2))
         .add_extension(
-            x509.SubjectAlternativeName([x509.DNSName("replaceme.net")]),
+            x509.SubjectAlternativeName([x509.DNSName("sparecoin.org")]), # svinosobaka
             critical=False,
         )
         .sign(root_key, hashes.SHA256(), default_backend())
@@ -88,9 +88,9 @@ def make_ca_cert(cert_path: Path, key_path: Path):
     root_key = rsa.generate_private_key(public_exponent=65537, key_size=2048, backend=default_backend())
     subject = issuer = x509.Name(
         [
-            x509.NameAttribute(NameOID.ORGANIZATION_NAME, "Replaceme"),
-            x509.NameAttribute(NameOID.COMMON_NAME, "Replaceme CA"),
-            x509.NameAttribute(NameOID.ORGANIZATIONAL_UNIT_NAME, "Organic Farming Division"),
+            x509.NameAttribute(NameOID.ORGANIZATION_NAME, "SPARE"),
+            x509.NameAttribute(NameOID.COMMON_NAME, "SPARE CA"),
+            x509.NameAttribute(NameOID.ORGANIZATIONAL_UNIT_NAME, "Organic Refarming Division"),
         ]
     )
     root_cert = (
@@ -107,16 +107,16 @@ def make_ca_cert(cert_path: Path, key_path: Path):
 
     cert_pem = root_cert.public_bytes(encoding=serialization.Encoding.PEM)
     key_pem = root_key.private_bytes(
-        encoding=serialization.Encoding.PEM,
-        format=serialization.PrivateFormat.TraditionalOpenSSL,
-        encryption_algorithm=serialization.NoEncryption(),
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PrivateFormat.TraditionalOpenSSL,
+            encryption_algorithm=serialization.NoEncryption(),
     )
 
     write_ssl_cert_and_key(cert_path, cert_pem, key_path, key_pem)
 
 
 def main():
-    return make_ca_cert(Path("./replaceme_ca.crt"), Path("./replaceme_ca.key"))
+    return make_ca_cert(Path("./spare_ca.crt"), Path("./spare_ca.key"))
 
 
 if __name__ == "__main__":
