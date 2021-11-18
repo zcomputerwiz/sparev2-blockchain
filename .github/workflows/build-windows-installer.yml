@@ -9,6 +9,7 @@ on:
   pull_request:
     branches:
       - '**'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -82,7 +83,7 @@ jobs:
       uses: kitek/decode-base64-into-file-action@1.0
       with:
         encoded-value: ${{ secrets.WIN_CODE_SIGN_CERT }}
-        destination-file: .\chia-blockchain-gui\win_code_sign_cert.p12
+        destination-file: .\replaceme-blockchain-gui\win_code_sign_cert.p12
 
     # Create our own venv outside of the git directory JUST for getting the ACTUAL version so that install can't break it
     - name: Get version number
@@ -91,9 +92,9 @@ jobs:
         python -m venv ..\venv
         . ..\venv\Scripts\Activate.ps1
         pip3 install setuptools_scm
-        $env:CHIA_INSTALLER_VERSION = python .\build_scripts\installer-version.py -win
-        echo "$env:CHIA_INSTALLER_VERSION"
-        echo "::set-output name=CHIA_INSTALLER_VERSION::$env:CHIA_INSTALLER_VERSION"
+        $env:REPLACEME_INSTALLER_VERSION = python .\build_scripts\installer-version.py -win
+        echo "$env:REPLACEME_INSTALLER_VERSION"
+        echo "::set-output name=REPLACEME_INSTALLER_VERSION::$env:REPLACEME_INSTALLER_VERSION"
         deactivate
 
       # Get the most recent release from chia-plotter-madmax
@@ -148,13 +149,13 @@ jobs:
       uses: actions/upload-artifact@v2.2.2
       with:
         name: Windows-Exe
-        path: ${{ github.workspace }}\chia-blockchain-gui\Chia-win32-x64\
+        path: ${{ github.workspace }}\replaceme-blockchain-gui\Chia-win32-x64\
 
     - name: Upload Installer to artifacts
       uses: actions/upload-artifact@v2.2.2
       with:
         name: Windows-Installers
-        path: ${{ github.workspace }}\chia-blockchain-gui\release-builds\
+        path: ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\
 
 
     - name: Install AWS CLI
@@ -173,17 +174,17 @@ jobs:
     - name: Upload to s3
       if: steps.check_secrets.outputs.HAS_AWS_SECRET
       env:
-        CHIA_INSTALLER_VERSION: ${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}
+        CHIA_INSTALLER_VERSION: ${{ steps.version_number.outputs.REPLACEME_INSTALLER_VERSION }}
       run: |
-        ls ${{ github.workspace }}\chia-blockchain-gui\release-builds\windows-installer\
-        aws s3 cp ${{ github.workspace }}\chia-blockchain-gui\release-builds\windows-installer\ChiaSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe s3://download-chia-net/builds/
+        ls ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\windows-installer\
+        aws s3 cp ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\windows-installer\ReplacemeSetup-${{ steps.version_number.outputs.REPLACEME_INSTALLER_VERSION }}.exe s3://download-replaceme-net/builds/
 
     - name: Create Checksums
       env:
         CHIA_INSTALLER_VERSION: ${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}
       run: |
-         certutil.exe -hashfile ${{ github.workspace }}\chia-blockchain-gui\release-builds\windows-installer\ChiaSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe SHA256 > ${{ github.workspace }}\chia-blockchain-gui\release-builds\windows-installer\ChiaSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe.sha256
-         ls ${{ github.workspace }}\chia-blockchain-gui\release-builds\windows-installer\
+         certutil.exe -hashfile ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\windows-installer\ReplacemeSetup-${{ steps.version_number.outputs.REPLACEME_INSTALLER_VERSION }}.exe SHA256 > ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\windows-installer\ReplacemeSetup-${{ steps.version_number.outputs.REPLACEME_INSTALLER_VERSION }}.exe.sha256
+         ls ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\windows-installer\
 
     - name: Install py3createtorrent
       if: startsWith(github.ref, 'refs/tags/')
@@ -193,7 +194,7 @@ jobs:
     - name: Create torrent
       if: startsWith(github.ref, 'refs/tags/')
       run: |
-        py3createtorrent -f -t udp://tracker.opentrackr.org:1337/announce ${{ github.workspace }}\chia-blockchain-gui\release-builds\windows-installer\ChiaSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe -o ${{ github.workspace }}\chia-blockchain-gui\release-builds\windows-installer\ChiaSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe.torrent --webseed https://download-chia-net.s3.us-west-2.amazonaws.com/install/ChiaSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe
+        py3createtorrent -f -t udp://tracker.opentrackr.org:1337/announce ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\windows-installer\ReplacemeSetup-${{ steps.version_number.outputs.REPLACEME_INSTALLER_VERSION }}.exe -o ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\windows-installer\ReplacemeSetup-${{ steps.version_number.outputs.REPLACEME_INSTALLER_VERSION }}.exe.torrent --webseed https://download-replaceme-net.s3.us-west-2.amazonaws.com/install/ReplacemeSetup-${{ steps.version_number.outputs.REPLACEME_INSTALLER_VERSION }}.exe
         ls
 
     - name: Upload Beta Installer
