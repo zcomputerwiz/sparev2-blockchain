@@ -9,7 +9,6 @@ on:
   pull_request:
     branches:
       - '**'
-  workflow-dispatch:
 
 jobs:
   test_scripts:

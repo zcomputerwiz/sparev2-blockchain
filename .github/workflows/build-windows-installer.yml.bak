@@ -202,8 +202,8 @@ jobs:
       env:
         CHIA_INSTALLER_VERSION: ${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}
       run: |
-        aws s3 cp ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\windows-installer\ReplacemeSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe s3://download-replaceme-net/beta/ReplacemeSetup-latest-beta.exe
-        aws s3 cp ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\windows-installer\ReplacemeSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe.sha256 s3://download-replaceme-net/beta/ReplacemeSetup-latest-beta.exe.sha256
+        aws s3 cp ${{ github.workspace }}\chia-blockchain-gui\release-builds\windows-installer\ChiaSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe s3://download-chia-net/beta/ChiaSetup-latest-beta.exe
+        aws s3 cp ${{ github.workspace }}\chia-blockchain-gui\release-builds\windows-installer\ChiaSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe.sha256 s3://download-chia-net/beta/ChiaSetup-latest-beta.exe.sha256
 
     - name: Upload Release Files
       if: steps.check_secrets.outputs.HAS_AWS_SECRET && startsWith(github.ref, 'refs/tags/')
@@ -211,9 +211,9 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.INSTALLER_UPLOAD_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.INSTALLER_UPLOAD_SECRET }}
       run: |
-        aws s3 cp ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\windows-installer\ReplacemeSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe s3://download-replaceme-net/install/
-        aws s3 cp ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\windows-installer\ReplacemeSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe.sha256 s3://download-replaceme-net/install/
-        aws s3 cp ${{ github.workspace }}\replaceme-blockchain-gui\release-builds\windows-installer\ReplacemeSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe.torrent s3://download-replaceme-net/torrents/
+        aws s3 cp ${{ github.workspace }}\chia-blockchain-gui\release-builds\windows-installer\ChiaSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe s3://download-chia-net/install/
+        aws s3 cp ${{ github.workspace }}\chia-blockchain-gui\release-builds\windows-installer\ChiaSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe.sha256 s3://download-chia-net/install/
+        aws s3 cp ${{ github.workspace }}\chia-blockchain-gui\release-builds\windows-installer\ChiaSetup-${{ steps.version_number.outputs.CHIA_INSTALLER_VERSION }}.exe.torrent s3://download-chia-net/torrents/
 
     - name: Get tag name
       if: startsWith(github.ref, 'refs/tags/')
