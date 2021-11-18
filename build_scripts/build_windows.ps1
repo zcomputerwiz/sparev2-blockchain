@@ -74,8 +74,8 @@ pip install --no-index --find-links=.\win_build\ miniupnpc
 # Write-Output "pip install setproctitle"
 # pip install setproctitle==1.2.2
 
-Write-Output "pip install replaceme-blockchain"
-pip install --no-index --find-links=.\win_build\ replaceme-blockchain
+Write-Output "pip install chia-blockchain"
+pip install --no-index --find-links=.\win_build\ chia-blockchain
 
 Write-Output "   ---"
 Write-Output "Use pyinstaller to create replaceme .exe's"
