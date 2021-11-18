@@ -3,5 +3,5 @@
 	url = https://github.com/Chia-Network/mozilla-ca.git
         branch = main
 [submodule "replaceme-blockchain-gui"]
-	path = replaceme-blockchain-gui
+	path = spare-blockchain-gui
 	url = https://github.com/zcomputerwiz/replaceme-blockchain-gui
