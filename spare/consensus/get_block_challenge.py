@@ -1,15 +1,15 @@
 import logging
 from typing import List, Union
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.full_block import FullBlock
-from replaceme.types.header_block import HeaderBlock
-from replaceme.types.unfinished_block import UnfinishedBlock
-from replaceme.types.unfinished_header_block import UnfinishedHeaderBlock
-from replaceme.util.ints import uint64
+from spare.consensus.block_record import BlockRecord
+from spare.consensus.blockchain_interface import BlockchainInterface
+from spare.consensus.constants import ConsensusConstants
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.full_block import FullBlock
+from spare.types.header_block import HeaderBlock
+from spare.types.unfinished_block import UnfinishedBlock
+from spare.types.unfinished_header_block import UnfinishedHeaderBlock
+from spare.util.ints import uint64
 
 log = logging.getLogger(__name__)
 

@@ -1,14 +1,14 @@
 from dataclasses import dataclass
 from typing import List, Optional, Tuple
 
-from replaceme.types.blockchain_format.foliage import Foliage
-from replaceme.types.blockchain_format.reward_chain_block import RewardChainBlock, RewardChainBlockUnfinished
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.blockchain_format.vdf import VDFInfo, VDFProof
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.util.ints import uint8, uint32, uint64, uint128
-from replaceme.util.streamable import Streamable, streamable
+from spare.types.blockchain_format.foliage import Foliage
+from spare.types.blockchain_format.reward_chain_block import RewardChainBlock, RewardChainBlockUnfinished
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from spare.types.blockchain_format.vdf import VDFInfo, VDFProof
+from spare.types.end_of_slot_bundle import EndOfSubSlotBundle
+from spare.util.ints import uint8, uint32, uint64, uint128
+from spare.util.streamable import Streamable, streamable
 
 """
 Protocol between timelord and full node.

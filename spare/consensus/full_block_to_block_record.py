@@ -1,19 +1,19 @@
 from typing import List, Optional, Union
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.deficit import calculate_deficit
-from replaceme.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
-from replaceme.consensus.make_sub_epoch_summary import make_sub_epoch_summary
-from replaceme.consensus.pot_iterations import is_overflow_block
-from replaceme.types.blockchain_format.classgroup import ClassgroupElement
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.slots import ChallengeBlockInfo
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.full_block import FullBlock
-from replaceme.types.header_block import HeaderBlock
-from replaceme.util.ints import uint8, uint32, uint64
+from spare.consensus.block_record import BlockRecord
+from spare.consensus.blockchain_interface import BlockchainInterface
+from spare.consensus.constants import ConsensusConstants
+from spare.consensus.deficit import calculate_deficit
+from spare.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
+from spare.consensus.make_sub_epoch_summary import make_sub_epoch_summary
+from spare.consensus.pot_iterations import is_overflow_block
+from spare.types.blockchain_format.classgroup import ClassgroupElement
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.slots import ChallengeBlockInfo
+from spare.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from spare.types.full_block import FullBlock
+from spare.types.header_block import HeaderBlock
+from spare.util.ints import uint8, uint32, uint64
 
 
 def block_to_block_record(

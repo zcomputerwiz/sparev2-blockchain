@@ -1,5 +1,5 @@
 import click
-from replaceme.plotters.plotters import call_plotters
+from spare.plotters.plotters import call_plotters
 
 
 @click.command(

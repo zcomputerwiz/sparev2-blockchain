@@ -3,8 +3,8 @@ from pathlib import Path
 
 from blspy import AugSchemeMPL, PublicKeyMPL, SignatureMPL
 
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.hash import std_hash
+from spare.util.byte_types import hexstr_to_bytes
+from spare.util.hash import std_hash
 
 
 def validate_alert_file(file_path: Path, pubkey: str) -> bool:

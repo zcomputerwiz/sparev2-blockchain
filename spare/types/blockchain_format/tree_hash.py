@@ -10,8 +10,8 @@ from typing import Optional, Set
 
 from clvm import CLVMObject
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.hash import std_hash
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.hash import std_hash
 
 
 def sha256_treehash(sexp: CLVMObject, precalculated: Optional[Set[bytes32]] = None) -> bytes32:

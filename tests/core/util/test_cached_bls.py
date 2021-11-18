@@ -1,7 +1,7 @@
 import unittest
 from blspy import AugSchemeMPL, G1Element
-from replaceme.util import cached_bls
-from replaceme.util.lru_cache import LRUCache
+from spare.util import cached_bls
+from spare.util.lru_cache import LRUCache
 
 
 class TestCachedBLS(unittest.TestCase):

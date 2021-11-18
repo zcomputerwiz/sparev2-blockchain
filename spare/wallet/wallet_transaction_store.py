@@ -3,13 +3,13 @@ from typing import Dict, List, Optional, Tuple
 
 import aiosqlite
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.errors import Err
-from replaceme.util.ints import uint8, uint32
-from replaceme.wallet.transaction_record import TransactionRecord
-from replaceme.wallet.util.transaction_type import TransactionType
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.mempool_inclusion_status import MempoolInclusionStatus
+from spare.util.db_wrapper import DBWrapper
+from spare.util.errors import Err
+from spare.util.ints import uint8, uint32
+from spare.wallet.transaction_record import TransactionRecord
+from spare.wallet.util.transaction_type import TransactionType
 
 
 class WalletTransactionStore:

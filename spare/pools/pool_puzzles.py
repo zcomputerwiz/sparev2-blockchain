@@ -3,20 +3,20 @@ from typing import Tuple, List, Optional
 from blspy import G1Element
 from clvm.casts import int_from_bytes, int_to_bytes
 
-from replaceme.clvm.singleton import SINGLETON_LAUNCHER
-from replaceme.consensus.block_rewards import calculate_pool_reward
-from replaceme.consensus.coinbase import pool_parent_id
-from replaceme.pools.pool_wallet_info import PoolState, LEAVING_POOL, SELF_POOLING
+from spare.clvm.singleton import SINGLETON_LAUNCHER
+from spare.consensus.block_rewards import calculate_pool_reward
+from spare.consensus.coinbase import pool_parent_id
+from spare.pools.pool_wallet_info import PoolState, LEAVING_POOL, SELF_POOLING
 
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program, SerializedProgram
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.program import Program, SerializedProgram
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.wallet.puzzles.load_clvm import load_clvm
-from replaceme.wallet.puzzles.singleton_top_layer import puzzle_for_singleton
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.coin_spend import CoinSpend
+from spare.wallet.puzzles.load_clvm import load_clvm
+from spare.wallet.puzzles.singleton_top_layer import puzzle_for_singleton
 
-from replaceme.util.ints import uint32, uint64
+from spare.util.ints import uint32, uint64
 
 log = logging.getLogger(__name__)
 # "Full" is the outer singleton, with the inner puzzle filled in

@@ -1,16 +1,16 @@
 import logging
 from typing import List, Optional, Tuple, Union
 
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.protocols import timelord_protocol
-from replaceme.timelord.iters_from_block import iters_from_block
-from replaceme.timelord.types import Chain, StateType
-from replaceme.types.blockchain_format.classgroup import ClassgroupElement
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.slots import ChallengeBlockInfo
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.util.ints import uint8, uint32, uint64, uint128
+from spare.consensus.constants import ConsensusConstants
+from spare.protocols import timelord_protocol
+from spare.timelord.iters_from_block import iters_from_block
+from spare.timelord.types import Chain, StateType
+from spare.types.blockchain_format.classgroup import ClassgroupElement
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.slots import ChallengeBlockInfo
+from spare.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from spare.types.end_of_slot_bundle import EndOfSubSlotBundle
+from spare.util.ints import uint8, uint32, uint64, uint128
 
 log = logging.getLogger(__name__)
 

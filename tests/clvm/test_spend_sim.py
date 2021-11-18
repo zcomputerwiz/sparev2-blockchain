@@ -2,11 +2,11 @@ import pytest
 
 from blspy import G2Element
 
-from replaceme.clvm.spend_sim import SpendSim, SimClient
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.types.coin_spend import CoinSpend
+from spare.clvm.spend_sim import SpendSim, SimClient
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.program import Program
+from spare.types.spend_bundle import SpendBundle
+from spare.types.coin_spend import CoinSpend
 
 
 class TestSpendSim:

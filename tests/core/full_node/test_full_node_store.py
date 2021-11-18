@@ -7,19 +7,19 @@ from typing import List, Optional
 
 import pytest
 
-from replaceme.consensus.blockchain import ReceiveBlockResult
-from replaceme.consensus.multiprocess_validation import PreValidationResult
-from replaceme.consensus.pot_iterations import is_overflow_block
-from replaceme.full_node.full_node_store import FullNodeStore
-from replaceme.full_node.signage_point import SignagePoint
-from replaceme.protocols import timelord_protocol
-from replaceme.protocols.timelord_protocol import NewInfusionPointVDF
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.unfinished_block import UnfinishedBlock
-from replaceme.util.block_cache import BlockCache
+from spare.consensus.blockchain import ReceiveBlockResult
+from spare.consensus.multiprocess_validation import PreValidationResult
+from spare.consensus.pot_iterations import is_overflow_block
+from spare.full_node.full_node_store import FullNodeStore
+from spare.full_node.signage_point import SignagePoint
+from spare.protocols import timelord_protocol
+from spare.protocols.timelord_protocol import NewInfusionPointVDF
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.unfinished_block import UnfinishedBlock
+from spare.util.block_cache import BlockCache
 from tests.block_tools import get_signage_point, create_block_tools
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint8, uint32, uint64, uint128
+from spare.util.hash import std_hash
+from spare.util.ints import uint8, uint32, uint64, uint128
 from tests.setup_nodes import test_constants as test_constants_original
 from tests.util.blockchain import create_blockchain
 from tests.util.keyring import TempKeyring

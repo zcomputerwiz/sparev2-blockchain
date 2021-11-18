@@ -1,9 +1,9 @@
 from typing import Optional
 
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.wallet.puzzles.load_clvm import load_clvm
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.program import Program
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.wallet.puzzles.load_clvm import load_clvm
 
 MOD = load_clvm("genesis-by-coin-id-with-0.clvm", package_or_requirement=__name__)
 

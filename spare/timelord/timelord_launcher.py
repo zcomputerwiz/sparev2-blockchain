@@ -8,12 +8,12 @@ from typing import Dict, List
 
 import pkg_resources
 
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.replaceme_logging import initialize_logging
-from replaceme.util.config import load_config
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
-from replaceme.util.ints import uint16
-from replaceme.util.setproctitle import setproctitle
+from spare.types.peer_info import PeerInfo
+from spare.util.spare_logging import initialize_logging
+from spare.util.config import load_config
+from spare.util.default_root import DEFAULT_ROOT_PATH
+from spare.util.ints import uint16
+from spare.util.setproctitle import setproctitle
 
 active_processes: List = []
 stopped = False
@@ -94,7 +94,7 @@ async def spawn_all_processes(config: Dict, net_config: Dict):
 
 def main():
     root_path = DEFAULT_ROOT_PATH
-    setproctitle("replaceme_timelord_launcher")
+    setproctitle("spare_timelord_launcher")
     net_config = load_config(root_path, "config.yaml")
     config = net_config["timelord_launcher"]
     initialize_logging("TLauncher", config["logging"], root_path)

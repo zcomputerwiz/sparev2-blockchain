@@ -3,12 +3,12 @@ from typing import Dict, List, Optional, Set
 import aiosqlite
 import sqlite3
 
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.ints import uint32, uint64
-from replaceme.wallet.util.wallet_types import WalletType
-from replaceme.wallet.wallet_coin_record import WalletCoinRecord
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.db_wrapper import DBWrapper
+from spare.util.ints import uint32, uint64
+from spare.wallet.util.wallet_types import WalletType
+from spare.wallet.wallet_coin_record import WalletCoinRecord
 
 
 class WalletCoinStore:

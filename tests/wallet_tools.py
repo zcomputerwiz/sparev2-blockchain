@@ -2,21 +2,21 @@ from typing import Dict, List, Optional, Tuple, Any
 
 from blspy import AugSchemeMPL, G2Element, PrivateKey
 
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.util.hash import std_hash
-from replaceme.types.announcement import Announcement
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.condition_with_args import ConditionWithArgs
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.clvm import int_from_bytes, int_to_bytes
-from replaceme.util.condition_tools import conditions_by_opcode, conditions_for_solution
-from replaceme.util.ints import uint32, uint64
-from replaceme.wallet.derive_keys import master_sk_to_wallet_sk
-from replaceme.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
+from spare.consensus.constants import ConsensusConstants
+from spare.util.hash import std_hash
+from spare.types.announcement import Announcement
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.program import Program
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.coin_spend import CoinSpend
+from spare.types.condition_opcodes import ConditionOpcode
+from spare.types.condition_with_args import ConditionWithArgs
+from spare.types.spend_bundle import SpendBundle
+from spare.util.clvm import int_from_bytes, int_to_bytes
+from spare.util.condition_tools import conditions_by_opcode, conditions_for_solution
+from spare.util.ints import uint32, uint64
+from spare.wallet.derive_keys import master_sk_to_wallet_sk
+from spare.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
     DEFAULT_HIDDEN_PUZZLE_HASH,
     calculate_synthetic_secret_key,
     puzzle_for_pk,

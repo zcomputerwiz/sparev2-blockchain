@@ -1,19 +1,19 @@
 from typing import KeysView, Generator
 
 SERVICES_FOR_GROUP = {
-    "all": "replaceme_harvester replaceme_timelord_launcher replaceme_timelord replaceme_farmer replaceme_full_node replaceme_wallet".split(),
-    "node": "replaceme_full_node".split(),
-    "harvester": "replaceme_harvester".split(),
-    "farmer": "replaceme_harvester replaceme_farmer replaceme_full_node replaceme_wallet".split(),
-    "farmer-no-wallet": "replaceme_harvester replaceme_farmer replaceme_full_node".split(),
-    "farmer-only": "replaceme_farmer".split(),
-    "timelord": "replaceme_timelord_launcher replaceme_timelord replaceme_full_node".split(),
-    "timelord-only": "replaceme_timelord".split(),
-    "timelord-launcher-only": "replaceme_timelord_launcher".split(),
-    "wallet": "replaceme_wallet replaceme_full_node".split(),
-    "wallet-only": "replaceme_wallet".split(),
-    "introducer": "replaceme_introducer".split(),
-    "simulator": "replaceme_full_node_simulator".split(),
+    "all": "spare_harvester spare_timelord_launcher spare_timelord spare_farmer spare_full_node spare_wallet".split(),
+    "node": "spare_full_node".split(),
+    "harvester": "spare_harvester".split(),
+    "farmer": "spare_harvester spare_farmer spare_full_node spare_wallet".split(),
+    "farmer-no-wallet": "spare_harvester spare_farmer spare_full_node".split(),
+    "farmer-only": "spare_farmer".split(),
+    "timelord": "spare_timelord_launcher spare_timelord spare_full_node".split(),
+    "timelord-only": "spare_timelord".split(),
+    "timelord-launcher-only": "spare_timelord_launcher".split(),
+    "wallet": "spare_wallet spare_full_node".split(),
+    "wallet-only": "spare_wallet".split(),
+    "introducer": "spare_introducer".split(),
+    "simulator": "spare_full_node_simulator".split(),
 }
 
 

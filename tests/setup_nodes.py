@@ -5,25 +5,25 @@ import signal
 from secrets import token_bytes
 from typing import Dict, List, Optional
 
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.daemon.server import WebSocketServer, create_server_for_daemon, daemon_launch_lock_path, singleton
-from replaceme.full_node.full_node_api import FullNodeAPI
-from replaceme.server.start_farmer import service_kwargs_for_farmer
-from replaceme.server.start_full_node import service_kwargs_for_full_node
-from replaceme.server.start_harvester import service_kwargs_for_harvester
-from replaceme.server.start_introducer import service_kwargs_for_introducer
-from replaceme.server.start_service import Service
-from replaceme.server.start_timelord import service_kwargs_for_timelord
-from replaceme.server.start_wallet import service_kwargs_for_wallet
-from replaceme.simulator.start_simulator import service_kwargs_for_full_node_simulator
-from replaceme.timelord.timelord_launcher import kill_processes, spawn_process
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.bech32m import encode_puzzle_hash
+from spare.consensus.constants import ConsensusConstants
+from spare.daemon.server import WebSocketServer, create_server_for_daemon, daemon_launch_lock_path, singleton
+from spare.full_node.full_node_api import FullNodeAPI
+from spare.server.start_farmer import service_kwargs_for_farmer
+from spare.server.start_full_node import service_kwargs_for_full_node
+from spare.server.start_harvester import service_kwargs_for_harvester
+from spare.server.start_introducer import service_kwargs_for_introducer
+from spare.server.start_service import Service
+from spare.server.start_timelord import service_kwargs_for_timelord
+from spare.server.start_wallet import service_kwargs_for_wallet
+from spare.simulator.start_simulator import service_kwargs_for_full_node_simulator
+from spare.timelord.timelord_launcher import kill_processes, spawn_process
+from spare.types.peer_info import PeerInfo
+from spare.util.bech32m import encode_puzzle_hash
 from tests.block_tools import create_block_tools, create_block_tools_async, test_constants
 from tests.util.keyring import TempKeyring
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint16, uint32
-from replaceme.util.keychain import bytes_to_mnemonic
+from spare.util.hash import std_hash
+from spare.util.ints import uint16, uint32
+from spare.util.keychain import bytes_to_mnemonic
 from tests.time_out_assert import time_out_assert_custom_interval
 
 

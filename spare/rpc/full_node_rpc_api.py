@@ -1,27 +1,27 @@
 from typing import Any, Callable, Dict, List, Optional
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.pos_quality import UI_ACTUAL_SPACE_CONSTANT_FACTOR
-from replaceme.full_node.full_node import FullNode
-from replaceme.full_node.mempool_check_conditions import get_puzzle_and_solution_for_coin
-from replaceme.types.blockchain_format.program import Program, SerializedProgram
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.full_block import FullBlock
-from replaceme.types.generator_types import BlockGenerator
-from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.types.unfinished_header_block import UnfinishedHeaderBlock
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.ints import uint32, uint64, uint128
-from replaceme.util.ws_message import WsRpcMessage, create_payload_dict
+from spare.consensus.block_record import BlockRecord
+from spare.consensus.pos_quality import UI_ACTUAL_SPACE_CONSTANT_FACTOR
+from spare.full_node.full_node import FullNode
+from spare.full_node.mempool_check_conditions import get_puzzle_and_solution_for_coin
+from spare.types.blockchain_format.program import Program, SerializedProgram
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.coin_record import CoinRecord
+from spare.types.coin_spend import CoinSpend
+from spare.types.full_block import FullBlock
+from spare.types.generator_types import BlockGenerator
+from spare.types.mempool_inclusion_status import MempoolInclusionStatus
+from spare.types.spend_bundle import SpendBundle
+from spare.types.unfinished_header_block import UnfinishedHeaderBlock
+from spare.util.byte_types import hexstr_to_bytes
+from spare.util.ints import uint32, uint64, uint128
+from spare.util.ws_message import WsRpcMessage, create_payload_dict
 
 
 class FullNodeRpcApi:
     def __init__(self, service: FullNode):
         self.service = service
-        self.service_name = "replaceme_full_node"
+        self.service_name = "spare_full_node"
         self.cached_blockchain_state: Optional[Dict] = None
 
     def get_routes(self) -> Dict[str, Callable]:

@@ -9,28 +9,28 @@ from typing import Callable, Dict, List, Optional, Tuple, Set
 
 from chiavdf import create_discriminant
 
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.pot_iterations import calculate_sp_iters, is_overflow_block
-from replaceme.protocols import timelord_protocol
-from replaceme.protocols.protocol_message_types import ProtocolMessageTypes
-from replaceme.server.outbound_message import NodeType, make_msg
-from replaceme.server.server import ReplacemeServer
-from replaceme.timelord.iters_from_block import iters_from_block
-from replaceme.timelord.timelord_state import LastState
-from replaceme.timelord.types import Chain, IterationType, StateType
-from replaceme.types.blockchain_format.classgroup import ClassgroupElement
-from replaceme.types.blockchain_format.reward_chain_block import RewardChainBlock
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.slots import (
+from spare.consensus.constants import ConsensusConstants
+from spare.consensus.pot_iterations import calculate_sp_iters, is_overflow_block
+from spare.protocols import timelord_protocol
+from spare.protocols.protocol_message_types import ProtocolMessageTypes
+from spare.server.outbound_message import NodeType, make_msg
+from spare.server.server import SpareServer
+from spare.timelord.iters_from_block import iters_from_block
+from spare.timelord.timelord_state import LastState
+from spare.timelord.types import Chain, IterationType, StateType
+from spare.types.blockchain_format.classgroup import ClassgroupElement
+from spare.types.blockchain_format.reward_chain_block import RewardChainBlock
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.slots import (
     ChallengeChainSubSlot,
     InfusedChallengeChainSubSlot,
     RewardChainSubSlot,
     SubSlotProofs,
 )
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.blockchain_format.vdf import VDFInfo, VDFProof
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.util.ints import uint8, uint32, uint64, uint128
+from spare.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from spare.types.blockchain_format.vdf import VDFInfo, VDFProof
+from spare.types.end_of_slot_bundle import EndOfSubSlotBundle
+from spare.util.ints import uint8, uint32, uint64, uint128
 
 log = logging.getLogger(__name__)
 
@@ -44,7 +44,7 @@ class Timelord:
         self.free_clients: List[Tuple[str, asyncio.StreamReader, asyncio.StreamWriter]] = []
         self.potential_free_clients: List = []
         self.ip_whitelist = self.config["vdf_clients"]["ip"]
-        self.server: Optional[ReplacemeServer] = None
+        self.server: Optional[SpareServer] = None
         self.chain_type_to_stream: Dict[Chain, Tuple[str, asyncio.StreamReader, asyncio.StreamWriter]] = {}
         self.chain_start_time: Dict = {}
         # Chains that currently don't have a vdf_client.
@@ -116,7 +116,7 @@ class Timelord:
     async def _await_closed(self):
         pass
 
-    def set_server(self, server: ReplacemeServer):
+    def set_server(self, server: SpareServer):
         self.server = server
 
     async def _handle_client(self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter):

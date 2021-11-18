@@ -2,9 +2,9 @@ from typing import Dict, List
 
 from sortedcontainers import SortedDict
 
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.mempool_item import MempoolItem
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.mempool_item import MempoolItem
 
 
 class Mempool:

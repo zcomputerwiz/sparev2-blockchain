@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 from typing import List, Optional
 
-from replaceme.types.blockchain_format.foliage import Foliage, FoliageTransactionBlock, TransactionsInfo
-from replaceme.types.blockchain_format.reward_chain_block import RewardChainBlock
-from replaceme.types.blockchain_format.vdf import VDFProof
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.util.streamable import Streamable, streamable
+from spare.types.blockchain_format.foliage import Foliage, FoliageTransactionBlock, TransactionsInfo
+from spare.types.blockchain_format.reward_chain_block import RewardChainBlock
+from spare.types.blockchain_format.vdf import VDFProof
+from spare.types.end_of_slot_bundle import EndOfSubSlotBundle
+from spare.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

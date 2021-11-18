@@ -1,7 +1,7 @@
 from typing import List, Tuple
 import aiosqlite
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.db_wrapper import DBWrapper
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.db_wrapper import DBWrapper
 import logging
 
 log = logging.getLogger(__name__)

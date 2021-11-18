@@ -6,22 +6,22 @@ from typing import Dict, List, Optional, Tuple
 import aiosqlite
 import pytest
 
-from replaceme.consensus.block_header_validation import validate_finished_header_block
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain import Blockchain
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
-from replaceme.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
-from replaceme.consensus.full_block_to_block_record import block_to_block_record
-from replaceme.full_node.block_store import BlockStore
-from replaceme.full_node.coin_store import CoinStore
-from replaceme.server.start_full_node import SERVICE_NAME
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.util.block_cache import BlockCache
+from spare.consensus.block_header_validation import validate_finished_header_block
+from spare.consensus.block_record import BlockRecord
+from spare.consensus.blockchain import Blockchain
+from spare.consensus.default_constants import DEFAULT_CONSTANTS
+from spare.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
+from spare.consensus.full_block_to_block_record import block_to_block_record
+from spare.full_node.block_store import BlockStore
+from spare.full_node.coin_store import CoinStore
+from spare.server.start_full_node import SERVICE_NAME
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from spare.util.block_cache import BlockCache
 from tests.block_tools import test_constants
-from replaceme.util.config import load_config
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
-from replaceme.util.generator_tools import get_block_header
+from spare.util.config import load_config
+from spare.util.default_root import DEFAULT_ROOT_PATH
+from spare.util.generator_tools import get_block_header
 from tests.setup_nodes import bt
 
 try:
@@ -30,16 +30,16 @@ except ImportError:
     pass
 
 
-from replaceme.consensus.pot_iterations import calculate_iterations_quality
-from replaceme.full_node.weight_proof import (  # type: ignore
+from spare.consensus.pot_iterations import calculate_iterations_quality
+from spare.full_node.weight_proof import (  # type: ignore
     WeightProofHandler,
     _map_sub_epoch_summaries,
     _validate_sub_epoch_segments,
     _validate_summaries_weight,
 )
-from replaceme.types.full_block import FullBlock
-from replaceme.types.header_block import HeaderBlock
-from replaceme.util.ints import uint32, uint64
+from spare.types.full_block import FullBlock
+from spare.types.header_block import HeaderBlock
+from spare.util.ints import uint32, uint64
 
 
 @pytest.fixture(scope="session")

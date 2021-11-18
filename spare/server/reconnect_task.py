@@ -1,11 +1,11 @@
 import asyncio
 import socket
 
-from replaceme.server.server import ReplacemeServer
-from replaceme.types.peer_info import PeerInfo
+from spare.server.server import SpareServer
+from spare.types.peer_info import PeerInfo
 
 
-def start_reconnect_task(server: ReplacemeServer, peer_info_arg: PeerInfo, log, auth: bool):
+def start_reconnect_task(server: SpareServer, peer_info_arg: PeerInfo, log, auth: bool):
     """
     Start a background task that checks connection and reconnects periodically to a peer.
     """

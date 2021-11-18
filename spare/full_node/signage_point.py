@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from replaceme.types.blockchain_format.vdf import VDFInfo, VDFProof
-from replaceme.util.streamable import Streamable, streamable
+from spare.types.blockchain_format.vdf import VDFInfo, VDFProof
+from spare.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

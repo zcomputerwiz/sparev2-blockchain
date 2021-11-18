@@ -3,16 +3,16 @@ from typing import Dict, List, Optional, Tuple
 
 import aiosqlite
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.header_block import HeaderBlock
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.ints import uint32, uint64
-from replaceme.util.lru_cache import LRUCache
-from replaceme.util.streamable import Streamable, streamable
-from replaceme.wallet.block_record import HeaderBlockRecord
+from spare.consensus.block_record import BlockRecord
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from spare.types.coin_spend import CoinSpend
+from spare.types.header_block import HeaderBlock
+from spare.util.db_wrapper import DBWrapper
+from spare.util.ints import uint32, uint64
+from spare.util.lru_cache import LRUCache
+from spare.util.streamable import Streamable, streamable
+from spare.wallet.block_record import HeaderBlockRecord
 
 
 @dataclass(frozen=True)

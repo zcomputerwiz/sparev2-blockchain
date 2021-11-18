@@ -4,15 +4,15 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 from blspy import G1Element, G2Element
 from clvm_tools import binutils
 
-from replaceme.types.blockchain_format.program import Program, SerializedProgram
-from replaceme.types.announcement import Announcement
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.condition_tools import ConditionOpcode
-from replaceme.util.ints import uint64
-from replaceme.wallet.puzzles.load_clvm import load_clvm
+from spare.types.blockchain_format.program import Program, SerializedProgram
+from spare.types.announcement import Announcement
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.coin_spend import CoinSpend
+from spare.types.spend_bundle import SpendBundle
+from spare.util.condition_tools import ConditionOpcode
+from spare.util.ints import uint64
+from spare.wallet.puzzles.load_clvm import load_clvm
 
 from tests.clvm.coin_store import BadSpendBundleError, CoinStore, CoinTimestamp
 

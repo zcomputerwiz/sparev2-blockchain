@@ -2,8 +2,8 @@ from typing import List, Tuple, Optional
 
 import aiosqlite
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.db_wrapper import DBWrapper
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.db_wrapper import DBWrapper
 
 
 class WalletInterestedStore:

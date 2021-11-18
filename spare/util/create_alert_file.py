@@ -3,9 +3,9 @@ from typing import List
 
 from blspy import AugSchemeMPL
 
-from replaceme.util.ints import uint32
-from replaceme.util.keychain import Keychain
-from replaceme.util.validate_alert import create_alert_file, create_not_ready_alert_file, validate_alert_file
+from spare.util.ints import uint32
+from spare.util.keychain import Keychain
+from spare.util.validate_alert import create_alert_file, create_not_ready_alert_file, validate_alert_file
 
 bitcoin_hash = None
 bram_message = None

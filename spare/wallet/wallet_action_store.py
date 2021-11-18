@@ -2,10 +2,10 @@ from typing import List, Optional
 
 import aiosqlite
 
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.ints import uint32
-from replaceme.wallet.util.wallet_types import WalletType
-from replaceme.wallet.wallet_action import WalletAction
+from spare.util.db_wrapper import DBWrapper
+from spare.util.ints import uint32
+from spare.wallet.util.wallet_types import WalletType
+from spare.wallet.wallet_action import WalletAction
 
 
 class WalletActionStore:

@@ -3,17 +3,17 @@ import asyncio
 from blspy import G2Element
 from clvm_tools import binutils
 
-from replaceme.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from replaceme.rpc.full_node_rpc_client import FullNodeRpcClient
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.bech32m import decode_puzzle_hash
-from replaceme.util.condition_tools import parse_sexp_to_conditions
-from replaceme.util.config import load_config
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
-from replaceme.util.ints import uint32, uint16
+from spare.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from spare.rpc.full_node_rpc_client import FullNodeRpcClient
+from spare.types.blockchain_format.program import Program
+from spare.types.coin_spend import CoinSpend
+from spare.types.condition_opcodes import ConditionOpcode
+from spare.types.spend_bundle import SpendBundle
+from spare.util.bech32m import decode_puzzle_hash
+from spare.util.condition_tools import parse_sexp_to_conditions
+from spare.util.config import load_config
+from spare.util.default_root import DEFAULT_ROOT_PATH
+from spare.util.ints import uint32, uint16
 
 
 def print_conditions(spend_bundle: SpendBundle):

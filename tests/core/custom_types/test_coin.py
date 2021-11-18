@@ -1,7 +1,7 @@
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.ints import uint64
-from replaceme.util.hash import std_hash
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.ints import uint64
+from spare.util.hash import std_hash
 import io
 
 

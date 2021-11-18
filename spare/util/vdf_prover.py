@@ -2,11 +2,11 @@ from typing import Tuple
 
 from chiavdf import prove
 
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.types.blockchain_format.classgroup import ClassgroupElement
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.vdf import VDFInfo, VDFProof
-from replaceme.util.ints import uint8, uint64
+from spare.consensus.constants import ConsensusConstants
+from spare.types.blockchain_format.classgroup import ClassgroupElement
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.vdf import VDFInfo, VDFProof
+from spare.util.ints import uint8, uint64
 
 
 def get_vdf_info_and_proof(

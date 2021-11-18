@@ -6,13 +6,13 @@ from typing import List
 
 import pytest
 
-from replaceme.full_node.weight_proof import _validate_sub_epoch_summaries
-from replaceme.protocols import full_node_protocol
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.full_block import FullBlock
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint16
+from spare.full_node.weight_proof import _validate_sub_epoch_summaries
+from spare.protocols import full_node_protocol
+from spare.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from spare.types.full_block import FullBlock
+from spare.types.peer_info import PeerInfo
+from spare.util.hash import std_hash
+from spare.util.ints import uint16
 from tests.core.node_height import node_height_exactly, node_height_between
 from tests.setup_nodes import bt, self_hostname, setup_n_nodes, setup_two_nodes, test_constants
 from tests.time_out_assert import time_out_assert

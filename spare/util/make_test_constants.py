@@ -1,6 +1,6 @@
 from typing import Dict
 
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS, ConsensusConstants
+from spare.consensus.default_constants import DEFAULT_CONSTANTS, ConsensusConstants
 
 
 def make_test_constants(test_constants_overrides: Dict) -> ConsensusConstants:

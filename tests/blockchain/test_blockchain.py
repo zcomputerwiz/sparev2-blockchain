@@ -11,36 +11,36 @@ import pytest
 from blspy import AugSchemeMPL, G2Element
 from clvm.casts import int_to_bytes
 
-from replaceme.consensus.block_rewards import calculate_base_farmer_reward
-from replaceme.consensus.blockchain import ReceiveBlockResult
-from replaceme.consensus.coinbase import create_farmer_coin
-from replaceme.consensus.pot_iterations import is_overflow_block
-from replaceme.full_node.bundle_tools import detect_potential_template_generator
-from replaceme.types.blockchain_format.classgroup import ClassgroupElement
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.foliage import TransactionsInfo
-from replaceme.types.blockchain_format.program import SerializedProgram
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.slots import InfusedChallengeChainSubSlot
-from replaceme.types.blockchain_format.vdf import VDFInfo, VDFProof
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.condition_with_args import ConditionWithArgs
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.types.full_block import FullBlock
-from replaceme.types.generator_types import BlockGenerator
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.types.unfinished_block import UnfinishedBlock
+from spare.consensus.block_rewards import calculate_base_farmer_reward
+from spare.consensus.blockchain import ReceiveBlockResult
+from spare.consensus.coinbase import create_farmer_coin
+from spare.consensus.pot_iterations import is_overflow_block
+from spare.full_node.bundle_tools import detect_potential_template_generator
+from spare.types.blockchain_format.classgroup import ClassgroupElement
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.foliage import TransactionsInfo
+from spare.types.blockchain_format.program import SerializedProgram
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.slots import InfusedChallengeChainSubSlot
+from spare.types.blockchain_format.vdf import VDFInfo, VDFProof
+from spare.types.condition_opcodes import ConditionOpcode
+from spare.types.condition_with_args import ConditionWithArgs
+from spare.types.end_of_slot_bundle import EndOfSubSlotBundle
+from spare.types.full_block import FullBlock
+from spare.types.generator_types import BlockGenerator
+from spare.types.spend_bundle import SpendBundle
+from spare.types.unfinished_block import UnfinishedBlock
 from tests.block_tools import create_block_tools_async, get_vdf_info_and_proof
-from replaceme.util.errors import Err
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint8, uint64, uint32
-from replaceme.util.merkle_set import MerkleSet
-from replaceme.util.recursive_replace import recursive_replace
+from spare.util.errors import Err
+from spare.util.hash import std_hash
+from spare.util.ints import uint8, uint64, uint32
+from spare.util.merkle_set import MerkleSet
+from spare.util.recursive_replace import recursive_replace
 from tests.wallet_tools import WalletTool
 from tests.setup_nodes import bt, test_constants
 from tests.util.blockchain import create_blockchain
 from tests.util.keyring import TempKeyring
-from replaceme.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
+from spare.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
     DEFAULT_HIDDEN_PUZZLE_HASH,
     calculate_synthetic_secret_key,
 )

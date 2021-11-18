@@ -1,28 +1,28 @@
 from io import TextIOWrapper
 import click
 
-from replaceme import __version__
-from replaceme.cmds.configure import configure_cmd
-from replaceme.cmds.farm import farm_cmd
-from replaceme.cmds.init import init_cmd
-from replaceme.cmds.keys import keys_cmd
-from replaceme.cmds.netspace import netspace_cmd
-from replaceme.cmds.passphrase import passphrase_cmd
-from replaceme.cmds.plots import plots_cmd
-from replaceme.cmds.show import show_cmd
-from replaceme.cmds.start import start_cmd
-from replaceme.cmds.stop import stop_cmd
-from replaceme.cmds.wallet import wallet_cmd
-from replaceme.cmds.plotnft import plotnft_cmd
-from replaceme.cmds.plotters import plotters_cmd
-from replaceme.util.default_root import DEFAULT_KEYS_ROOT_PATH, DEFAULT_ROOT_PATH
-from replaceme.util.keychain import (
+from spare import __version__
+from spare.cmds.configure import configure_cmd
+from spare.cmds.farm import farm_cmd
+from spare.cmds.init import init_cmd
+from spare.cmds.keys import keys_cmd
+from spare.cmds.netspace import netspace_cmd
+from spare.cmds.passphrase import passphrase_cmd
+from spare.cmds.plots import plots_cmd
+from spare.cmds.show import show_cmd
+from spare.cmds.start import start_cmd
+from spare.cmds.stop import stop_cmd
+from spare.cmds.wallet import wallet_cmd
+from spare.cmds.plotnft import plotnft_cmd
+from spare.cmds.plotters import plotters_cmd
+from spare.util.default_root import DEFAULT_KEYS_ROOT_PATH, DEFAULT_ROOT_PATH
+from spare.util.keychain import (
     Keychain,
     KeyringCurrentPassphraseIsInvalid,
     set_keys_root_path,
     supports_keyring_passphrase,
 )
-from replaceme.util.ssl_check import check_ssl
+from spare.util.ssl_check import check_ssl
 from typing import Optional
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
@@ -45,8 +45,8 @@ def monkey_patch_click() -> None:
 
 
 @click.group(
-    help=f"\n  Manage replaceme blockchain infrastructure ({__version__})\n",
-    epilog="Try 'replaceme start node', 'replaceme netspace -d 192', or 'replaceme show -s'",
+    help=f"\n  Manage spare blockchain infrastructure ({__version__})\n",
+    epilog="Try 'spare start node', 'spare netspace -d 192', or 'spare show -s'",
     context_settings=CONTEXT_SETTINGS,
 )
 @click.option("--root-path", default=DEFAULT_ROOT_PATH, help="Config file root", type=click.Path(), show_default=True)
@@ -72,7 +72,7 @@ def cli(
         set_keys_root_path(Path(keys_root_path))
 
     if passphrase_file is not None:
-        from replaceme.cmds.passphrase_funcs import cache_passphrase, read_passphrase_from_file
+        from spare.cmds.passphrase_funcs import cache_passphrase, read_passphrase_from_file
         from sys import exit
 
         try:
@@ -94,30 +94,30 @@ def cli(
 
 
 if not supports_keyring_passphrase():
-    from replaceme.cmds.passphrase_funcs import remove_passphrase_options_from_cmd
+    from spare.cmds.passphrase_funcs import remove_passphrase_options_from_cmd
 
     # TODO: Remove once keyring passphrase management is rolled out to all platforms
     remove_passphrase_options_from_cmd(cli)
 
 
-@cli.command("version", short_help="Show replaceme version")
+@cli.command("version", short_help="Show spare version")
 def version_cmd() -> None:
     print(__version__)
 
 
-@cli.command("run_daemon", short_help="Runs replaceme daemon")
+@cli.command("run_daemon", short_help="Runs spare daemon")
 @click.option(
     "--wait-for-unlock",
     help="If the keyring is passphrase-protected, the daemon will wait for an unlock command before accessing keys",
     default=False,
     is_flag=True,
-    hidden=True,  # --wait-for-unlock is only set when launched by replaceme start <service>
+    hidden=True,  # --wait-for-unlock is only set when launched by spare start <service>
 )
 @click.pass_context
 def run_daemon_cmd(ctx: click.Context, wait_for_unlock: bool) -> None:
     import asyncio
-    from replaceme.daemon.server import async_run_daemon
-    from replaceme.util.keychain import Keychain
+    from spare.daemon.server import async_run_daemon
+    from spare.util.keychain import Keychain
 
     wait_for_unlock = wait_for_unlock and Keychain.is_keyring_locked()
 

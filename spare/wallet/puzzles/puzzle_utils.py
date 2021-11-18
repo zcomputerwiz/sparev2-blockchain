@@ -1,4 +1,4 @@
-from replaceme.util.condition_tools import ConditionOpcode
+from spare.util.condition_tools import ConditionOpcode
 
 
 def make_create_coin_condition(puzzle_hash, amount):

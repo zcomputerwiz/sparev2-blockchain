@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from replaceme.types.blockchain_format.program import Program
+from spare.types.blockchain_format.program import Program
 from clvm.EvalError import EvalError
 
 

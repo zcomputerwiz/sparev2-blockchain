@@ -1,4 +1,4 @@
-from replaceme.util.byte_types import make_sized_bytes
+from spare.util.byte_types import make_sized_bytes
 
 bytes4 = make_sized_bytes(4)
 bytes8 = make_sized_bytes(8)

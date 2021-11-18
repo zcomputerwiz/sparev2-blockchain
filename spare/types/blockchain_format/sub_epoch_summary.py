@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.ints import uint8, uint64
-from replaceme.util.streamable import Streamable, streamable
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.ints import uint8, uint64
+from spare.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

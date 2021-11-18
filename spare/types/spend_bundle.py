@@ -6,11 +6,11 @@ from typing import List
 
 from blspy import AugSchemeMPL, G2Element
 
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.streamable import Streamable, dataclass_from_dict, recurse_jsonify, streamable
-from replaceme.wallet.util.debug_spend_bundle import debug_spend_bundle
+from spare.consensus.default_constants import DEFAULT_CONSTANTS
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.streamable import Streamable, dataclass_from_dict, recurse_jsonify, streamable
+from spare.wallet.util.debug_spend_bundle import debug_spend_bundle
 
 from .coin_spend import CoinSpend
 

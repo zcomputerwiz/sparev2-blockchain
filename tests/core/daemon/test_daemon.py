@@ -1,9 +1,9 @@
-from replaceme.server.outbound_message import NodeType
-from replaceme.types.peer_info import PeerInfo
+from spare.server.outbound_message import NodeType
+from spare.types.peer_info import PeerInfo
 from tests.block_tools import BlockTools, create_block_tools, create_block_tools_async
-from replaceme.util.ints import uint16
-from replaceme.util.keyring_wrapper import DEFAULT_PASSPHRASE_IF_NO_MASTER_PASSPHRASE
-from replaceme.util.ws_message import create_payload
+from spare.util.ints import uint16
+from spare.util.keyring_wrapper import DEFAULT_PASSPHRASE_IF_NO_MASTER_PASSPHRASE
+from spare.util.ws_message import create_payload
 from tests.core.node_height import node_height_at_least
 from tests.setup_nodes import setup_daemon, self_hostname, setup_full_system
 from tests.simulation.test_simulation import test_constants_modified
@@ -116,7 +116,7 @@ class TestDaemon:
 
         read_handler = asyncio.create_task(reader(ws, message_queue))
         data = {}
-        payload = create_payload("get_blockchain_state", data, service_name, "replaceme_full_node")
+        payload = create_payload("get_blockchain_state", data, service_name, "spare_full_node")
         await ws.send_str(payload)
 
         await asyncio.sleep(5)

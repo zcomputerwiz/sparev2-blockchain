@@ -7,21 +7,21 @@ from cryptography import x509
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
 
-from replaceme.protocols.shared_protocol import protocol_version
-from replaceme.server.outbound_message import NodeType
-from replaceme.server.server import ReplacemeServer, ssl_context_for_client
-from replaceme.server.ws_connection import WSReplacemeConnection
-from replaceme.ssl.create_ssl import generate_ca_signed_cert
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.ints import uint16
+from spare.protocols.shared_protocol import protocol_version
+from spare.server.outbound_message import NodeType
+from spare.server.server import SpareServer, ssl_context_for_client
+from spare.server.ws_connection import WSSpareConnection
+from spare.ssl.create_ssl import generate_ca_signed_cert
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.peer_info import PeerInfo
+from spare.util.ints import uint16
 from tests.setup_nodes import self_hostname
 from tests.time_out_assert import time_out_assert
 
 log = logging.getLogger(__name__)
 
 
-async def disconnect_all_and_reconnect(server: ReplacemeServer, reconnect_to: ReplacemeServer) -> bool:
+async def disconnect_all_and_reconnect(server: SpareServer, reconnect_to: SpareServer) -> bool:
     cons = list(server.all_connections.values())[:]
     for con in cons:
         await con.close()
@@ -29,7 +29,7 @@ async def disconnect_all_and_reconnect(server: ReplacemeServer, reconnect_to: Re
 
 
 async def add_dummy_connection(
-    server: ReplacemeServer, dummy_port: int, type: NodeType = NodeType.FULL_NODE
+    server: SpareServer, dummy_port: int, type: NodeType = NodeType.FULL_NODE
 ) -> Tuple[asyncio.Queue, bytes32]:
     timeout = aiohttp.ClientTimeout(total=10)
     session = aiohttp.ClientSession(timeout=timeout)
@@ -37,17 +37,17 @@ async def add_dummy_connection(
     dummy_crt_path = server._private_key_path.parent / "dummy.crt"
     dummy_key_path = server._private_key_path.parent / "dummy.key"
     generate_ca_signed_cert(
-        server.replaceme_ca_crt_path.read_bytes(), server.replaceme_ca_key_path.read_bytes(), dummy_crt_path, dummy_key_path
+        server.spare_ca_crt_path.read_bytes(), server.spare_ca_key_path.read_bytes(), dummy_crt_path, dummy_key_path
     )
     ssl_context = ssl_context_for_client(
-        server.replaceme_ca_crt_path, server.replaceme_ca_key_path, dummy_crt_path, dummy_key_path
+        server.spare_ca_crt_path, server.spare_ca_key_path, dummy_crt_path, dummy_key_path
     )
     pem_cert = x509.load_pem_x509_certificate(dummy_crt_path.read_bytes(), default_backend())
     der_cert = x509.load_der_x509_certificate(pem_cert.public_bytes(serialization.Encoding.DER), default_backend())
     peer_id = bytes32(der_cert.fingerprint(hashes.SHA256()))
     url = f"wss://{self_hostname}:{server._port}/ws"
     ws = await session.ws_connect(url, autoclose=True, autoping=True, ssl=ssl_context)
-    wsc = WSReplacemeConnection(
+    wsc = WSSpareConnection(
         type,
         ws,
         server._port,
@@ -66,7 +66,7 @@ async def add_dummy_connection(
     return incoming_queue, peer_id
 
 
-async def connect_and_get_peer(server_1: ReplacemeServer, server_2: ReplacemeServer) -> WSReplacemeConnection:
+async def connect_and_get_peer(server_1: SpareServer, server_2: SpareServer) -> WSSpareConnection:
     """
     Connect server_2 to server_1, and get return the connection in server_1.
     """

@@ -1,13 +1,13 @@
 from dataclasses import dataclass
 from typing import List
 
-from replaceme.consensus.cost_calculator import NPCResult
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import SerializedProgram
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.ints import uint64
-from replaceme.util.streamable import Streamable, streamable
+from spare.consensus.cost_calculator import NPCResult
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.program import SerializedProgram
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.spend_bundle import SpendBundle
+from spare.util.ints import uint64
+from spare.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

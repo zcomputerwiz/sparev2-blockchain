@@ -1,13 +1,13 @@
 import logging
 from typing import Dict, List, Optional
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.header_block import HeaderBlock
-from replaceme.types.weight_proof import SubEpochChallengeSegment, SubEpochSegments
-from replaceme.util.ints import uint32
+from spare.consensus.block_record import BlockRecord
+from spare.consensus.blockchain_interface import BlockchainInterface
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from spare.types.header_block import HeaderBlock
+from spare.types.weight_proof import SubEpochChallengeSegment, SubEpochSegments
+from spare.util.ints import uint32
 
 
 class BlockCache(BlockchainInterface):

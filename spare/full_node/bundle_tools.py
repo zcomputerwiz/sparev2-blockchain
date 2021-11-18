@@ -4,13 +4,13 @@ from typing import Optional, Tuple, List, Union
 from clvm import SExp
 from clvm_tools import binutils
 
-from replaceme.full_node.generator import create_compressed_generator
-from replaceme.types.blockchain_format.program import SerializedProgram, Program
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.generator_types import BlockGenerator, CompressorArg
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.ints import uint32, uint64
+from spare.full_node.generator import create_compressed_generator
+from spare.types.blockchain_format.program import SerializedProgram, Program
+from spare.types.coin_spend import CoinSpend
+from spare.types.generator_types import BlockGenerator, CompressorArg
+from spare.types.spend_bundle import SpendBundle
+from spare.util.byte_types import hexstr_to_bytes
+from spare.util.ints import uint32, uint64
 
 
 def spend_bundle_to_serialized_coin_spend_entry_list(bundle: SpendBundle) -> bytes:

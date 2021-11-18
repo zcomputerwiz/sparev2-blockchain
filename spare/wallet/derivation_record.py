@@ -2,9 +2,9 @@ from dataclasses import dataclass
 
 from blspy import G1Element
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.ints import uint32
-from replaceme.wallet.util.wallet_types import WalletType
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.ints import uint32
+from spare.wallet.util.wallet_types import WalletType
 
 
 @dataclass(frozen=True)

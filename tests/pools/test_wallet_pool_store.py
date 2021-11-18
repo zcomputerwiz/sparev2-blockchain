@@ -7,14 +7,14 @@ import aiosqlite
 import pytest
 from clvm_tools import binutils
 
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program, SerializedProgram
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.ints import uint64
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.program import Program, SerializedProgram
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.coin_spend import CoinSpend
+from spare.util.db_wrapper import DBWrapper
+from spare.util.ints import uint64
 
-from replaceme.wallet.wallet_pool_store import WalletPoolStore
+from spare.wallet.wallet_pool_store import WalletPoolStore
 
 
 @pytest.fixture(scope="module")

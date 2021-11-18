@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from replaceme.util.streamable import Streamable, streamable
+from spare.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

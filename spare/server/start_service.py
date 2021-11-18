@@ -6,23 +6,23 @@ import signal
 from sys import platform
 from typing import Any, Callable, List, Optional, Tuple
 
-from replaceme.daemon.server import singleton, service_launch_lock_path
-from replaceme.server.ssl_context import replaceme_ssl_ca_paths, private_ssl_ca_paths
+from spare.daemon.server import singleton, service_launch_lock_path
+from spare.server.ssl_context import spare_ssl_ca_paths, private_ssl_ca_paths
 
 try:
     import uvloop
 except ImportError:
     uvloop = None
 
-from replaceme.rpc.rpc_server import start_rpc_server
-from replaceme.server.outbound_message import NodeType
-from replaceme.server.server import ReplacemeServer
-from replaceme.server.upnp import UPnP
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.replaceme_logging import initialize_logging
-from replaceme.util.config import load_config, load_config_cli
-from replaceme.util.setproctitle import setproctitle
-from replaceme.util.ints import uint16
+from spare.rpc.rpc_server import start_rpc_server
+from spare.server.outbound_message import NodeType
+from spare.server.server import SpareServer
+from spare.server.upnp import UPnP
+from spare.types.peer_info import PeerInfo
+from spare.util.spare_logging import initialize_logging
+from spare.util.config import load_config, load_config_cli
+from spare.util.setproctitle import setproctitle
+from spare.util.ints import uint16
 
 from .reconnect_task import start_reconnect_task
 
@@ -64,7 +64,7 @@ class Service:
         self._rpc_close_task: Optional[asyncio.Task] = None
         self._network_id: str = network_id
 
-        proctitle_name = f"replaceme_{service_name}"
+        proctitle_name = f"spare_{service_name}"
         setproctitle(proctitle_name)
         self._log = logging.getLogger(service_name)
 
@@ -76,11 +76,11 @@ class Service:
 
         self._rpc_info = rpc_info
         private_ca_crt, private_ca_key = private_ssl_ca_paths(root_path, self.config)
-        replaceme_ca_crt, replaceme_ca_key = replaceme_ssl_ca_paths(root_path, self.config)
+        spare_ca_crt, spare_ca_key = spare_ssl_ca_paths(root_path, self.config)
         inbound_rlp = self.config.get("inbound_rate_limit_percent")
         outbound_rlp = self.config.get("outbound_rate_limit_percent")
         assert inbound_rlp and outbound_rlp
-        self._server = ReplacemeServer(
+        self._server = SpareServer(
             advertised_port,
             node,
             peer_api,
@@ -92,7 +92,7 @@ class Service:
             root_path,
             service_config,
             (private_ca_crt, private_ca_key),
-            (replaceme_ca_crt, replaceme_ca_key),
+            (spare_ca_crt, spare_ca_key),
             name=f"{service_name}_server",
         )
         f = getattr(node, "set_server", None)
@@ -226,7 +226,7 @@ class Service:
 
         self._log.info("Waiting for socket to be closed (if opened)")
 
-        self._log.info("Waiting for ReplacemeServer to be closed")
+        self._log.info("Waiting for SpareServer to be closed")
         await self._server.await_closed()
 
         if self._rpc_close_task:

@@ -5,20 +5,20 @@ from typing import Callable, List, Tuple
 
 from blspy import AugSchemeMPL, G2Element, G1Element
 
-from replaceme.consensus.pot_iterations import calculate_iterations_quality, calculate_sp_interval_iters
-from replaceme.harvester.harvester import Harvester
-from replaceme.plotting.util import PlotInfo, parse_plot_info
-from replaceme.protocols import harvester_protocol
-from replaceme.protocols.farmer_protocol import FarmingInfo
-from replaceme.protocols.harvester_protocol import Plot
-from replaceme.protocols.protocol_message_types import ProtocolMessageTypes
-from replaceme.server.outbound_message import make_msg
-from replaceme.server.ws_connection import WSReplacemeConnection
-from replaceme.types.blockchain_format.proof_of_space import ProofOfSpace
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.api_decorators import api_request, peer_required
-from replaceme.util.ints import uint8, uint32, uint64
-from replaceme.wallet.derive_keys import master_sk_to_local_sk
+from spare.consensus.pot_iterations import calculate_iterations_quality, calculate_sp_interval_iters
+from spare.harvester.harvester import Harvester
+from spare.plotting.util import PlotInfo, parse_plot_info
+from spare.protocols import harvester_protocol
+from spare.protocols.farmer_protocol import FarmingInfo
+from spare.protocols.harvester_protocol import Plot
+from spare.protocols.protocol_message_types import ProtocolMessageTypes
+from spare.server.outbound_message import make_msg
+from spare.server.ws_connection import WSSpareConnection
+from spare.types.blockchain_format.proof_of_space import ProofOfSpace
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.api_decorators import api_request, peer_required
+from spare.util.ints import uint8, uint32, uint64
+from spare.wallet.derive_keys import master_sk_to_local_sk
 
 
 class HarvesterAPI:
@@ -46,7 +46,7 @@ class HarvesterAPI:
     @peer_required
     @api_request
     async def new_signage_point_harvester(
-        self, new_challenge: harvester_protocol.NewSignagePointHarvester, peer: WSReplacemeConnection
+        self, new_challenge: harvester_protocol.NewSignagePointHarvester, peer: WSSpareConnection
     ):
         """
         The harvester receives a new signage point from the farmer, this happens at the start of each slot.

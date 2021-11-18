@@ -3,12 +3,12 @@ from binascii import hexlify
 
 from clvm_tools import binutils
 
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.util.ints import uint64
-from replaceme.wallet.chialisp import sexp
-from replaceme.wallet.puzzles.load_clvm import load_clvm
+from spare.types.blockchain_format.program import Program
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.condition_opcodes import ConditionOpcode
+from spare.util.ints import uint64
+from spare.wallet.chialisp import sexp
+from spare.wallet.puzzles.load_clvm import load_clvm
 
 RATE_LIMITED_MODE = 1
 AGGREGATION_MODE = 2
@@ -27,7 +27,7 @@ def rl_puzzle_for_pk(
     (1 my_parent_id, my_puzzlehash, my_amount, outgoing_puzzle_hash, outgoing_amount,
      min_block_time, parent_parent_id, parent_amount, fee)
     RATE LIMIT LOGIC:
-    M - replaceme_per_interval
+    M - spare_per_interval
     N - interval_blocks
     V - amount being spent
     MIN_BLOCK_AGE = V / (M / N)

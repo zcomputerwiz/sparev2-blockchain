@@ -2,13 +2,13 @@ from typing import List, Optional
 
 import aiosqlite
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.errors import Err
-from replaceme.util.ints import uint8, uint32
-from replaceme.wallet.trade_record import TradeRecord
-from replaceme.wallet.trading.trade_status import TradeStatus
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.mempool_inclusion_status import MempoolInclusionStatus
+from spare.util.db_wrapper import DBWrapper
+from spare.util.errors import Err
+from spare.util.ints import uint8, uint32
+from spare.wallet.trade_record import TradeRecord
+from spare.wallet.trading.trade_status import TradeStatus
 
 
 class TradeStore:

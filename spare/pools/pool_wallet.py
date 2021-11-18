@@ -4,9 +4,9 @@ from typing import Any, Optional, Set, Tuple, List, Dict
 
 from blspy import PrivateKey, G2Element, G1Element
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.pools.pool_config import PoolWalletConfig, load_pool_config, update_pool_config
-from replaceme.pools.pool_wallet_info import (
+from spare.consensus.block_record import BlockRecord
+from spare.pools.pool_config import PoolWalletConfig, load_pool_config, update_pool_config
+from spare.pools.pool_wallet_info import (
     PoolWalletInfo,
     PoolSingletonState,
     PoolState,
@@ -15,17 +15,17 @@ from replaceme.pools.pool_wallet_info import (
     LEAVING_POOL,
     create_pool_state,
 )
-from replaceme.protocols.pool_protocol import POOL_PROTOCOL_VERSION
+from spare.protocols.pool_protocol import POOL_PROTOCOL_VERSION
 
-from replaceme.types.announcement import Announcement
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.program import Program, SerializedProgram
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.spend_bundle import SpendBundle
+from spare.types.announcement import Announcement
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.program import Program, SerializedProgram
+from spare.types.coin_record import CoinRecord
+from spare.types.coin_spend import CoinSpend
+from spare.types.spend_bundle import SpendBundle
 
-from replaceme.pools.pool_puzzles import (
+from spare.pools.pool_puzzles import (
     create_waiting_room_inner_puzzle,
     create_full_puzzle,
     SINGLETON_LAUNCHER,
@@ -43,19 +43,19 @@ from replaceme.pools.pool_puzzles import (
     get_delayed_puz_info_from_launcher_spend,
 )
 
-from replaceme.util.ints import uint8, uint32, uint64
-from replaceme.wallet.derive_keys import (
+from spare.util.ints import uint8, uint32, uint64
+from spare.wallet.derive_keys import (
     master_sk_to_pooling_authentication_sk,
     find_owner_sk,
 )
-from replaceme.wallet.sign_coin_spends import sign_coin_spends
-from replaceme.wallet.transaction_record import TransactionRecord
-from replaceme.wallet.util.wallet_types import WalletType
-from replaceme.wallet.wallet import Wallet
-from replaceme.wallet.wallet_coin_record import WalletCoinRecord
+from spare.wallet.sign_coin_spends import sign_coin_spends
+from spare.wallet.transaction_record import TransactionRecord
+from spare.wallet.util.wallet_types import WalletType
+from spare.wallet.wallet import Wallet
+from spare.wallet.wallet_coin_record import WalletCoinRecord
 
-from replaceme.wallet.wallet_info import WalletInfo
-from replaceme.wallet.util.transaction_type import TransactionType
+from spare.wallet.wallet_info import WalletInfo
+from spare.wallet.util.transaction_type import TransactionType
 
 
 class PoolWallet:
@@ -402,7 +402,7 @@ class PoolWallet:
     ) -> Tuple[TransactionRecord, bytes32, bytes32]:
         """
         A "plot NFT", or pool wallet, represents the idea of a set of plots that all pay to
-        the same pooling puzzle. This puzzle is a `replaceme singleton` that is
+        the same pooling puzzle. This puzzle is a `spare singleton` that is
         parameterized with a public key controlled by the user's wallet
         (a `smart coin`). It contains an inner puzzle that can switch between
         paying block rewards to a pool, or to a user's own wallet.

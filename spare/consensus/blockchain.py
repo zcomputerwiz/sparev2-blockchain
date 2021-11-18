@@ -8,41 +8,41 @@ from typing import Dict, List, Optional, Set, Tuple, Union
 
 from clvm.casts import int_from_bytes
 
-from replaceme.consensus.block_body_validation import validate_block_body
-from replaceme.consensus.block_header_validation import validate_finished_header_block, validate_unfinished_header_block
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.cost_calculator import NPCResult
-from replaceme.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
-from replaceme.consensus.find_fork_point import find_fork_point_in_chain
-from replaceme.consensus.full_block_to_block_record import block_to_block_record
-from replaceme.consensus.multiprocess_validation import (
+from spare.consensus.block_body_validation import validate_block_body
+from spare.consensus.block_header_validation import validate_finished_header_block, validate_unfinished_header_block
+from spare.consensus.block_record import BlockRecord
+from spare.consensus.blockchain_interface import BlockchainInterface
+from spare.consensus.constants import ConsensusConstants
+from spare.consensus.cost_calculator import NPCResult
+from spare.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
+from spare.consensus.find_fork_point import find_fork_point_in_chain
+from spare.consensus.full_block_to_block_record import block_to_block_record
+from spare.consensus.multiprocess_validation import (
     PreValidationResult,
     pre_validate_blocks_multiprocessing,
     _run_generator,
 )
-from replaceme.full_node.block_store import BlockStore
-from replaceme.full_node.coin_store import CoinStore
-from replaceme.full_node.hint_store import HintStore
-from replaceme.full_node.mempool_check_conditions import get_name_puzzle_conditions
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.blockchain_format.vdf import VDFInfo
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.types.full_block import FullBlock
-from replaceme.types.generator_types import BlockGenerator, GeneratorArg
-from replaceme.types.header_block import HeaderBlock
-from replaceme.types.unfinished_block import UnfinishedBlock
-from replaceme.types.unfinished_header_block import UnfinishedHeaderBlock
-from replaceme.types.weight_proof import SubEpochChallengeSegment
-from replaceme.util.errors import Err, ConsensusError
-from replaceme.util.generator_tools import get_block_header, tx_removals_and_additions
-from replaceme.util.ints import uint16, uint32, uint64, uint128
-from replaceme.util.streamable import recurse_jsonify
+from spare.full_node.block_store import BlockStore
+from spare.full_node.coin_store import CoinStore
+from spare.full_node.hint_store import HintStore
+from spare.full_node.mempool_check_conditions import get_name_puzzle_conditions
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from spare.types.blockchain_format.vdf import VDFInfo
+from spare.types.coin_record import CoinRecord
+from spare.types.condition_opcodes import ConditionOpcode
+from spare.types.end_of_slot_bundle import EndOfSubSlotBundle
+from spare.types.full_block import FullBlock
+from spare.types.generator_types import BlockGenerator, GeneratorArg
+from spare.types.header_block import HeaderBlock
+from spare.types.unfinished_block import UnfinishedBlock
+from spare.types.unfinished_header_block import UnfinishedHeaderBlock
+from spare.types.weight_proof import SubEpochChallengeSegment
+from spare.util.errors import Err, ConsensusError
+from spare.util.generator_tools import get_block_header, tx_removals_and_additions
+from spare.util.ints import uint16, uint32, uint64, uint128
+from spare.util.streamable import recurse_jsonify
 
 log = logging.getLogger(__name__)
 

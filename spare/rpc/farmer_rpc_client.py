@@ -1,14 +1,14 @@
 from typing import Dict, List, Optional, Any
 
-from replaceme.rpc.rpc_client import RpcClient
-from replaceme.types.blockchain_format.sized_bytes import bytes32
+from spare.rpc.rpc_client import RpcClient
+from spare.types.blockchain_format.sized_bytes import bytes32
 
 
 class FarmerRpcClient(RpcClient):
     """
-    Client to Replaceme RPC, connects to a local farmer. Uses HTTP/JSON, and converts back from
+    Client to Spare RPC, connects to a local farmer. Uses HTTP/JSON, and converts back from
     JSON into native python objects before returning. All api calls use POST requests.
-    Note that this is not the same as the peer protocol, or wallet protocol (which run Replaceme's
+    Note that this is not the same as the peer protocol, or wallet protocol (which run Spare's
     protocol on top of TCP), it's a separate protocol on top of HTTP that provides easy access
     to the full node.
     """

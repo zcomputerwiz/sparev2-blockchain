@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z "$VIRTUAL_ENV" ]; then
-  echo "This requires the replaceme python virtual environment."
+  echo "This requires the spare python virtual environment."
   echo "Execute '. ./activate' before running."
 	exit 1
 fi

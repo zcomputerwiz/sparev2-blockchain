@@ -2,7 +2,7 @@ $ErrorActionPreference = "Stop"
 
 if ([Environment]::Is64BitOperatingSystem -eq $false)
 {
-    Write-Output "Replaceme requires a 64-bit Windows installation"
+    Write-Output "Spare requires a 64-bit Windows installation"
     Exit 1
 }
 
@@ -48,13 +48,13 @@ venv\scripts\pip install --extra-index-url https://pypi.chia.net/simple/ miniupn
 venv\scripts\pip install --editable . --extra-index-url https://pypi.chia.net/simple/
 
 Write-Output ""
-Write-Output "Replaceme blockchain .\Install.ps1 complete."
+Write-Output "Spare blockchain .\Install.ps1 complete."
 Write-Output "For assistance join us on Keybase in the #support chat channel:"
-Write-Output "https://keybase.io/team/replaceme_network.public"
+Write-Output "https://keybase.io/team/spare_network.public"
 Write-Output ""
-Write-Output "Try the Quick Start Guide to running replaceme-blockchain:"
-Write-Output "https://github.com/Replaceme-Network/replaceme-blockchain/wiki/Quick-Start-Guide"
+Write-Output "Try the Quick Start Guide to running spare-blockchain:"
+Write-Output "https://github.com/Spare-Network/spare-blockchain/wiki/Quick-Start-Guide"
 Write-Output ""
 Write-Output "To install the GUI type '.\Install-gui.ps1' after '.\venv\scripts\Activate.ps1'."
 Write-Output ""
-Write-Output "Type '.\venv\Scripts\Activate.ps1' and then 'replaceme init' to begin."
+Write-Output "Type '.\venv\Scripts\Activate.ps1' and then 'spare init' to begin."

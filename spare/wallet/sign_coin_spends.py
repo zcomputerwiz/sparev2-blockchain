@@ -4,9 +4,9 @@ from typing import List, Any
 import blspy
 from blspy import AugSchemeMPL
 
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.condition_tools import conditions_dict_for_solution, pkm_pairs_for_conditions_dict
+from spare.types.coin_spend import CoinSpend
+from spare.types.spend_bundle import SpendBundle
+from spare.util.condition_tools import conditions_dict_for_solution, pkm_pairs_for_conditions_dict
 
 
 async def sign_coin_spends(

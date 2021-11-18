@@ -15,17 +15,17 @@ from blspy import G2Element
 
 from clvm_tools.binutils import assemble
 
-from replaceme.consensus.blockchain import ReceiveBlockResult
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.types.announcement import Announcement
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.full_block import FullBlock
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.errors import Err
-from replaceme.util.ints import uint32
+from spare.consensus.blockchain import ReceiveBlockResult
+from spare.consensus.constants import ConsensusConstants
+from spare.types.announcement import Announcement
+from spare.types.blockchain_format.program import Program
+from spare.types.coin_record import CoinRecord
+from spare.types.coin_spend import CoinSpend
+from spare.types.condition_opcodes import ConditionOpcode
+from spare.types.full_block import FullBlock
+from spare.types.spend_bundle import SpendBundle
+from spare.util.errors import Err
+from spare.util.ints import uint32
 from tests.block_tools import create_block_tools, test_constants
 from tests.util.keyring import TempKeyring
 

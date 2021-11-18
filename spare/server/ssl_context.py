@@ -23,8 +23,8 @@ def private_ssl_ca_paths(path: Path, config: Dict):
     )
 
 
-def replaceme_ssl_ca_paths(path: Path, config: Dict):
+def spare_ssl_ca_paths(path: Path, config: Dict):
     return (
-        path / config["replaceme_ssl_ca"]["crt"],
-        path / config["replaceme_ssl_ca"]["key"],
+        path / config["spare_ssl_ca"]["crt"],
+        path / config["spare_ssl_ca"]["key"],
     )

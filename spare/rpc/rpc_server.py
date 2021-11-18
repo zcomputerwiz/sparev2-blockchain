@@ -7,13 +7,13 @@ from typing import Any, Callable, Dict, List, Optional
 
 import aiohttp
 
-from replaceme.server.outbound_message import NodeType
-from replaceme.server.server import ssl_context_for_server
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.ints import uint16
-from replaceme.util.json_util import dict_to_json_str, obj_to_response
-from replaceme.util.ws_message import create_payload, create_payload_dict, format_response, pong
+from spare.server.outbound_message import NodeType
+from spare.server.server import ssl_context_for_server
+from spare.types.peer_info import PeerInfo
+from spare.util.byte_types import hexstr_to_bytes
+from spare.util.ints import uint16
+from spare.util.json_util import dict_to_json_str, obj_to_response
+from spare.util.ws_message import create_payload, create_payload_dict, format_response, pong
 
 log = logging.getLogger(__name__)
 

@@ -4,14 +4,14 @@ import logging
 import pytest
 from clvm.casts import int_to_bytes
 
-from replaceme.consensus.blockchain import ReceiveBlockResult
-from replaceme.protocols import full_node_protocol, wallet_protocol
-from replaceme.types.announcement import Announcement
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.condition_with_args import ConditionWithArgs
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.errors import ConsensusError, Err
-from replaceme.util.ints import uint64
+from spare.consensus.blockchain import ReceiveBlockResult
+from spare.protocols import full_node_protocol, wallet_protocol
+from spare.types.announcement import Announcement
+from spare.types.condition_opcodes import ConditionOpcode
+from spare.types.condition_with_args import ConditionWithArgs
+from spare.types.spend_bundle import SpendBundle
+from spare.util.errors import ConsensusError, Err
+from spare.util.ints import uint64
 from tests.wallet_tools import WalletTool
 from tests.setup_nodes import bt, setup_two_nodes, test_constants
 from tests.util.generator_tools_testing import run_and_get_removals_and_additions

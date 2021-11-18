@@ -1,12 +1,12 @@
 from typing import List, Optional, Set, Dict
 import aiosqlite
-from replaceme.protocols.wallet_protocol import CoinState
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_record import CoinRecord
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.ints import uint32, uint64
-from replaceme.util.lru_cache import LRUCache
+from spare.protocols.wallet_protocol import CoinState
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.coin_record import CoinRecord
+from spare.util.db_wrapper import DBWrapper
+from spare.util.ints import uint32, uint64
+from spare.util.lru_cache import LRUCache
 from time import time
 import logging
 
@@ -55,7 +55,7 @@ class CoinStore:
 
         await self.coin_record_db.execute("CREATE INDEX IF NOT EXISTS coin_spent_index on coin_record(spent_index)")
 
-        # earlier versions of replaceme created this index despite no lookups needing
+        # earlier versions of spare created this index despite no lookups needing
         # it. For now, just don't create it for new installs. In the future we
         # may remove the index from existing installations as well
         # await self.coin_record_db.execute("DROP INDEX IF EXISTS coin_spent")

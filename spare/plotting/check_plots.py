@@ -7,8 +7,8 @@ from typing import List
 from blspy import G1Element
 from chiapos import Verifier
 
-from replaceme.plotting.manager import PlotManager
-from replaceme.plotting.util import (
+from spare.plotting.manager import PlotManager
+from spare.plotting.util import (
     PlotRefreshResult,
     PlotsRefreshParameter,
     PlotRefreshEvents,
@@ -16,10 +16,10 @@ from replaceme.plotting.util import (
     find_duplicate_plot_IDs,
     parse_plot_info,
 )
-from replaceme.util.config import load_config
-from replaceme.util.hash import std_hash
-from replaceme.util.keychain import Keychain
-from replaceme.wallet.derive_keys import master_sk_to_farmer_sk, master_sk_to_local_sk
+from spare.util.config import load_config
+from spare.util.hash import std_hash
+from spare.util.keychain import Keychain
+from spare.wallet.derive_keys import master_sk_to_farmer_sk, master_sk_to_local_sk
 
 log = logging.getLogger(__name__)
 
@@ -189,5 +189,5 @@ def check_plots(root_path, num, challenge_start, grep_string, list_duplicates, d
         log.warning(
             f"There are {len(plot_manager.no_key_filenames)} plots with a farmer or pool public key that "
             f"is not on this machine. The farmer private key must be in the keychain in order to "
-            f"farm them, use 'replaceme keys' to transfer keys. The pool public keys must be in the config.yaml"
+            f"farm them, use 'spare keys' to transfer keys. The pool public keys must be in the config.yaml"
         )

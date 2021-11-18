@@ -2,10 +2,10 @@ import argparse
 import binascii
 import os
 from enum import Enum
-from replaceme.plotters.bladebit import get_bladebit_install_info, plot_bladebit
-from replaceme.plotters.chiapos import get_chiapos_install_info, plot_replaceme
-from replaceme.plotters.madmax import get_madmax_install_info, plot_madmax
-from replaceme.plotters.install_plotter import install_plotter
+from spare.plotters.bladebit import get_bladebit_install_info, plot_bladebit
+from spare.plotters.chiapos import get_chiapos_install_info, plot_spare
+from spare.plotters.madmax import get_madmax_install_info, plot_madmax
+from spare.plotters.install_plotter import install_plotter
 from pathlib import Path
 from typing import Any, Dict, Optional
 
@@ -315,8 +315,8 @@ def build_parser(subparsers, root_path, option_list, name, plotter_desc):
 
 
 def call_plotters(root_path: Path, args):
-    # Add `plotters` section in REPLACEME_ROOT.
-    replaceme_root_path = root_path
+    # Add `plotters` section in SPARE_ROOT.
+    spare_root_path = root_path
     root_path = get_plotters_root_path(root_path)
     if not root_path.is_dir():
         if os.path.exists(root_path):
@@ -326,7 +326,7 @@ def call_plotters(root_path: Path, args):
                 print(f"Exception deleting old root path: {type(e)} {e}.")
 
     if not os.path.exists(root_path):
-        print(f"Creating plotters folder within REPLACEME_ROOT: {root_path}")
+        print(f"Creating plotters folder within SPARE_ROOT: {root_path}")
         try:
             os.mkdir(root_path)
         except Exception as e:
@@ -343,11 +343,11 @@ def call_plotters(root_path: Path, args):
     args = plotters.parse_args(args)
 
     if args.plotter == "chiapos":
-        plot_replaceme(args, replaceme_root_path)
+        plot_spare(args, spare_root_path)
     if args.plotter == "madmax":
-        plot_madmax(args, replaceme_root_path, root_path)
+        plot_madmax(args, spare_root_path, root_path)
     if args.plotter == "bladebit":
-        plot_bladebit(args, replaceme_root_path, root_path)
+        plot_bladebit(args, spare_root_path, root_path)
     if args.plotter == "install":
         install_plotter(args.install_plotter, root_path)
 

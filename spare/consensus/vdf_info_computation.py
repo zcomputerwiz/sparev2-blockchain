@@ -1,12 +1,12 @@
 from typing import List, Optional
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.types.blockchain_format.classgroup import ClassgroupElement
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.util.ints import uint64, uint128
+from spare.consensus.block_record import BlockRecord
+from spare.consensus.blockchain_interface import BlockchainInterface
+from spare.consensus.constants import ConsensusConstants
+from spare.types.blockchain_format.classgroup import ClassgroupElement
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.end_of_slot_bundle import EndOfSubSlotBundle
+from spare.util.ints import uint64, uint128
 
 
 def get_signage_point_vdf_info(

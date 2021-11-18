@@ -54,16 +54,16 @@ def test_name(dir):
     return "-".join(dir.relative_to(root_path).parts)
 
 
-def transform_template(template_text, replacements):
+def transform_template(template_text, sparents):
     t = template_text
-    for r, v in replacements.items():
+    for r, v in sparents.items():
         t = t.replace(r, v)
     return t
 
 
 # Replace with update_config
-def generate_replacements(conf, dir):
-    replacements = {
+def generate_sparents(conf, dir):
+    sparents = {
         "INSTALL_TIMELORD": read_file(Path(root_path / "runner-templates/install-timelord.include.yml")).rstrip(),
         "CHECKOUT_TEST_BLOCKS_AND_PLOTS": read_file(
             Path(root_path / "runner-templates/checkout-test-plots.include.yml")
@@ -74,22 +74,22 @@ def generate_replacements(conf, dir):
     }
 
     if not conf["checkout_blocks_and_plots"]:
-        replacements[
+        sparents[
             "CHECKOUT_TEST_BLOCKS_AND_PLOTS"
         ] = "# Omitted checking out blocks and plots repo Chia-Network/test-cache"
     if not conf["install_timelord"]:
-        replacements["INSTALL_TIMELORD"] = "# Omitted installing Timelord"
+        sparents["INSTALL_TIMELORD"] = "# Omitted installing Timelord"
     if conf["parallel"]:
-        replacements["PYTEST_PARALLEL_ARGS"] = " -n auto"
+        sparents["PYTEST_PARALLEL_ARGS"] = " -n auto"
     if conf["job_timeout"]:
-        replacements["JOB_TIMEOUT"] = str(conf["job_timeout"])
-    replacements["TEST_DIR"] = "/".join([*dir.relative_to(root_path.parent).parts, "test_*.py"])
-    replacements["TEST_NAME"] = test_name(dir)
+        sparents["JOB_TIMEOUT"] = str(conf["job_timeout"])
+    sparents["TEST_DIR"] = "/".join([*dir.relative_to(root_path.parent).parts, "test_*.py"])
+    sparents["TEST_NAME"] = test_name(dir)
     if "test_name" in conf:
-        replacements["TEST_NAME"] = conf["test_name"]
+        sparents["TEST_NAME"] = conf["test_name"]
     for var in conf["custom_vars"]:
-        replacements[var] = conf[var] if var in conf else ""
-    return replacements
+        sparents[var] = conf[var] if var in conf else ""
+    return sparents
 
 
 # Overwrite with directory specific values
@@ -133,8 +133,8 @@ for os in testconfig.oses:
             logging.info(f"Skipping {dir}: no tests collected")
             continue
         conf = update_config(module_dict(testconfig), dir_config(dir))
-        replacements = generate_replacements(conf, dir)
-        txt = transform_template(template_text, replacements)
+        sparents = generate_sparents(conf, dir)
+        txt = transform_template(template_text, sparents)
         logging.info(f"Writing {os}-{test_name(dir)}")
         workflow_yaml_path: Path = workflow_yaml_file(args.output_dir, os, test_name(dir))
         if workflow_yaml_path not in current_workflows or current_workflows[workflow_yaml_path] != txt:

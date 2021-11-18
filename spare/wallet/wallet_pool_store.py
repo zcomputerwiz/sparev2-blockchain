@@ -3,9 +3,9 @@ from typing import List, Tuple, Dict, Optional
 
 import aiosqlite
 
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.ints import uint32
+from spare.types.coin_spend import CoinSpend
+from spare.util.db_wrapper import DBWrapper
+from spare.util.ints import uint32
 
 log = logging.getLogger(__name__)
 

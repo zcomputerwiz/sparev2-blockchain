@@ -10,8 +10,8 @@ from concurrent.futures.thread import ThreadPoolExecutor
 from blspy import G1Element
 from chiapos import DiskProver
 
-from replaceme.consensus.pos_quality import UI_ACTUAL_SPACE_CONSTANT_FACTOR, _expected_plot_size
-from replaceme.plotting.util import (
+from spare.consensus.pos_quality import UI_ACTUAL_SPACE_CONSTANT_FACTOR, _expected_plot_size
+from spare.plotting.util import (
     PlotInfo,
     PlotRefreshResult,
     PlotsRefreshParameter,
@@ -21,12 +21,12 @@ from replaceme.plotting.util import (
     stream_plot_info_pk,
     stream_plot_info_ph,
 )
-from replaceme.util.ints import uint16
-from replaceme.util.path import mkdir
-from replaceme.util.streamable import Streamable, streamable
-from replaceme.types.blockchain_format.proof_of_space import ProofOfSpace
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.wallet.derive_keys import master_sk_to_local_sk
+from spare.util.ints import uint16
+from spare.util.path import mkdir
+from spare.util.streamable import Streamable, streamable
+from spare.types.blockchain_format.proof_of_space import ProofOfSpace
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.wallet.derive_keys import master_sk_to_local_sk
 
 log = logging.getLogger(__name__)
 

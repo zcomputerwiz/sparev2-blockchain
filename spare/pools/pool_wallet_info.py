@@ -4,13 +4,13 @@ from typing import Optional, Dict
 
 from blspy import G1Element
 
-from replaceme.protocols.pool_protocol import POOL_PROTOCOL_VERSION
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.ints import uint32, uint8
-from replaceme.util.streamable import streamable, Streamable
+from spare.protocols.pool_protocol import POOL_PROTOCOL_VERSION
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.program import Program
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.byte_types import hexstr_to_bytes
+from spare.util.ints import uint32, uint8
+from spare.util.streamable import streamable, Streamable
 
 
 class PoolSingletonState(IntEnum):

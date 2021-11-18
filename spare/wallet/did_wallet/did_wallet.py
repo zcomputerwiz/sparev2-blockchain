@@ -6,28 +6,28 @@ from typing import Dict, Optional, List, Any, Set, Tuple, Union
 
 from blspy import AugSchemeMPL, G1Element
 from secrets import token_bytes
-from replaceme.protocols import wallet_protocol
-from replaceme.protocols.wallet_protocol import RespondAdditions, RejectAdditionsRequest
-from replaceme.server.outbound_message import NodeType
-from replaceme.types.announcement import Announcement
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.ints import uint64, uint32, uint8
-from replaceme.wallet.util.transaction_type import TransactionType
+from spare.protocols import wallet_protocol
+from spare.protocols.wallet_protocol import RespondAdditions, RejectAdditionsRequest
+from spare.server.outbound_message import NodeType
+from spare.types.announcement import Announcement
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.program import Program
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.coin_spend import CoinSpend
+from spare.types.spend_bundle import SpendBundle
+from spare.util.ints import uint64, uint32, uint8
+from spare.wallet.util.transaction_type import TransactionType
 
-from replaceme.wallet.did_wallet.did_info import DIDInfo
-from replaceme.wallet.lineage_proof import LineageProof
-from replaceme.wallet.transaction_record import TransactionRecord
-from replaceme.wallet.util.wallet_types import WalletType
-from replaceme.wallet.wallet import Wallet
-from replaceme.wallet.wallet_coin_record import WalletCoinRecord
-from replaceme.wallet.wallet_info import WalletInfo
-from replaceme.wallet.derivation_record import DerivationRecord
-from replaceme.wallet.did_wallet import did_wallet_puzzles
-from replaceme.wallet.derive_keys import master_sk_to_wallet_sk
+from spare.wallet.did_wallet.did_info import DIDInfo
+from spare.wallet.lineage_proof import LineageProof
+from spare.wallet.transaction_record import TransactionRecord
+from spare.wallet.util.wallet_types import WalletType
+from spare.wallet.wallet import Wallet
+from spare.wallet.wallet_coin_record import WalletCoinRecord
+from spare.wallet.wallet_info import WalletInfo
+from spare.wallet.derivation_record import DerivationRecord
+from spare.wallet.did_wallet import did_wallet_puzzles
+from spare.wallet.derive_keys import master_sk_to_wallet_sk
 
 
 class DIDWallet:

@@ -2,15 +2,15 @@ import asyncio
 import random
 from typing import Any, List, Optional, Tuple
 
-from replaceme.server.ws_connection import WSReplacemeConnection
+from spare.server.ws_connection import WSSpareConnection
 
 
 async def send_all_first_reply(
-    func: str, arg: Any, peers: List[WSReplacemeConnection], timeout=15
-) -> Optional[Tuple[Any, WSReplacemeConnection]]:
+    func: str, arg: Any, peers: List[WSSpareConnection], timeout=15
+) -> Optional[Tuple[Any, WSSpareConnection]]:
     """performs an API request to peers and returns the result of the first response and the peer that sent it."""
 
-    async def do_func(peer_x: WSReplacemeConnection, func_x: str, arg_x: Any):
+    async def do_func(peer_x: WSSpareConnection, func_x: str, arg_x: Any):
         method_to_call = getattr(peer_x, func_x)
         result_x = await method_to_call(arg_x)
         if result_x is not None:
@@ -37,10 +37,10 @@ async def send_all_first_reply(
         return None
 
 
-async def send_to_random(func: str, arg: Any, peers: List[WSReplacemeConnection]) -> Optional[Tuple[Any, WSReplacemeConnection]]:
+async def send_to_random(func: str, arg: Any, peers: List[WSSpareConnection]) -> Optional[Tuple[Any, WSSpareConnection]]:
     """performs an API request to peers and returns the result of the first response and the peer that sent it."""
 
-    async def do_func(peer_x: WSReplacemeConnection, func_x: str, arg_x: Any):
+    async def do_func(peer_x: WSSpareConnection, func_x: str, arg_x: Any):
         method_to_call = getattr(peer_x, func_x)
         result_x = await method_to_call(arg_x)
         if result_x is not None:

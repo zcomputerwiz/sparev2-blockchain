@@ -6,22 +6,22 @@ import pytest
 from clvm.casts import int_to_bytes
 from colorlog import logging
 
-from replaceme.consensus.block_rewards import calculate_pool_reward, calculate_base_farmer_reward
-from replaceme.protocols import wallet_protocol, full_node_protocol
-from replaceme.protocols.full_node_protocol import RespondTransaction
-from replaceme.protocols.protocol_message_types import ProtocolMessageTypes
-from replaceme.protocols.wallet_protocol import RespondToCoinUpdates, CoinStateUpdate, RespondToPhUpdates, CoinState
-from replaceme.server.outbound_message import NodeType
-from replaceme.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.condition_with_args import ConditionWithArgs
-from replaceme.types.peer_info import PeerInfo
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.ints import uint16, uint32, uint64
-from replaceme.wallet.wallet import Wallet
-from replaceme.wallet.wallet_state_manager import WalletStateManager
+from spare.consensus.block_rewards import calculate_pool_reward, calculate_base_farmer_reward
+from spare.protocols import wallet_protocol, full_node_protocol
+from spare.protocols.full_node_protocol import RespondTransaction
+from spare.protocols.protocol_message_types import ProtocolMessageTypes
+from spare.protocols.wallet_protocol import RespondToCoinUpdates, CoinStateUpdate, RespondToPhUpdates, CoinState
+from spare.server.outbound_message import NodeType
+from spare.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
+from spare.types.blockchain_format.coin import Coin
+from spare.types.coin_record import CoinRecord
+from spare.types.condition_opcodes import ConditionOpcode
+from spare.types.condition_with_args import ConditionWithArgs
+from spare.types.peer_info import PeerInfo
+from spare.types.spend_bundle import SpendBundle
+from spare.util.ints import uint16, uint32, uint64
+from spare.wallet.wallet import Wallet
+from spare.wallet.wallet_state_manager import WalletStateManager
 from tests.connection_utils import add_dummy_connection
 from tests.setup_nodes import self_hostname, setup_simulators_and_wallets, bt
 from tests.time_out_assert import time_out_assert
@@ -202,7 +202,7 @@ class TestSimpleSyncProtocol:
             await full_node_api.farm_new_transaction_block(FarmNewBlockProtocol(puzzle_hash))
 
         # Let's make sure the wallet can handle a non ephemeral launcher
-        from replaceme.wallet.puzzles.singleton_top_layer import SINGLETON_LAUNCHER_HASH
+        from spare.wallet.puzzles.singleton_top_layer import SINGLETON_LAUNCHER_HASH
 
         tx_record = await wallet.generate_signed_transaction(uint64(10), SINGLETON_LAUNCHER_HASH, uint64(0))
         await wallet.push_transaction(tx_record)

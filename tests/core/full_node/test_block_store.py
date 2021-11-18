@@ -7,11 +7,11 @@ from pathlib import Path
 import aiosqlite
 import pytest
 
-from replaceme.consensus.blockchain import Blockchain
-from replaceme.full_node.block_store import BlockStore
-from replaceme.full_node.coin_store import CoinStore
-from replaceme.full_node.hint_store import HintStore
-from replaceme.util.db_wrapper import DBWrapper
+from spare.consensus.blockchain import Blockchain
+from spare.full_node.block_store import BlockStore
+from spare.full_node.coin_store import CoinStore
+from spare.full_node.hint_store import HintStore
+from spare.util.db_wrapper import DBWrapper
 from tests.setup_nodes import bt, test_constants
 
 log = logging.getLogger(__name__)

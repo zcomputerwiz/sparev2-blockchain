@@ -1,4 +1,4 @@
-from replaceme.types.blockchain_format.program import SerializedProgram
+from spare.types.blockchain_format.program import SerializedProgram
 
 from .load_clvm import load_clvm
 

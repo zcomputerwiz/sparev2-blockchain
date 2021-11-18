@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from typing import List
 
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.header_block import HeaderBlock
-from replaceme.util.streamable import Streamable, streamable
+from spare.types.blockchain_format.coin import Coin
+from spare.types.header_block import HeaderBlock
+from spare.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

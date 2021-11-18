@@ -1,12 +1,12 @@
 from dataclasses import dataclass
 from typing import List, Optional, Tuple
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.ints import uint64
-from replaceme.util.streamable import streamable, Streamable
-from replaceme.wallet.lineage_proof import LineageProof
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.ints import uint64
+from spare.util.streamable import streamable, Streamable
+from spare.wallet.lineage_proof import LineageProof
+from spare.types.blockchain_format.program import Program
+from spare.types.blockchain_format.coin import Coin
 
 
 @dataclass(frozen=True)

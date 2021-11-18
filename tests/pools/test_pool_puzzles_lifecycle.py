@@ -5,23 +5,23 @@ from unittest import TestCase
 
 from blspy import AugSchemeMPL, G1Element, G2Element, PrivateKey
 
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.ints import uint64, uint32
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
-from replaceme.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
+from spare.types.blockchain_format.program import Program
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.coin import Coin
+from spare.types.coin_spend import CoinSpend
+from spare.types.spend_bundle import SpendBundle
+from spare.util.ints import uint64, uint32
+from spare.consensus.default_constants import DEFAULT_CONSTANTS
+from spare.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
     puzzle_for_pk,
     solution_for_conditions,
     calculate_synthetic_secret_key,
     DEFAULT_HIDDEN_PUZZLE_HASH,
 )
-from replaceme.wallet.puzzles.p2_conditions import puzzle_for_conditions
-from replaceme.wallet.puzzles import singleton_top_layer
-from replaceme.pools.pool_wallet_info import PoolState
-from replaceme.pools.pool_puzzles import (
+from spare.wallet.puzzles.p2_conditions import puzzle_for_conditions
+from spare.wallet.puzzles import singleton_top_layer
+from spare.pools.pool_wallet_info import PoolState
+from spare.pools.pool_puzzles import (
     create_waiting_room_inner_puzzle,
     create_pooling_inner_puzzle,
     create_p2_singleton_puzzle,
@@ -47,9 +47,9 @@ from tests.clvm.coin_store import CoinStore, CoinTimestamp, BadSpendBundleError
 
 """
 This test suite aims to test:
-    - replaceme.pools.pool_puzzles.py
-    - replaceme.wallet.puzzles.pool_member_innerpuz.clvm
-    - replaceme.wallet.puzzles.pool_waiting_room_innerpuz.clvm
+    - spare.pools.pool_puzzles.py
+    - spare.wallet.puzzles.pool_member_innerpuz.clvm
+    - spare.wallet.puzzles.pool_waiting_room_innerpuz.clvm
 """
 
 

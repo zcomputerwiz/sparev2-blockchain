@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.hash import std_hash
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.hash import std_hash
 
 
 @dataclass(frozen=True)

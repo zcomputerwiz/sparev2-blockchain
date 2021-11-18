@@ -8,44 +8,44 @@ from typing import Callable, Dict, List, Optional, Tuple, Set
 from blspy import AugSchemeMPL, G2Element
 from chiabip158 import PyBIP158
 
-import replaceme.server.ws_connection as ws
-from replaceme.consensus.block_creation import create_unfinished_block
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.pot_iterations import calculate_ip_iters, calculate_iterations_quality, calculate_sp_iters
-from replaceme.full_node.bundle_tools import best_solution_generator_from_template, simple_solution_generator
-from replaceme.full_node.full_node import FullNode
-from replaceme.full_node.mempool_check_conditions import get_puzzle_and_solution_for_coin
-from replaceme.full_node.signage_point import SignagePoint
-from replaceme.protocols import farmer_protocol, full_node_protocol, introducer_protocol, timelord_protocol, wallet_protocol
-from replaceme.protocols.full_node_protocol import RejectBlock, RejectBlocks
-from replaceme.protocols.protocol_message_types import ProtocolMessageTypes
-from replaceme.protocols.wallet_protocol import (
+import spare.server.ws_connection as ws
+from spare.consensus.block_creation import create_unfinished_block
+from spare.consensus.block_record import BlockRecord
+from spare.consensus.pot_iterations import calculate_ip_iters, calculate_iterations_quality, calculate_sp_iters
+from spare.full_node.bundle_tools import best_solution_generator_from_template, simple_solution_generator
+from spare.full_node.full_node import FullNode
+from spare.full_node.mempool_check_conditions import get_puzzle_and_solution_for_coin
+from spare.full_node.signage_point import SignagePoint
+from spare.protocols import farmer_protocol, full_node_protocol, introducer_protocol, timelord_protocol, wallet_protocol
+from spare.protocols.full_node_protocol import RejectBlock, RejectBlocks
+from spare.protocols.protocol_message_types import ProtocolMessageTypes
+from spare.protocols.wallet_protocol import (
     PuzzleSolutionResponse,
     RejectHeaderBlocks,
     RejectHeaderRequest,
     CoinState,
     RespondSESInfo,
 )
-from replaceme.server.outbound_message import Message, make_msg
-from replaceme.types.blockchain_format.coin import Coin, hash_coin_list
-from replaceme.types.blockchain_format.pool_target import PoolTarget
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.types.full_block import FullBlock
-from replaceme.types.generator_types import BlockGenerator
-from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
-from replaceme.types.mempool_item import MempoolItem
-from replaceme.types.peer_info import PeerInfo
-from replaceme.types.transaction_queue_entry import TransactionQueueEntry
-from replaceme.types.unfinished_block import UnfinishedBlock
-from replaceme.util.api_decorators import api_request, peer_required, bytes_required, execute_task, reply_type
-from replaceme.util.generator_tools import get_block_header
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint8, uint32, uint64, uint128
-from replaceme.util.merkle_set import MerkleSet
+from spare.server.outbound_message import Message, make_msg
+from spare.types.blockchain_format.coin import Coin, hash_coin_list
+from spare.types.blockchain_format.pool_target import PoolTarget
+from spare.types.blockchain_format.program import Program
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from spare.types.coin_record import CoinRecord
+from spare.types.end_of_slot_bundle import EndOfSubSlotBundle
+from spare.types.full_block import FullBlock
+from spare.types.generator_types import BlockGenerator
+from spare.types.mempool_inclusion_status import MempoolInclusionStatus
+from spare.types.mempool_item import MempoolItem
+from spare.types.peer_info import PeerInfo
+from spare.types.transaction_queue_entry import TransactionQueueEntry
+from spare.types.unfinished_block import UnfinishedBlock
+from spare.util.api_decorators import api_request, peer_required, bytes_required, execute_task, reply_type
+from spare.util.generator_tools import get_block_header
+from spare.util.hash import std_hash
+from spare.util.ints import uint8, uint32, uint64, uint128
+from spare.util.merkle_set import MerkleSet
 
 
 class FullNodeAPI:
@@ -72,7 +72,7 @@ class FullNodeAPI:
     @peer_required
     @api_request
     @reply_type([ProtocolMessageTypes.respond_peers])
-    async def request_peers(self, _request: full_node_protocol.RequestPeers, peer: ws.WSReplacemeConnection):
+    async def request_peers(self, _request: full_node_protocol.RequestPeers, peer: ws.WSSpareConnection):
         if peer.peer_server_port is None:
             return None
         peer_info = PeerInfo(peer.peer_host, peer.peer_server_port)
@@ -83,7 +83,7 @@ class FullNodeAPI:
     @peer_required
     @api_request
     async def respond_peers(
-        self, request: full_node_protocol.RespondPeers, peer: ws.WSReplacemeConnection
+        self, request: full_node_protocol.RespondPeers, peer: ws.WSSpareConnection
     ) -> Optional[Message]:
         self.log.debug(f"Received {len(request.peer_list)} peers")
         if self.full_node.full_node_peers is not None:
@@ -93,7 +93,7 @@ class FullNodeAPI:
     @peer_required
     @api_request
     async def respond_peers_introducer(
-        self, request: introducer_protocol.RespondPeersIntroducer, peer: ws.WSReplacemeConnection
+        self, request: introducer_protocol.RespondPeersIntroducer, peer: ws.WSSpareConnection
     ) -> Optional[Message]:
         self.log.debug(f"Received {len(request.peer_list)} peers from introducer")
         if self.full_node.full_node_peers is not None:
@@ -105,7 +105,7 @@ class FullNodeAPI:
     @execute_task
     @peer_required
     @api_request
-    async def new_peak(self, request: full_node_protocol.NewPeak, peer: ws.WSReplacemeConnection) -> Optional[Message]:
+    async def new_peak(self, request: full_node_protocol.NewPeak, peer: ws.WSSpareConnection) -> Optional[Message]:
         """
         A peer notifies us that they have added a new peak to their blockchain. If we don't have it,
         we can ask for it.
@@ -126,7 +126,7 @@ class FullNodeAPI:
     @peer_required
     @api_request
     async def new_transaction(
-        self, transaction: full_node_protocol.NewTransaction, peer: ws.WSReplacemeConnection
+        self, transaction: full_node_protocol.NewTransaction, peer: ws.WSSpareConnection
     ) -> Optional[Message]:
         """
         A peer notifies us of a new transaction.
@@ -229,7 +229,7 @@ class FullNodeAPI:
     async def respond_transaction(
         self,
         tx: full_node_protocol.RespondTransaction,
-        peer: ws.WSReplacemeConnection,
+        peer: ws.WSSpareConnection,
         tx_bytes: bytes = b"",
         test: bool = False,
     ) -> Optional[Message]:
@@ -390,7 +390,7 @@ class FullNodeAPI:
     async def respond_block(
         self,
         respond_block: full_node_protocol.RespondBlock,
-        peer: ws.WSReplacemeConnection,
+        peer: ws.WSSpareConnection,
     ) -> Optional[Message]:
         """
         Receive a full block from a peer full node (or ourselves).
@@ -453,7 +453,7 @@ class FullNodeAPI:
     async def respond_unfinished_block(
         self,
         respond_unfinished_block: full_node_protocol.RespondUnfinishedBlock,
-        peer: ws.WSReplacemeConnection,
+        peer: ws.WSSpareConnection,
         respond_unfinished_block_bytes: bytes = b"",
     ) -> Optional[Message]:
         if self.full_node.sync_store.get_sync_mode():
@@ -466,7 +466,7 @@ class FullNodeAPI:
     @api_request
     @peer_required
     async def new_signage_point_or_end_of_sub_slot(
-        self, new_sp: full_node_protocol.NewSignagePointOrEndOfSubSlot, peer: ws.WSReplacemeConnection
+        self, new_sp: full_node_protocol.NewSignagePointOrEndOfSubSlot, peer: ws.WSSpareConnection
     ) -> Optional[Message]:
         # Ignore if syncing
         if self.full_node.sync_store.get_sync_mode():
@@ -593,7 +593,7 @@ class FullNodeAPI:
     @peer_required
     @api_request
     async def respond_signage_point(
-        self, request: full_node_protocol.RespondSignagePoint, peer: ws.WSReplacemeConnection
+        self, request: full_node_protocol.RespondSignagePoint, peer: ws.WSSpareConnection
     ) -> Optional[Message]:
         if self.full_node.sync_store.get_sync_mode():
             return None
@@ -649,7 +649,7 @@ class FullNodeAPI:
     @peer_required
     @api_request
     async def respond_end_of_sub_slot(
-        self, request: full_node_protocol.RespondEndOfSubSlot, peer: ws.WSReplacemeConnection
+        self, request: full_node_protocol.RespondEndOfSubSlot, peer: ws.WSSpareConnection
     ) -> Optional[Message]:
         if self.full_node.sync_store.get_sync_mode():
             return None
@@ -661,7 +661,7 @@ class FullNodeAPI:
     async def request_mempool_transactions(
         self,
         request: full_node_protocol.RequestMempoolTransactions,
-        peer: ws.WSReplacemeConnection,
+        peer: ws.WSSpareConnection,
     ) -> Optional[Message]:
         received_filter = PyBIP158(bytearray(request.filter))
 
@@ -677,7 +677,7 @@ class FullNodeAPI:
     @api_request
     @peer_required
     async def declare_proof_of_space(
-        self, request: farmer_protocol.DeclareProofOfSpace, peer: ws.WSReplacemeConnection
+        self, request: farmer_protocol.DeclareProofOfSpace, peer: ws.WSSpareConnection
     ) -> Optional[Message]:
         """
         Creates a block body and header, with the proof of space, coinbase, and fee targets provided
@@ -966,7 +966,7 @@ class FullNodeAPI:
     @api_request
     @peer_required
     async def signed_values(
-        self, farmer_request: farmer_protocol.SignedValues, peer: ws.WSReplacemeConnection
+        self, farmer_request: farmer_protocol.SignedValues, peer: ws.WSSpareConnection
     ) -> Optional[Message]:
         """
         Signature of header hash, by the harvester. This is enough to create an unfinished
@@ -1031,7 +1031,7 @@ class FullNodeAPI:
     @peer_required
     @api_request
     async def new_infusion_point_vdf(
-        self, request: timelord_protocol.NewInfusionPointVDF, peer: ws.WSReplacemeConnection
+        self, request: timelord_protocol.NewInfusionPointVDF, peer: ws.WSSpareConnection
     ) -> Optional[Message]:
         if self.full_node.sync_store.get_sync_mode():
             return None
@@ -1042,7 +1042,7 @@ class FullNodeAPI:
     @peer_required
     @api_request
     async def new_signage_point_vdf(
-        self, request: timelord_protocol.NewSignagePointVDF, peer: ws.WSReplacemeConnection
+        self, request: timelord_protocol.NewSignagePointVDF, peer: ws.WSSpareConnection
     ) -> None:
         if self.full_node.sync_store.get_sync_mode():
             return None
@@ -1059,7 +1059,7 @@ class FullNodeAPI:
     @peer_required
     @api_request
     async def new_end_of_sub_slot_vdf(
-        self, request: timelord_protocol.NewEndOfSubSlotVDF, peer: ws.WSReplacemeConnection
+        self, request: timelord_protocol.NewEndOfSubSlotVDF, peer: ws.WSSpareConnection
     ) -> Optional[Message]:
         if self.full_node.sync_store.get_sync_mode():
             return None
@@ -1334,7 +1334,7 @@ class FullNodeAPI:
     @api_request
     @bytes_required
     async def new_compact_vdf(
-        self, request: full_node_protocol.NewCompactVDF, peer: ws.WSReplacemeConnection, request_bytes: bytes = b""
+        self, request: full_node_protocol.NewCompactVDF, peer: ws.WSSpareConnection, request_bytes: bytes = b""
     ):
         if self.full_node.sync_store.get_sync_mode():
             return None
@@ -1360,14 +1360,14 @@ class FullNodeAPI:
     @peer_required
     @api_request
     @reply_type([ProtocolMessageTypes.respond_compact_vdf])
-    async def request_compact_vdf(self, request: full_node_protocol.RequestCompactVDF, peer: ws.WSReplacemeConnection):
+    async def request_compact_vdf(self, request: full_node_protocol.RequestCompactVDF, peer: ws.WSSpareConnection):
         if self.full_node.sync_store.get_sync_mode():
             return None
         await self.full_node.request_compact_vdf(request, peer)
 
     @peer_required
     @api_request
-    async def respond_compact_vdf(self, request: full_node_protocol.RespondCompactVDF, peer: ws.WSReplacemeConnection):
+    async def respond_compact_vdf(self, request: full_node_protocol.RespondCompactVDF, peer: ws.WSSpareConnection):
         if self.full_node.sync_store.get_sync_mode():
             return None
         await self.full_node.respond_compact_vdf(request, peer)
@@ -1375,7 +1375,7 @@ class FullNodeAPI:
     @peer_required
     @api_request
     async def register_interest_in_puzzle_hash(
-        self, request: wallet_protocol.RegisterForPhUpdates, peer: ws.WSReplacemeConnection
+        self, request: wallet_protocol.RegisterForPhUpdates, peer: ws.WSSpareConnection
     ):
         if peer.peer_node_id not in self.full_node.peer_puzzle_hash:
             self.full_node.peer_puzzle_hash[peer.peer_node_id] = set()
@@ -1416,7 +1416,7 @@ class FullNodeAPI:
     @peer_required
     @api_request
     async def register_interest_in_coin(
-        self, request: wallet_protocol.RegisterForCoinUpdates, peer: ws.WSReplacemeConnection
+        self, request: wallet_protocol.RegisterForCoinUpdates, peer: ws.WSSpareConnection
     ):
         if peer.peer_node_id not in self.full_node.peer_coin_ids:
             self.full_node.peer_coin_ids[peer.peer_node_id] = set()

@@ -2,27 +2,27 @@ import aiosqlite
 
 from typing import Optional, List, Dict, Tuple, Any
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program, SerializedProgram
-from replaceme.util.ints import uint64, uint32
-from replaceme.util.hash import std_hash
-from replaceme.util.errors import Err, ValidationError
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.types.generator_types import BlockGenerator
-from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.full_node.bundle_tools import simple_solution_generator
-from replaceme.full_node.mempool_manager import MempoolManager
-from replaceme.full_node.coin_store import CoinStore
-from replaceme.full_node.mempool_check_conditions import get_puzzle_and_solution_for_coin
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
-from replaceme.consensus.coinbase import create_pool_coin, create_farmer_coin
-from replaceme.consensus.block_rewards import calculate_pool_reward, calculate_base_farmer_reward
-from replaceme.consensus.cost_calculator import NPCResult
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.program import Program, SerializedProgram
+from spare.util.ints import uint64, uint32
+from spare.util.hash import std_hash
+from spare.util.errors import Err, ValidationError
+from spare.util.db_wrapper import DBWrapper
+from spare.types.coin_record import CoinRecord
+from spare.types.spend_bundle import SpendBundle
+from spare.types.generator_types import BlockGenerator
+from spare.types.mempool_inclusion_status import MempoolInclusionStatus
+from spare.types.coin_spend import CoinSpend
+from spare.full_node.bundle_tools import simple_solution_generator
+from spare.full_node.mempool_manager import MempoolManager
+from spare.full_node.coin_store import CoinStore
+from spare.full_node.mempool_check_conditions import get_puzzle_and_solution_for_coin
+from spare.consensus.constants import ConsensusConstants
+from spare.consensus.default_constants import DEFAULT_CONSTANTS
+from spare.consensus.coinbase import create_pool_coin, create_farmer_coin
+from spare.consensus.block_rewards import calculate_pool_reward, calculate_base_farmer_reward
+from spare.consensus.cost_calculator import NPCResult
 
 """
 The purpose of this file is to provide a lightweight simulator for the testing of Chialisp smart contracts.
@@ -30,7 +30,7 @@ The purpose of this file is to provide a lightweight simulator for the testing o
 The Node object uses actual MempoolManager, Mempool and CoinStore objects, while substituting FullBlock and
 BlockRecord objects for trimmed down versions.
 
-There is also a provided NodeClient object which implements many of the methods from replaceme.rpc.full_node_rpc_client
+There is also a provided NodeClient object which implements many of the methods from spare.rpc.full_node_rpc_client
 and is designed so that you could test with it and then swap in a real rpc client that uses the same code you tested.
 """
 

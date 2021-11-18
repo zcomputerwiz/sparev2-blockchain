@@ -3,9 +3,9 @@ import logging
 import os
 import pytest
 
-from replaceme.util.file_keyring import acquire_writer_lock, FileKeyring, FileKeyringLockTimeout
-from replaceme.util.keyring_wrapper import KeyringWrapper
-from replaceme.util.path import mkdir
+from spare.util.file_keyring import acquire_writer_lock, FileKeyring, FileKeyringLockTimeout
+from spare.util.keyring_wrapper import KeyringWrapper
+from spare.util.path import mkdir
 from multiprocessing import Pool, TimeoutError
 from pathlib import Path
 from sys import platform

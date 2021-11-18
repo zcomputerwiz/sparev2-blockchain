@@ -2,10 +2,10 @@ import asyncio
 
 import pytest
 
-from replaceme.simulator.simulator_protocol import FarmNewBlockProtocol
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.ints import uint16, uint64
-from replaceme.wallet.rl_wallet.rl_wallet import RLWallet
+from spare.simulator.simulator_protocol import FarmNewBlockProtocol
+from spare.types.peer_info import PeerInfo
+from spare.util.ints import uint16, uint64
+from spare.wallet.rl_wallet.rl_wallet import RLWallet
 from tests.setup_nodes import self_hostname, setup_simulators_and_wallets
 from tests.time_out_assert import time_out_assert
 

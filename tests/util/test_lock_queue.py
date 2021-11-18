@@ -5,7 +5,7 @@ from asyncio import CancelledError
 
 import pytest
 
-from replaceme.full_node.lock_queue import LockQueue, LockClient
+from spare.full_node.lock_queue import LockQueue, LockClient
 
 log = logging.getLogger(__name__)
 

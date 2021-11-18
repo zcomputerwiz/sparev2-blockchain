@@ -2,19 +2,19 @@ import pathlib
 from multiprocessing import freeze_support
 from typing import Dict, Optional
 
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
-from replaceme.rpc.wallet_rpc_api import WalletRpcApi
-from replaceme.server.outbound_message import NodeType
-from replaceme.server.start_service import run_service
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.config import load_config_cli, load_config
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
-from replaceme.util.keychain import Keychain
-from replaceme.wallet.wallet_node import WalletNode
+from spare.consensus.constants import ConsensusConstants
+from spare.consensus.default_constants import DEFAULT_CONSTANTS
+from spare.rpc.wallet_rpc_api import WalletRpcApi
+from spare.server.outbound_message import NodeType
+from spare.server.start_service import run_service
+from spare.types.peer_info import PeerInfo
+from spare.util.config import load_config_cli, load_config
+from spare.util.default_root import DEFAULT_ROOT_PATH
+from spare.util.keychain import Keychain
+from spare.wallet.wallet_node import WalletNode
 
 # See: https://bugs.python.org/issue29288
-from replaceme.wallet.wallet_node_api import WalletNodeAPI
+from spare.wallet.wallet_node_api import WalletNodeAPI
 
 "".encode("idna")
 

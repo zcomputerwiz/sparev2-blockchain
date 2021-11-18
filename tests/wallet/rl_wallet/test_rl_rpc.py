@@ -2,15 +2,15 @@ import asyncio
 
 import pytest
 
-from replaceme.rpc.wallet_rpc_api import WalletRpcApi
-from replaceme.simulator.simulator_protocol import FarmNewBlockProtocol
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.bech32m import encode_puzzle_hash
-from replaceme.util.ints import uint16
-from replaceme.wallet.util.wallet_types import WalletType
+from spare.rpc.wallet_rpc_api import WalletRpcApi
+from spare.simulator.simulator_protocol import FarmNewBlockProtocol
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.mempool_inclusion_status import MempoolInclusionStatus
+from spare.types.peer_info import PeerInfo
+from spare.util.bech32m import encode_puzzle_hash
+from spare.util.ints import uint16
+from spare.wallet.util.wallet_types import WalletType
 from tests.setup_nodes import self_hostname, setup_simulators_and_wallets
 from tests.time_out_assert import time_out_assert
 from tests.wallet.sync.test_wallet_sync import wallet_height_at_least

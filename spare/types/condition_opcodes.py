@@ -2,7 +2,7 @@ import enum
 from typing import Any
 
 
-# See replaceme/wallet/puzzles/condition_codes.clvm
+# See spare/wallet/puzzles/condition_codes.clvm
 class ConditionOpcode(bytes, enum.Enum):
     # AGG_SIG is ascii "1"
 

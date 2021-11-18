@@ -1,14 +1,14 @@
 from dataclasses import dataclass
 from typing import List, Optional, Tuple
 
-from replaceme.consensus.coinbase import pool_parent_id, farmer_parent_id
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.ints import uint8, uint32, uint64
-from replaceme.util.streamable import Streamable, streamable
-from replaceme.wallet.util.transaction_type import TransactionType
+from spare.consensus.coinbase import pool_parent_id, farmer_parent_id
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.mempool_inclusion_status import MempoolInclusionStatus
+from spare.types.spend_bundle import SpendBundle
+from spare.util.ints import uint8, uint32, uint64
+from spare.util.streamable import Streamable, streamable
+from spare.wallet.util.transaction_type import TransactionType
 
 
 @dataclass(frozen=True)

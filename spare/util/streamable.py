@@ -11,11 +11,11 @@ from typing import Any, BinaryIO, Dict, List, Tuple, Type, Callable, Optional, I
 
 from blspy import G1Element, G2Element, PrivateKey
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import int64, int512, uint32, uint64, uint128
-from replaceme.util.type_checking import is_type_List, is_type_SpecificOptional, is_type_Tuple, strictdataclass
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.byte_types import hexstr_to_bytes
+from spare.util.hash import std_hash
+from spare.util.ints import int64, int512, uint32, uint64, uint128
+from spare.util.type_checking import is_type_List, is_type_SpecificOptional, is_type_Tuple, strictdataclass
 
 if sys.version_info < (3, 8):
 

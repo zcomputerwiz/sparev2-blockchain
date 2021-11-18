@@ -1,13 +1,13 @@
 from typing import Callable, Optional
 
-from replaceme.introducer.introducer import Introducer
-from replaceme.protocols.introducer_protocol import RequestPeersIntroducer, RespondPeersIntroducer
-from replaceme.protocols.protocol_message_types import ProtocolMessageTypes
-from replaceme.server.outbound_message import Message, make_msg
-from replaceme.server.ws_connection import WSReplacemeConnection
-from replaceme.types.peer_info import TimestampedPeerInfo
-from replaceme.util.api_decorators import api_request, peer_required
-from replaceme.util.ints import uint64
+from spare.introducer.introducer import Introducer
+from spare.protocols.introducer_protocol import RequestPeersIntroducer, RespondPeersIntroducer
+from spare.protocols.protocol_message_types import ProtocolMessageTypes
+from spare.server.outbound_message import Message, make_msg
+from spare.server.ws_connection import WSSpareConnection
+from spare.types.peer_info import TimestampedPeerInfo
+from spare.util.api_decorators import api_request, peer_required
+from spare.util.ints import uint64
 
 
 class IntroducerAPI:
@@ -24,7 +24,7 @@ class IntroducerAPI:
     async def request_peers_introducer(
         self,
         request: RequestPeersIntroducer,
-        peer: WSReplacemeConnection,
+        peer: WSSpareConnection,
     ) -> Optional[Message]:
         max_peers = self.introducer.max_peers_to_send
         if self.introducer.server is None or self.introducer.server.introducer_peers is None:

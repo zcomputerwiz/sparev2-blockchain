@@ -4,18 +4,18 @@ import logging
 import pytest
 from blspy import AugSchemeMPL
 
-from replaceme.consensus.pot_iterations import is_overflow_block
-from replaceme.full_node.signage_point import SignagePoint
-from replaceme.protocols import full_node_protocol
-from replaceme.rpc.full_node_rpc_api import FullNodeRpcApi
-from replaceme.rpc.full_node_rpc_client import FullNodeRpcClient
-from replaceme.rpc.rpc_server import NodeType, start_rpc_server
-from replaceme.simulator.simulator_protocol import FarmNewBlockProtocol
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.types.unfinished_block import UnfinishedBlock
+from spare.consensus.pot_iterations import is_overflow_block
+from spare.full_node.signage_point import SignagePoint
+from spare.protocols import full_node_protocol
+from spare.rpc.full_node_rpc_api import FullNodeRpcApi
+from spare.rpc.full_node_rpc_client import FullNodeRpcClient
+from spare.rpc.rpc_server import NodeType, start_rpc_server
+from spare.simulator.simulator_protocol import FarmNewBlockProtocol
+from spare.types.spend_bundle import SpendBundle
+from spare.types.unfinished_block import UnfinishedBlock
 from tests.block_tools import get_signage_point
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint16, uint8
+from spare.util.hash import std_hash
+from spare.util.ints import uint16, uint8
 from tests.wallet_tools import WalletTool
 from tests.connection_utils import connect_and_get_peer
 from tests.setup_nodes import bt, self_hostname, setup_simulators_and_wallets, test_constants

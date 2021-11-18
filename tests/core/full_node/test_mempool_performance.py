@@ -6,10 +6,10 @@ import time
 import pytest
 import logging
 
-from replaceme.protocols import full_node_protocol
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.ints import uint16
-from replaceme.wallet.transaction_record import TransactionRecord
+from spare.protocols import full_node_protocol
+from spare.types.peer_info import PeerInfo
+from spare.util.ints import uint16
+from spare.wallet.transaction_record import TransactionRecord
 from tests.connection_utils import connect_and_get_peer
 from tests.setup_nodes import bt, self_hostname, setup_simulators_and_wallets
 from tests.time_out_assert import time_out_assert

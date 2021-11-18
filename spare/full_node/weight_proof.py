@@ -6,27 +6,27 @@ import random
 from concurrent.futures.process import ProcessPoolExecutor
 from typing import Dict, List, Optional, Tuple
 
-from replaceme.consensus.block_header_validation import validate_finished_header_block
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.deficit import calculate_deficit
-from replaceme.consensus.full_block_to_block_record import header_block_to_sub_block_record
-from replaceme.consensus.pot_iterations import (
+from spare.consensus.block_header_validation import validate_finished_header_block
+from spare.consensus.block_record import BlockRecord
+from spare.consensus.blockchain_interface import BlockchainInterface
+from spare.consensus.constants import ConsensusConstants
+from spare.consensus.deficit import calculate_deficit
+from spare.consensus.full_block_to_block_record import header_block_to_sub_block_record
+from spare.consensus.pot_iterations import (
     calculate_ip_iters,
     calculate_iterations_quality,
     calculate_sp_iters,
     is_overflow_block,
 )
-from replaceme.consensus.vdf_info_computation import get_signage_point_vdf_info
-from replaceme.types.blockchain_format.classgroup import ClassgroupElement
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.slots import ChallengeChainSubSlot, RewardChainSubSlot
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.blockchain_format.vdf import VDFInfo
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.types.header_block import HeaderBlock
-from replaceme.types.weight_proof import (
+from spare.consensus.vdf_info_computation import get_signage_point_vdf_info
+from spare.types.blockchain_format.classgroup import ClassgroupElement
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.slots import ChallengeChainSubSlot, RewardChainSubSlot
+from spare.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from spare.types.blockchain_format.vdf import VDFInfo
+from spare.types.end_of_slot_bundle import EndOfSubSlotBundle
+from spare.types.header_block import HeaderBlock
+from spare.types.weight_proof import (
     SubEpochChallengeSegment,
     SubEpochData,
     SubSlotData,
@@ -34,10 +34,10 @@ from replaceme.types.weight_proof import (
     SubEpochSegments,
     RecentChainData,
 )
-from replaceme.util.block_cache import BlockCache
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint8, uint32, uint64, uint128
-from replaceme.util.streamable import dataclass_from_dict, recurse_jsonify
+from spare.util.block_cache import BlockCache
+from spare.util.hash import std_hash
+from spare.util.ints import uint8, uint32, uint64, uint128
+from spare.util.streamable import dataclass_from_dict, recurse_jsonify
 
 log = logging.getLogger(__name__)
 

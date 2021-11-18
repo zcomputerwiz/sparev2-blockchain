@@ -5,14 +5,14 @@ from typing import List
 
 import aiosqlite
 
-from replaceme.consensus.blockchain import Blockchain
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.full_node.block_store import BlockStore
-from replaceme.full_node.coin_store import CoinStore
-from replaceme.full_node.hint_store import HintStore
-from replaceme.types.full_block import FullBlock
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.path import mkdir
+from spare.consensus.blockchain import Blockchain
+from spare.consensus.constants import ConsensusConstants
+from spare.full_node.block_store import BlockStore
+from spare.full_node.coin_store import CoinStore
+from spare.full_node.hint_store import HintStore
+from spare.types.full_block import FullBlock
+from spare.util.db_wrapper import DBWrapper
+from spare.util.path import mkdir
 
 from tests.setup_nodes import bt
 
@@ -47,8 +47,8 @@ def persistent_blocks(
 ):
     # try loading from disc, if not create new blocks.db file
     # TODO hash fixtures.py and blocktool.py, add to path, delete if the files changed
-    block_path_dir = Path("~/.replaceme/blocks").expanduser()
-    file_path = Path(f"~/.replaceme/blocks/{db_name}").expanduser()
+    block_path_dir = Path("~/.spare/blocks").expanduser()
+    file_path = Path(f"~/.spare/blocks/{db_name}").expanduser()
     if not path.exists(block_path_dir):
         mkdir(block_path_dir.parent)
         mkdir(block_path_dir)

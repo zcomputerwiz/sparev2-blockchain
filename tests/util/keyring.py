@@ -2,9 +2,9 @@ import os
 import shutil
 import tempfile
 
-from replaceme.util.file_keyring import FileKeyring
-from replaceme.util.keychain import Keychain, default_keychain_service, default_keychain_user, get_private_key_user
-from replaceme.util.keyring_wrapper import KeyringWrapper
+from spare.util.file_keyring import FileKeyring
+from spare.util.keychain import Keychain, default_keychain_service, default_keychain_user, get_private_key_user
+from spare.util.keyring_wrapper import KeyringWrapper
 from functools import wraps
 from keyring.util import platform_
 from keyrings.cryptfile.cryptfile import CryptFileKeyring  # pyright: reportMissingImports=false
@@ -100,7 +100,7 @@ class TempKeyring:
         self,
         *,
         user: str = "testing-1.8.0",
-        service: str = "testing-replaceme-1.8.0",
+        service: str = "testing-spare-1.8.0",
         populate: bool = False,
         setup_cryptfilekeyring: bool = False,
         existing_keyring_path: str = None,
@@ -131,13 +131,13 @@ class TempKeyring:
         existing_keyring_dir = Path(existing_keyring_path).parent if existing_keyring_path else None
         temp_dir = existing_keyring_dir or tempfile.mkdtemp(prefix="test_keyring_wrapper")
 
-        mock_supports_keyring_passphrase_patch = patch("replaceme.util.keychain.supports_keyring_passphrase")
+        mock_supports_keyring_passphrase_patch = patch("spare.util.keychain.supports_keyring_passphrase")
         mock_supports_keyring_passphrase = mock_supports_keyring_passphrase_patch.start()
 
         # Patch supports_keyring_passphrase() to return True
         mock_supports_keyring_passphrase.return_value = True
 
-        mock_supports_os_passphrase_storage_patch = patch("replaceme.util.keychain.supports_os_passphrase_storage")
+        mock_supports_os_passphrase_storage_patch = patch("spare.util.keychain.supports_os_passphrase_storage")
         mock_supports_os_passphrase_storage = mock_supports_os_passphrase_storage_patch.start()
 
         # Patch supports_os_passphrase_storage() to return use_os_credential_store

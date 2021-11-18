@@ -1,24 +1,24 @@
 from typing import Dict, List, Optional, Tuple, Any
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.full_node.signage_point import SignagePoint
-from replaceme.rpc.rpc_client import RpcClient
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.types.full_block import FullBlock
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.types.unfinished_header_block import UnfinishedHeaderBlock
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.ints import uint32, uint64
+from spare.consensus.block_record import BlockRecord
+from spare.full_node.signage_point import SignagePoint
+from spare.rpc.rpc_client import RpcClient
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.coin_record import CoinRecord
+from spare.types.coin_spend import CoinSpend
+from spare.types.end_of_slot_bundle import EndOfSubSlotBundle
+from spare.types.full_block import FullBlock
+from spare.types.spend_bundle import SpendBundle
+from spare.types.unfinished_header_block import UnfinishedHeaderBlock
+from spare.util.byte_types import hexstr_to_bytes
+from spare.util.ints import uint32, uint64
 
 
 class FullNodeRpcClient(RpcClient):
     """
-    Client to Replaceme RPC, connects to a local full node. Uses HTTP/JSON, and converts back from
+    Client to Spare RPC, connects to a local full node. Uses HTTP/JSON, and converts back from
     JSON into native python objects before returning. All api calls use POST requests.
-    Note that this is not the same as the peer protocol, or wallet protocol (which run Replaceme's
+    Note that this is not the same as the peer protocol, or wallet protocol (which run Spare's
     protocol on top of TCP), it's a separate protocol on top of HTTP thats provides easy access
     to the full node.
     """

@@ -2,13 +2,13 @@ from typing import List
 
 from blspy import AugSchemeMPL, G1Element, G2Element
 
-from replaceme.consensus.coinbase import create_puzzlehash_for_pk
-from replaceme.util.bech32m import encode_puzzle_hash
-from replaceme.util.config import load_config
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
-from replaceme.util.ints import uint32
-from replaceme.util.keychain import Keychain, bytes_to_mnemonic, generate_mnemonic, unlocks_keyring
-from replaceme.wallet.derive_keys import master_sk_to_farmer_sk, master_sk_to_pool_sk, master_sk_to_wallet_sk
+from spare.consensus.coinbase import create_puzzlehash_for_pk
+from spare.util.bech32m import encode_puzzle_hash
+from spare.util.config import load_config
+from spare.util.default_root import DEFAULT_ROOT_PATH
+from spare.util.ints import uint32
+from spare.util.keychain import Keychain, bytes_to_mnemonic, generate_mnemonic, unlocks_keyring
+from spare.wallet.derive_keys import master_sk_to_farmer_sk, master_sk_to_pool_sk, master_sk_to_wallet_sk
 
 keychain: Keychain = Keychain()
 
@@ -21,7 +21,7 @@ def generate_and_print():
     mnemonic = generate_mnemonic()
     print("Generating private key. Mnemonic (24 secret words):")
     print(mnemonic)
-    print("Note that this key has not been added to the keychain. Run replaceme keys add")
+    print("Note that this key has not been added to the keychain. Run spare keys add")
     return mnemonic
 
 

@@ -4,18 +4,18 @@ from typing import Dict, List, Optional, Any
 
 import aiohttp
 
-from replaceme.server.server import NodeType, ssl_context_for_client
-from replaceme.server.ssl_context import private_ssl_ca_paths
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.ints import uint16
+from spare.server.server import NodeType, ssl_context_for_client
+from spare.server.ssl_context import private_ssl_ca_paths
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.byte_types import hexstr_to_bytes
+from spare.util.ints import uint16
 
 
 class RpcClient:
     """
-    Client to Replaceme RPC, connects to a local service. Uses HTTP/JSON, and converts back from
+    Client to Spare RPC, connects to a local service. Uses HTTP/JSON, and converts back from
     JSON into native python objects before returning. All api calls use POST requests.
-    Note that this is not the same as the peer protocol, or wallet protocol (which run Replaceme's
+    Note that this is not the same as the peer protocol, or wallet protocol (which run Spare's
     protocol on top of TCP), it's a separate protocol on top of HTTP that provides easy access
     to the full node.
     """

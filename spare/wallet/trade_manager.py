@@ -7,32 +7,32 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from blspy import AugSchemeMPL
 
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint32, uint64
-from replaceme.wallet.cc_wallet import cc_utils
-from replaceme.wallet.cc_wallet.cc_utils import CC_MOD, SpendableCC, spend_bundle_for_spendable_ccs, uncurry_cc
-from replaceme.wallet.cc_wallet.cc_wallet import CCWallet
-from replaceme.wallet.puzzles.genesis_by_coin_id_with_0 import genesis_coin_id_for_genesis_coin_checker
-from replaceme.wallet.trade_record import TradeRecord
-from replaceme.wallet.trading.trade_status import TradeStatus
-from replaceme.wallet.trading.trade_store import TradeStore
-from replaceme.wallet.transaction_record import TransactionRecord
-from replaceme.wallet.util.trade_utils import (
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.program import Program
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.spend_bundle import SpendBundle
+from spare.types.coin_spend import CoinSpend
+from spare.util.byte_types import hexstr_to_bytes
+from spare.util.db_wrapper import DBWrapper
+from spare.util.hash import std_hash
+from spare.util.ints import uint32, uint64
+from spare.wallet.cc_wallet import cc_utils
+from spare.wallet.cc_wallet.cc_utils import CC_MOD, SpendableCC, spend_bundle_for_spendable_ccs, uncurry_cc
+from spare.wallet.cc_wallet.cc_wallet import CCWallet
+from spare.wallet.puzzles.genesis_by_coin_id_with_0 import genesis_coin_id_for_genesis_coin_checker
+from spare.wallet.trade_record import TradeRecord
+from spare.wallet.trading.trade_status import TradeStatus
+from spare.wallet.trading.trade_store import TradeStore
+from spare.wallet.transaction_record import TransactionRecord
+from spare.wallet.util.trade_utils import (
     get_discrepancies_for_spend_bundle,
     get_output_amount_for_puzzle_and_solution,
     get_output_discrepancy_for_puzzle_and_solution,
 )
-from replaceme.wallet.util.transaction_type import TransactionType
-from replaceme.wallet.util.wallet_types import WalletType
-from replaceme.wallet.wallet import Wallet
-from replaceme.wallet.wallet_coin_record import WalletCoinRecord
+from spare.wallet.util.transaction_type import TransactionType
+from spare.wallet.util.wallet_types import WalletType
+from spare.wallet.wallet import Wallet
+from spare.wallet.wallet_coin_record import WalletCoinRecord
 
 
 class TradeManager:
@@ -278,7 +278,7 @@ class TradeManager:
                         to_exclude = []
                     else:
                         to_exclude = spend_bundle.removals()
-                    new_spend_bundle = await wallet.create_spend_bundle_relative_replaceme(amount, to_exclude)
+                    new_spend_bundle = await wallet.create_spend_bundle_relative_spare(amount, to_exclude)
                 else:
                     return False, None, "unsupported wallet type"
                 if new_spend_bundle is None or new_spend_bundle.removals() == []:
@@ -336,7 +336,7 @@ class TradeManager:
         for key, value in result.items():
             wsm = self.wallet_state_manager
             wallet: Wallet = wsm.main_wallet
-            if key == "replaceme":
+            if key == "spare":
                 continue
             self.log.info(f"value is {key}")
             exists = await wsm.get_wallet_for_colour(key)
@@ -364,7 +364,7 @@ class TradeManager:
         cc_coinsol_outamounts: Dict[bytes32, List[Tuple[CoinSpend, int]]] = dict()
         aggsig = offer_spend_bundle.aggregated_signature
         cc_discrepancies: Dict[bytes32, int] = dict()
-        replaceme_discrepancy = None
+        spare_discrepancy = None
         wallets: Dict[bytes32, Any] = dict()  # colour to wallet dict
 
         for coinsol in offer_spend_bundle.coin_spends:
@@ -397,24 +397,24 @@ class TradeManager:
                     cc_coinsol_outamounts[colour] = [(coinsol, total)]
 
             else:
-                # standard replaceme coin
+                # standard spare coin
                 unspent = await self.wallet_state_manager.get_spendable_coins_for_wallet(1)
                 if coinsol.coin in [record.coin for record in unspent]:
                     return False, None, "can't respond to own offer"
-                if replaceme_discrepancy is None:
-                    replaceme_discrepancy = get_output_discrepancy_for_puzzle_and_solution(coinsol.coin, puzzle, solution)
+                if spare_discrepancy is None:
+                    spare_discrepancy = get_output_discrepancy_for_puzzle_and_solution(coinsol.coin, puzzle, solution)
                 else:
-                    replaceme_discrepancy += get_output_discrepancy_for_puzzle_and_solution(coinsol.coin, puzzle, solution)
+                    spare_discrepancy += get_output_discrepancy_for_puzzle_and_solution(coinsol.coin, puzzle, solution)
                 coinsols.append(coinsol)
 
-        replaceme_spend_bundle: Optional[SpendBundle] = None
-        if replaceme_discrepancy is not None:
-            replaceme_spend_bundle = await self.wallet_state_manager.main_wallet.create_spend_bundle_relative_replaceme(
-                replaceme_discrepancy, []
+        spare_spend_bundle: Optional[SpendBundle] = None
+        if spare_discrepancy is not None:
+            spare_spend_bundle = await self.wallet_state_manager.main_wallet.create_spend_bundle_relative_spare(
+                spare_discrepancy, []
             )
-            if replaceme_spend_bundle is not None:
+            if spare_spend_bundle is not None:
                 for coinsol in coinsols:
-                    replaceme_spend_bundle.coin_spends.append(coinsol)
+                    spare_spend_bundle.coin_spends.append(coinsol)
 
         zero_spend_list: List[SpendBundle] = []
         spend_bundle = None
@@ -424,10 +424,10 @@ class TradeManager:
             if cc_discrepancies[colour] < 0:
                 my_cc_spends = await wallets[colour].select_coins(abs(cc_discrepancies[colour]))
             else:
-                if replaceme_spend_bundle is None:
+                if spare_spend_bundle is None:
                     to_exclude: List = []
                 else:
-                    to_exclude = replaceme_spend_bundle.removals()
+                    to_exclude = spare_spend_bundle.removals()
                 my_cc_spends = await wallets[colour].select_coins(0)
                 if my_cc_spends is None or my_cc_spends == set():
                     zero_spend_bundle: SpendBundle = await wallets[colour].generate_zero_val_coin(False, to_exclude)
@@ -435,7 +435,7 @@ class TradeManager:
                         return (
                             False,
                             None,
-                            "Unable to generate zero value coin. Confirm that you have replaceme available",
+                            "Unable to generate zero value coin. Confirm that you have spare available",
                         )
                     zero_spend_list.append(zero_spend_bundle)
 
@@ -529,49 +529,49 @@ class TradeManager:
 
         # Add transaction history for this trade
         now = uint64(int(time.time()))
-        if replaceme_spend_bundle is not None:
-            spend_bundle = SpendBundle.aggregate([spend_bundle, replaceme_spend_bundle])
-            if replaceme_discrepancy < 0:
+        if spare_spend_bundle is not None:
+            spend_bundle = SpendBundle.aggregate([spend_bundle, spare_spend_bundle])
+            if spare_discrepancy < 0:
                 tx_record = TransactionRecord(
                     confirmed_at_height=uint32(0),
                     created_at_time=now,
                     to_puzzle_hash=token_bytes(),
-                    amount=uint64(abs(replaceme_discrepancy)),
+                    amount=uint64(abs(spare_discrepancy)),
                     fee_amount=uint64(0),
                     confirmed=False,
                     sent=uint32(10),
-                    spend_bundle=replaceme_spend_bundle,
-                    additions=replaceme_spend_bundle.additions(),
-                    removals=replaceme_spend_bundle.removals(),
+                    spend_bundle=spare_spend_bundle,
+                    additions=spare_spend_bundle.additions(),
+                    removals=spare_spend_bundle.removals(),
                     wallet_id=uint32(1),
                     sent_to=[],
                     trade_id=std_hash(spend_bundle.name() + bytes(now)),
                     type=uint32(TransactionType.OUTGOING_TRADE.value),
-                    name=replaceme_spend_bundle.name(),
+                    name=spare_spend_bundle.name(),
                 )
             else:
                 tx_record = TransactionRecord(
                     confirmed_at_height=uint32(0),
                     created_at_time=uint64(int(time.time())),
                     to_puzzle_hash=token_bytes(),
-                    amount=uint64(abs(replaceme_discrepancy)),
+                    amount=uint64(abs(spare_discrepancy)),
                     fee_amount=uint64(0),
                     confirmed=False,
                     sent=uint32(10),
-                    spend_bundle=replaceme_spend_bundle,
-                    additions=replaceme_spend_bundle.additions(),
-                    removals=replaceme_spend_bundle.removals(),
+                    spend_bundle=spare_spend_bundle,
+                    additions=spare_spend_bundle.additions(),
+                    removals=spare_spend_bundle.removals(),
                     wallet_id=uint32(1),
                     sent_to=[],
                     trade_id=std_hash(spend_bundle.name() + bytes(now)),
                     type=uint32(TransactionType.INCOMING_TRADE.value),
-                    name=replaceme_spend_bundle.name(),
+                    name=spare_spend_bundle.name(),
                 )
             my_tx_records.append(tx_record)
 
         for colour, amount in cc_discrepancies.items():
             wallet = wallets[colour]
-            if replaceme_discrepancy > 0:
+            if spare_discrepancy > 0:
                 tx_record = TransactionRecord(
                     confirmed_at_height=uint32(0),
                     created_at_time=uint64(int(time.time())),

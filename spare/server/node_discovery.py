@@ -9,18 +9,18 @@ from typing import Dict, Optional, List, Set
 
 import aiosqlite
 
-import replaceme.server.ws_connection as ws
+import spare.server.ws_connection as ws
 import dns.asyncresolver
-from replaceme.protocols import full_node_protocol, introducer_protocol
-from replaceme.protocols.protocol_message_types import ProtocolMessageTypes
-from replaceme.server.address_manager import AddressManager, ExtendedPeerInfo
-from replaceme.server.address_manager_store import AddressManagerStore
-from replaceme.server.outbound_message import NodeType, make_msg
-from replaceme.server.server import ReplacemeServer
-from replaceme.types.peer_info import PeerInfo, TimestampedPeerInfo
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint64
-from replaceme.util.path import mkdir, path_from_root
+from spare.protocols import full_node_protocol, introducer_protocol
+from spare.protocols.protocol_message_types import ProtocolMessageTypes
+from spare.server.address_manager import AddressManager, ExtendedPeerInfo
+from spare.server.address_manager_store import AddressManagerStore
+from spare.server.outbound_message import NodeType, make_msg
+from spare.server.server import SpareServer
+from spare.types.peer_info import PeerInfo, TimestampedPeerInfo
+from spare.util.hash import std_hash
+from spare.util.ints import uint64
+from spare.util.path import mkdir, path_from_root
 
 MAX_PEERS_RECEIVED_PER_REQUEST = 1000
 MAX_TOTAL_PEERS_RECEIVED = 3000
@@ -37,7 +37,7 @@ class FullNodeDiscovery:
 
     def __init__(
         self,
-        server: ReplacemeServer,
+        server: SpareServer,
         root_path: Path,
         target_outbound_count: int,
         peer_db_path: str,
@@ -48,7 +48,7 @@ class FullNodeDiscovery:
         default_port: Optional[int],
         log,
     ):
-        self.server: ReplacemeServer = server
+        self.server: SpareServer = server
         self.message_queue: asyncio.Queue = asyncio.Queue()
         self.is_closed = False
         self.target_outbound_count = target_outbound_count
@@ -129,7 +129,7 @@ class FullNodeDiscovery:
     def add_message(self, message, data):
         self.message_queue.put_nowait((message, data))
 
-    async def on_connect(self, peer: ws.WSReplacemeConnection):
+    async def on_connect(self, peer: ws.WSSpareConnection):
         if (
             peer.is_outbound is False
             and peer.peer_server_port is not None
@@ -156,7 +156,7 @@ class FullNodeDiscovery:
             await peer.send_message(msg)
 
     # Updates timestamps each time we receive a message for outbound connections.
-    async def update_peer_timestamp_on_message(self, peer: ws.WSReplacemeConnection):
+    async def update_peer_timestamp_on_message(self, peer: ws.WSSpareConnection):
         if (
             peer.is_outbound
             and peer.peer_server_port is not None
@@ -194,7 +194,7 @@ class FullNodeDiscovery:
         if self.introducer_info is None:
             return None
 
-        async def on_connect(peer: ws.WSReplacemeConnection):
+        async def on_connect(peer: ws.WSSpareConnection):
             msg = make_msg(ProtocolMessageTypes.request_peers_introducer, introducer_protocol.RequestPeersIntroducer())
             await peer.send_message(msg)
 
@@ -227,7 +227,7 @@ class FullNodeDiscovery:
         except Exception as e:
             self.log.warn(f"querying DNS introducer failed: {e}")
 
-    async def on_connect_callback(self, peer: ws.WSReplacemeConnection):
+    async def on_connect_callback(self, peer: ws.WSSpareConnection):
         if self.server.on_connect is not None:
             await self.server.on_connect(peer)
         else:

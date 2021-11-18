@@ -1,16 +1,16 @@
 import pathlib
 from typing import Dict
 
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
-from replaceme.harvester.harvester import Harvester
-from replaceme.harvester.harvester_api import HarvesterAPI
-from replaceme.rpc.harvester_rpc_api import HarvesterRpcApi
-from replaceme.server.outbound_message import NodeType
-from replaceme.server.start_service import run_service
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.config import load_config_cli
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
+from spare.consensus.constants import ConsensusConstants
+from spare.consensus.default_constants import DEFAULT_CONSTANTS
+from spare.harvester.harvester import Harvester
+from spare.harvester.harvester_api import HarvesterAPI
+from spare.rpc.harvester_rpc_api import HarvesterRpcApi
+from spare.server.outbound_message import NodeType
+from spare.server.start_service import run_service
+from spare.types.peer_info import PeerInfo
+from spare.util.config import load_config_cli
+from spare.util.default_root import DEFAULT_ROOT_PATH
 
 # See: https://bugs.python.org/issue29288
 "".encode("idna")

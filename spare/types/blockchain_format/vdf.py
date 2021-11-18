@@ -7,11 +7,11 @@ from functools import lru_cache
 
 from chiavdf import create_discriminant, verify_n_wesolowski
 
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.types.blockchain_format.classgroup import ClassgroupElement
-from replaceme.types.blockchain_format.sized_bytes import bytes32, bytes100
-from replaceme.util.ints import uint8, uint64
-from replaceme.util.streamable import Streamable, streamable
+from spare.consensus.constants import ConsensusConstants
+from spare.types.blockchain_format.classgroup import ClassgroupElement
+from spare.types.blockchain_format.sized_bytes import bytes32, bytes100
+from spare.util.ints import uint8, uint64
+from spare.util.streamable import Streamable, streamable
 
 log = logging.getLogger(__name__)
 

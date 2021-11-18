@@ -2,8 +2,8 @@ import asyncio
 import logging
 from typing import Dict, List, Optional, Set, Tuple
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.ints import uint32, uint128
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.ints import uint32, uint128
 
 log = logging.getLogger(__name__)
 

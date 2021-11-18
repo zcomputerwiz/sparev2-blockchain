@@ -5,11 +5,11 @@ from typing import List, Optional, Set, Tuple
 import aiosqlite
 from blspy import G1Element
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.ints import uint32
-from replaceme.wallet.derivation_record import DerivationRecord
-from replaceme.wallet.util.wallet_types import WalletType
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.db_wrapper import DBWrapper
+from spare.util.ints import uint32
+from spare.wallet.derivation_record import DerivationRecord
+from spare.wallet.util.wallet_types import WalletType
 
 log = logging.getLogger(__name__)
 

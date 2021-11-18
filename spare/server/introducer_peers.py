@@ -3,8 +3,8 @@ import time
 from typing import Set, List, Optional
 from dataclasses import dataclass
 
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.ints import uint64, uint16
+from spare.types.peer_info import PeerInfo
+from spare.util.ints import uint64, uint16
 
 
 @dataclass(frozen=False)

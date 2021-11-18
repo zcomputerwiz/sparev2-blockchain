@@ -1,6 +1,6 @@
 import pytest
 
-from replaceme.wallet.chialisp import (
+from spare.wallet.chialisp import (
     apply,
     args,
     cons,

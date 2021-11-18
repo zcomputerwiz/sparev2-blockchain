@@ -5,10 +5,10 @@ from concurrent.futures.thread import ThreadPoolExecutor
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Tuple
 
-import replaceme.server.ws_connection as ws  # lgtm [py/import-and-import-from]
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.plotting.manager import PlotManager
-from replaceme.plotting.util import (
+import spare.server.ws_connection as ws  # lgtm [py/import-and-import-from]
+from spare.consensus.constants import ConsensusConstants
+from spare.plotting.manager import PlotManager
+from spare.plotting.util import (
     add_plot_directory,
     get_plot_directories,
     remove_plot_directory,
@@ -17,7 +17,7 @@ from replaceme.plotting.util import (
     PlotRefreshResult,
     PlotRefreshEvents,
 )
-from replaceme.util.streamable import dataclass_from_dict
+from spare.util.streamable import dataclass_from_dict
 
 log = logging.getLogger(__name__)
 
@@ -87,7 +87,7 @@ class Harvester:
         if update_result.loaded > 0:
             self.event_loop.call_soon_threadsafe(self._state_changed, "plots")
 
-    def on_disconnect(self, connection: ws.WSReplacemeConnection):
+    def on_disconnect(self, connection: ws.WSSpareConnection):
         self.log.info(f"peer disconnected {connection.get_peer_logging()}")
         self._state_changed("close_connection")
 

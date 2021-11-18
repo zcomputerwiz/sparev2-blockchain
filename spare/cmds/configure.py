@@ -3,8 +3,8 @@ from typing import Dict
 
 import click
 
-from replaceme.util.config import load_config, save_config, str2bool
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
+from spare.util.config import load_config, save_config, str2bool
+from spare.util.default_root import DEFAULT_ROOT_PATH
 
 
 def configure(
@@ -151,7 +151,7 @@ def configure(
         change_made = True
 
     if change_made:
-        print("Restart any running replaceme services for changes to take effect")
+        print("Restart any running spare services for changes to take effect")
         save_config(root_path, "config.yaml", config)
     return 0
 

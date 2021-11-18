@@ -2,16 +2,16 @@ import asyncio
 import logging
 import pytest
 
-from replaceme.rpc.rpc_server import start_rpc_server
-from replaceme.rpc.wallet_rpc_api import WalletRpcApi
-from replaceme.rpc.wallet_rpc_client import WalletRpcClient
-from replaceme.simulator.simulator_protocol import FarmNewBlockProtocol
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.ints import uint16, uint64
-from replaceme.wallet.util.wallet_types import WalletType
+from spare.rpc.rpc_server import start_rpc_server
+from spare.rpc.wallet_rpc_api import WalletRpcApi
+from spare.rpc.wallet_rpc_client import WalletRpcClient
+from spare.simulator.simulator_protocol import FarmNewBlockProtocol
+from spare.types.peer_info import PeerInfo
+from spare.util.ints import uint16, uint64
+from spare.wallet.util.wallet_types import WalletType
 from tests.setup_nodes import self_hostname, setup_simulators_and_wallets, bt
 from tests.time_out_assert import time_out_assert
-from replaceme.wallet.did_wallet.did_wallet import DIDWallet
+from spare.wallet.did_wallet.did_wallet import DIDWallet
 
 
 log = logging.getLogger(__name__)

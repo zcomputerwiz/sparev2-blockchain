@@ -1,14 +1,14 @@
 from typing import List, Tuple, Optional
 
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.wallet.puzzles.load_clvm import load_clvm
-from replaceme.wallet.lineage_proof import LineageProof
-from replaceme.util.ints import uint64
-from replaceme.util.hash import std_hash
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.program import Program
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.condition_opcodes import ConditionOpcode
+from spare.types.coin_spend import CoinSpend
+from spare.wallet.puzzles.load_clvm import load_clvm
+from spare.wallet.lineage_proof import LineageProof
+from spare.util.ints import uint64
+from spare.util.hash import std_hash
 
 SINGLETON_MOD = load_clvm("singleton_top_layer.clvm")
 SINGLETON_MOD_HASH = SINGLETON_MOD.get_tree_hash()

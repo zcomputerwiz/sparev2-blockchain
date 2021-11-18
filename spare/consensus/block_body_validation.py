@@ -5,36 +5,36 @@ from typing import Dict, List, Optional, Set, Tuple, Union, Callable
 from chiabip158 import PyBIP158
 from clvm.casts import int_from_bytes
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from replaceme.consensus.block_root_validation import validate_block_merkle_roots
-from replaceme.full_node.mempool_check_conditions import mempool_check_conditions_dict
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.coinbase import create_farmer_coin, create_pool_coin
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.cost_calculator import NPCResult, calculate_cost_of_program
-from replaceme.consensus.find_fork_point import find_fork_point_in_chain
-from replaceme.full_node.block_store import BlockStore
-from replaceme.full_node.coin_store import CoinStore
-from replaceme.full_node.mempool_check_conditions import get_name_puzzle_conditions
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.condition_with_args import ConditionWithArgs
-from replaceme.types.full_block import FullBlock
-from replaceme.types.generator_types import BlockGenerator
-from replaceme.types.name_puzzle_condition import NPC
-from replaceme.types.unfinished_block import UnfinishedBlock
-from replaceme.util import cached_bls
-from replaceme.util.condition_tools import pkm_pairs
-from replaceme.util.errors import Err
-from replaceme.util.generator_tools import (
+from spare.consensus.block_record import BlockRecord
+from spare.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from spare.consensus.block_root_validation import validate_block_merkle_roots
+from spare.full_node.mempool_check_conditions import mempool_check_conditions_dict
+from spare.consensus.blockchain_interface import BlockchainInterface
+from spare.consensus.coinbase import create_farmer_coin, create_pool_coin
+from spare.consensus.constants import ConsensusConstants
+from spare.consensus.cost_calculator import NPCResult, calculate_cost_of_program
+from spare.consensus.find_fork_point import find_fork_point_in_chain
+from spare.full_node.block_store import BlockStore
+from spare.full_node.coin_store import CoinStore
+from spare.full_node.mempool_check_conditions import get_name_puzzle_conditions
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.coin_record import CoinRecord
+from spare.types.condition_opcodes import ConditionOpcode
+from spare.types.condition_with_args import ConditionWithArgs
+from spare.types.full_block import FullBlock
+from spare.types.generator_types import BlockGenerator
+from spare.types.name_puzzle_condition import NPC
+from spare.types.unfinished_block import UnfinishedBlock
+from spare.util import cached_bls
+from spare.util.condition_tools import pkm_pairs
+from spare.util.errors import Err
+from spare.util.generator_tools import (
     additions_for_npc,
     tx_removals_and_additions,
 )
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint32, uint64, uint128
+from spare.util.hash import std_hash
+from spare.util.ints import uint32, uint64, uint128
 
 log = logging.getLogger(__name__)
 

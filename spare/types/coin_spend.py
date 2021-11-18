@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 from typing import List
 
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import SerializedProgram, INFINITE_COST
-from replaceme.util.chain_utils import additions_for_solution, fee_for_solution
-from replaceme.util.streamable import Streamable, streamable
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.program import SerializedProgram, INFINITE_COST
+from spare.util.chain_utils import additions_for_solution, fee_for_solution
+from spare.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

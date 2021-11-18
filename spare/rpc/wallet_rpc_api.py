@@ -6,35 +6,35 @@ from typing import Callable, Dict, List, Optional, Tuple
 
 from blspy import PrivateKey, G1Element
 
-from replaceme.consensus.block_rewards import calculate_base_farmer_reward
-from replaceme.pools.pool_wallet import PoolWallet
-from replaceme.pools.pool_wallet_info import create_pool_state, FARMING_TO_POOL, PoolWalletInfo, PoolState
-from replaceme.protocols.protocol_message_types import ProtocolMessageTypes
-from replaceme.server.outbound_message import NodeType, make_msg
-from replaceme.simulator.simulator_protocol import FarmNewBlockProtocol
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.bech32m import decode_puzzle_hash, encode_puzzle_hash
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.ints import uint32, uint64
-from replaceme.util.keychain import KeyringIsLocked, bytes_to_mnemonic, generate_mnemonic
-from replaceme.util.path import path_from_root
-from replaceme.util.ws_message import WsRpcMessage, create_payload_dict
-from replaceme.wallet.cc_wallet.cc_wallet import CCWallet
-from replaceme.wallet.derive_keys import master_sk_to_singleton_owner_sk
-from replaceme.wallet.rl_wallet.rl_wallet import RLWallet
-from replaceme.wallet.derive_keys import master_sk_to_farmer_sk, master_sk_to_pool_sk, master_sk_to_wallet_sk
-from replaceme.wallet.did_wallet.did_wallet import DIDWallet
-from replaceme.wallet.trade_record import TradeRecord
-from replaceme.wallet.transaction_record import TransactionRecord
-from replaceme.wallet.util.backup_utils import download_backup, get_backup_info, upload_backup
-from replaceme.wallet.util.trade_utils import trade_record_to_dict
-from replaceme.wallet.util.transaction_type import TransactionType
-from replaceme.wallet.util.wallet_types import WalletType
-from replaceme.wallet.wallet_info import WalletInfo
-from replaceme.wallet.wallet_node import WalletNode
-from replaceme.util.config import load_config
-from replaceme.consensus.coinbase import create_puzzlehash_for_pk
+from spare.consensus.block_rewards import calculate_base_farmer_reward
+from spare.pools.pool_wallet import PoolWallet
+from spare.pools.pool_wallet_info import create_pool_state, FARMING_TO_POOL, PoolWalletInfo, PoolState
+from spare.protocols.protocol_message_types import ProtocolMessageTypes
+from spare.server.outbound_message import NodeType, make_msg
+from spare.simulator.simulator_protocol import FarmNewBlockProtocol
+from spare.types.blockchain_format.coin import Coin
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.util.bech32m import decode_puzzle_hash, encode_puzzle_hash
+from spare.util.byte_types import hexstr_to_bytes
+from spare.util.ints import uint32, uint64
+from spare.util.keychain import KeyringIsLocked, bytes_to_mnemonic, generate_mnemonic
+from spare.util.path import path_from_root
+from spare.util.ws_message import WsRpcMessage, create_payload_dict
+from spare.wallet.cc_wallet.cc_wallet import CCWallet
+from spare.wallet.derive_keys import master_sk_to_singleton_owner_sk
+from spare.wallet.rl_wallet.rl_wallet import RLWallet
+from spare.wallet.derive_keys import master_sk_to_farmer_sk, master_sk_to_pool_sk, master_sk_to_wallet_sk
+from spare.wallet.did_wallet.did_wallet import DIDWallet
+from spare.wallet.trade_record import TradeRecord
+from spare.wallet.transaction_record import TransactionRecord
+from spare.wallet.util.backup_utils import download_backup, get_backup_info, upload_backup
+from spare.wallet.util.trade_utils import trade_record_to_dict
+from spare.wallet.util.transaction_type import TransactionType
+from spare.wallet.util.wallet_types import WalletType
+from spare.wallet.wallet_info import WalletInfo
+from spare.wallet.wallet_node import WalletNode
+from spare.util.config import load_config
+from spare.consensus.coinbase import create_puzzlehash_for_pk
 
 # Timeout for response from wallet/full node for sending a transaction
 TIMEOUT = 30
@@ -46,7 +46,7 @@ class WalletRpcApi:
     def __init__(self, wallet_node: WalletNode):
         assert wallet_node is not None
         self.service = wallet_node
-        self.service_name = "replaceme_wallet"
+        self.service_name = "spare_wallet"
 
     def get_routes(self) -> Dict[str, Callable]:
         return {
@@ -128,7 +128,7 @@ class WalletRpcApi:
             data["wallet_id"] = args[1]
         if args[2] is not None:
             data["additional_data"] = args[2]
-        return [create_payload_dict("state_changed", data, "replaceme_wallet", "wallet_ui")]
+        return [create_payload_dict("state_changed", data, "spare_wallet", "wallet_ui")]
 
     async def _stop_wallet(self):
         """
@@ -564,7 +564,7 @@ class WalletRpcApi:
             if request["mode"] == "new":
                 owner_puzzle_hash: bytes32 = await self.service.wallet_state_manager.main_wallet.get_puzzle_hash(True)
 
-                from replaceme.pools.pool_wallet_info import initial_pool_state_from_dict
+                from spare.pools.pool_wallet_info import initial_pool_state_from_dict
 
                 async with self.service.wallet_state_manager.lock:
                     last_wallet: Optional[

@@ -4,17 +4,17 @@ from typing import List, Tuple, Optional
 
 from blspy import AugSchemeMPL, G1Element, G2Element, PrivateKey
 
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.errors import Err
-from replaceme.util.condition_tools import ConditionOpcode
-from replaceme.util.ints import uint64
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
-from replaceme.wallet.lineage_proof import LineageProof
-from replaceme.wallet.puzzles import (
+from spare.types.blockchain_format.program import Program
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.coin import Coin
+from spare.types.coin_spend import CoinSpend
+from spare.types.spend_bundle import SpendBundle
+from spare.util.errors import Err
+from spare.util.condition_tools import ConditionOpcode
+from spare.util.ints import uint64
+from spare.consensus.default_constants import DEFAULT_CONSTANTS
+from spare.wallet.lineage_proof import LineageProof
+from spare.wallet.puzzles import (
     p2_conditions,
     p2_delegated_puzzle_or_hidden_puzzle,
     singleton_top_layer,
@@ -25,14 +25,14 @@ from tests.clvm.test_puzzles import (
     secret_exponent_for_index,
 )
 
-from replaceme.clvm.spend_sim import SpendSim, SimClient
+from spare.clvm.spend_sim import SpendSim, SimClient
 
 """
 This test suite aims to test:
-    - replaceme.wallet.puzzles.singleton_top_layer.py
-    - replaceme.wallet.puzzles.singleton_top_layer.clvm
-    - replaceme.wallet.puzzles.p2_singleton.clvm
-    - replaceme.wallet.puzzles.p2_singleton_or_delayed_puzhash.clvm
+    - spare.wallet.puzzles.singleton_top_layer.py
+    - spare.wallet.puzzles.singleton_top_layer.clvm
+    - spare.wallet.puzzles.p2_singleton.clvm
+    - spare.wallet.puzzles.p2_singleton_or_delayed_puzhash.clvm
 """
 
 

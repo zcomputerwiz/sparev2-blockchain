@@ -1,12 +1,12 @@
 from dataclasses import dataclass
 from typing import List, Optional
 
-from replaceme.consensus.condition_costs import ConditionCost
-from replaceme.types.blockchain_format.program import SerializedProgram
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.name_puzzle_condition import NPC
-from replaceme.util.ints import uint64, uint16
-from replaceme.util.streamable import Streamable, streamable
+from spare.consensus.condition_costs import ConditionCost
+from spare.types.blockchain_format.program import SerializedProgram
+from spare.types.condition_opcodes import ConditionOpcode
+from spare.types.name_puzzle_condition import NPC
+from spare.util.ints import uint64, uint16
+from spare.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

@@ -1,12 +1,12 @@
 import pathlib
 from typing import Dict
 
-from replaceme.introducer.introducer import Introducer
-from replaceme.introducer.introducer_api import IntroducerAPI
-from replaceme.server.outbound_message import NodeType
-from replaceme.server.start_service import run_service
-from replaceme.util.config import load_config_cli
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
+from spare.introducer.introducer import Introducer
+from spare.introducer.introducer_api import IntroducerAPI
+from spare.server.outbound_message import NodeType
+from spare.server.start_service import run_service
+from spare.util.config import load_config_cli
+from spare.util.default_root import DEFAULT_ROOT_PATH
 
 # See: https://bugs.python.org/issue29288
 "".encode("idna")

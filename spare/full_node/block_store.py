@@ -3,14 +3,14 @@ from typing import Dict, List, Optional, Tuple
 
 import aiosqlite
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.full_block import FullBlock
-from replaceme.types.weight_proof import SubEpochChallengeSegment, SubEpochSegments
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.ints import uint32
-from replaceme.util.lru_cache import LRUCache
+from spare.consensus.block_record import BlockRecord
+from spare.types.blockchain_format.sized_bytes import bytes32
+from spare.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from spare.types.full_block import FullBlock
+from spare.types.weight_proof import SubEpochChallengeSegment, SubEpochSegments
+from spare.util.db_wrapper import DBWrapper
+from spare.util.ints import uint32
+from spare.util.lru_cache import LRUCache
 
 log = logging.getLogger(__name__)
 

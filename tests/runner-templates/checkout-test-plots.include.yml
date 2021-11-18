@@ -1,14 +1,14 @@
     - name: Checkout test blocks and plots
       uses: actions/checkout@v2
       with:
-        repository: 'Replaceme-Network/test-cache'
-        path: '.replaceme'
+        repository: 'Spare-Network/test-cache'
+        path: '.spare'
         ref: '0.27.0'
         fetch-depth: 1
 
     - name: Link home directory
       run: |
         cd $HOME
-        ln -s $GITHUB_WORKSPACE/.replaceme
-        echo "$HOME/.replaceme"
-        ls -al $HOME/.replaceme
+        ln -s $GITHUB_WORKSPACE/.spare
+        echo "$HOME/.spare"
+        ls -al $HOME/.spare
