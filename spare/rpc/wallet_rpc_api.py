@@ -65,7 +65,7 @@ class WalletRpcApi:
             "/farm_block": self.farm_block,  # Only when node simulator is running
             # this function is just here for backwards-compatibility. It will probably
             # be removed in the future
-            "/get_initial_freeze_period": self.get_initial_freeze_period,
+            #"/get_initial_freeze_period": self.get_initial_freeze_period,
             "/get_network_info": self.get_network_info,
             # Wallet management
             "/get_wallets": self.get_wallets,
@@ -685,9 +685,9 @@ class WalletRpcApi:
 
     # this function is just here for backwards-compatibility. It will probably
     # be removed in the future
-    async def get_initial_freeze_period(self, _: Dict):
+    #async def get_initial_freeze_period(self, _: Dict):
         # Mon May 03 2021 17:00:00 GMT+0000
-        return {"INITIAL_FREEZE_END_TIMESTAMP": 1620061200}
+        #return {"INITIAL_FREEZE_END_TIMESTAMP": 1620061200}
 
     async def get_next_address(self, request: Dict) -> Dict:
         """
