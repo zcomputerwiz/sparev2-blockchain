@@ -12,7 +12,7 @@ outbound_rate_limit_percent: 30
 # This allows users to farm more forks without running out of ram
 # Setting this too low reduces sync speed, but a synced node can stay synced with a multiprocessing_limit of 2
 # A value higher than 61 takes no effect, as chia limits the workers to 61 (windows server related python bug)
-# multiprocessing_limit: 4
+multiprocessing_limit: 4
 
 network_overrides: &network_overrides
   constants:
@@ -118,7 +118,7 @@ daemon_ssl:
 logging: &logging
   log_stdout: False  # If True, outputs to stdout instead of a file
   log_filename: "log/debug.log"
-  log_level: "WARNING"  # Can be CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
+  log_level: "INFO"  # Can be CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
   log_maxfilesrotation: 7 #  Max files in rotation. Default value 7 if the key is not set
   log_syslog: False  # If True, outputs to SysLog host and port specified
   log_syslog_host: "localhost"  # Send logging messages to a remote or local Unix syslog
